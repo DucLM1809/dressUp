@@ -7,11 +7,13 @@ import Footer from '../components/Footer'
 
 const ProfilePage = () => {
   return (
-    <div>
+    <div className='flex flex-col min-h-screen'>
       <HeaderDark />
 
-      <div className='flex p-20 h-[600px] object-cover gap-12'>
-        <img src={PROFILE} />
+      <div className='flex p-20 max-h-[68vh] object-cover gap-12'>
+        <div className='ml-20 -mr-14'>
+          <img src={PROFILE} className='max-h-[90%]' />
+        </div>
         <div className='flex flex-col justify-between'>
           <div>
             <h1 className='font-bold text-3xl'>Kathryn Murphy</h1>
@@ -41,7 +43,9 @@ const ProfilePage = () => {
         </div>
       </div>
 
-      <Footer />
+      <div className='mt-auto'>
+        <Footer />
+      </div>
     </div>
   )
 }
