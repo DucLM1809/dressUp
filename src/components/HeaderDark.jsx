@@ -100,7 +100,7 @@ const HeaderDark = () => {
             SIGN IN
           </Link> */}
           <BiSearch />
-          <CgProfile />
+          <CgProfile onClick={() => navigate(PATH.PROFILE)} />
           <AiOutlineSetting onClick={() => setHidden(!hidden)} />
         </button>
         <div

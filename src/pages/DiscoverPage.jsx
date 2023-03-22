@@ -4,11 +4,87 @@ import HERO from '../assets/hero.png'
 import TREND from '../assets/trend4.png'
 import SHIPPING from '../assets/shipping.png'
 import Footer from '../components/Footer'
+import { Form, Input, Select } from 'antd'
 
 const DiscoverPage = () => {
   return (
     <div>
       <HeaderDark />
+      <Form layout='horizontal' className='mt-8'>
+        <div className='flex justify-between gap-4 px-24'>
+          <Form.Item
+            label='Sort'
+            name='sort'
+            className='w-full min-w-[200px] font-semibold'
+          >
+            <Select placeholder='Recommended' className='w-[200px]'>
+              <Select.Option>Recommended</Select.Option>
+              <Select.Option>What's new</Select.Option>
+              <Select.Option>Price high to low</Select.Option>
+              <Select.Option>Price low to high</Select.Option>
+            </Select>
+          </Form.Item>
+
+          <Form.Item
+            label='Category'
+            name='category'
+            className='w-full min-w-[200px] font-semibold'
+          >
+            <Select placeholder='Tops' className='w-[200px]'>
+              <Select.Option>Tops</Select.Option>
+              <Select.Option>Footware</Select.Option>
+              <Select.Option>Jeans & Trousers</Select.Option>
+              <Select.Option>Shorts</Select.Option>
+              <Select.Option>Dresses</Select.Option>
+            </Select>
+          </Form.Item>
+          <Form.Item
+            label='Style'
+            name='style'
+            className='w-full min-w-[200px] font-semibold'
+          >
+            <Select placeholder='Baseball' className='w-[200px]'>
+              <Select.Option>Baseball</Select.Option>
+              <Select.Option>Bodycon</Select.Option>
+              <Select.Option>Bomber Jacket</Select.Option>
+              <Select.Option>Crop</Select.Option>
+            </Select>
+          </Form.Item>
+          <Form.Item
+            label='Size'
+            name='size'
+            className='w-full min-w-[200px] font-semibold'
+          >
+            <Select placeholder='Select Size' className='w-[200px]'>
+              <Select.Option>S</Select.Option>
+              <Select.Option>M</Select.Option>
+              <Select.Option>L</Select.Option>
+              <Select.Option>XL</Select.Option>
+              <Select.Option>XXL</Select.Option>
+              <Select.Option>XXXL</Select.Option>
+            </Select>
+          </Form.Item>
+          <Form.Item
+            label='Discount'
+            name='discount'
+            className='w-full min-w-[200px] font-semibold'
+          >
+            <Select placeholder='Up to 20%' className='w-[200px]'>
+              <Select.Option>Up to 20%</Select.Option>
+              <Select.Option>20% - 30%</Select.Option>
+              <Select.Option>30% - 40%</Select.Option>
+              <Select.Option>40% - 50%</Select.Option>
+            </Select>
+          </Form.Item>
+          <Form.Item
+            label='Price'
+            name='price'
+            className='w-full min-w-[200px] font-semibold'
+          >
+            <Input />
+          </Form.Item>
+        </div>
+      </Form>
 
       <div className='w-full flex flex-col items-center'>
         <div className='text-2xl mt-12 mb-6 font-medium'>
