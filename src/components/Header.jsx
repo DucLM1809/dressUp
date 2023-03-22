@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import LOGO from '../assets/logo1.svg'
+import { PATH } from '../constants/common'
 
 const Header = () => {
   return (
@@ -64,7 +65,7 @@ const Header = () => {
       </ul>
       <div>
         <button className='bg-orange rounded-2xl text-white hover:bg-medium-blue shadow-lg'>
-          <Link to='/sign-in' className='block py-2 px-6 text-sm'>
+          <Link to={PATH.LOGIN} className='block py-2 px-6 text-sm'>
             SIGN IN
           </Link>
         </button>
