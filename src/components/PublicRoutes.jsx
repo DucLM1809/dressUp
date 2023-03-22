@@ -10,7 +10,7 @@ const PublicRoutes = () => {
   return (
     <>
       {auth ? (
-        <Navigate to={PATH.HOME} state={{ from: location }} />
+        <Navigate to={PATH.EXPLORE} state={{ from: location }} />
       ) : (
         <Outlet />
       )}

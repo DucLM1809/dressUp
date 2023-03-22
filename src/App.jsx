@@ -17,23 +17,27 @@ import SignUpPage from './pages/SignUpPage'
 function App() {
   return (
     <Routes>
-      {/* <Route element={<PublicRoutes />}> */}
-      <Route index exact path={PATH.EXPLORE} element={<LandingPage />} />
-      <Route exact path={PATH.LOGIN} element={<LoginPage />} />
-      <Route exact path={PATH.SIGNUP} element={<SignUpPage />} />
-      <Route
-        exact
-        path={PATH.FORGET_PASSWORD}
-        element={<ForgetPasswordPage />}
-      />
-      <Route exact path={PATH.RESET_PASSWORD} element={<ResetPasswordPage />} />
-      <Route exact path={PATH.HOME} element={<HomePage />} />{' '}
-      <Route exact path={PATH.ABOUT_US} element={<AboutUsPage />} />
-      <Route exact path={PATH.CONTACT} element={<ContactPage />} />
-      <Route exact path={PATH.OUTFIT_DETAIL} element={<OutfitDetailPage />} />
-      <Route exact path={PATH.PROFILE} element={<ProfilePage />} />
-      <Route exact path={PATH.MY_CLOSET} element={<MyClosetPage />} />
-      {/* </Route> */}
+      <Route element={<PublicRoutes />}>
+        <Route index exact path={PATH.EXPLORE} element={<LandingPage />} />
+        <Route exact path={PATH.LOGIN} element={<LoginPage />} />
+        <Route exact path={PATH.SIGNUP} element={<SignUpPage />} />
+        <Route
+          exact
+          path={PATH.FORGET_PASSWORD}
+          element={<ForgetPasswordPage />}
+        />
+        <Route
+          exact
+          path={PATH.RESET_PASSWORD}
+          element={<ResetPasswordPage />}
+        />
+        <Route exact path={PATH.HOME} element={<HomePage />} />{' '}
+        <Route exact path={PATH.ABOUT_US} element={<AboutUsPage />} />
+        <Route exact path={PATH.CONTACT} element={<ContactPage />} />
+        <Route exact path={PATH.OUTFIT_DETAIL} element={<OutfitDetailPage />} />
+        <Route exact path={PATH.PROFILE} element={<ProfilePage />} />
+        <Route exact path={PATH.MY_CLOSET} element={<MyClosetPage />} />
+      </Route>
       {/* <Route element={<PrivateRoutes />}></Route> */}
     </Routes>
   )

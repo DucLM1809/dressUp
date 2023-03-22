@@ -63,7 +63,7 @@ const Header = () => {
         </li>
       </ul>
       <div>
-        <button className='bg-orange-400 rounded-2xl text-white hover:bg-medium-blue shadow-lg'>
+        <button className='bg-orange rounded-2xl text-white hover:bg-medium-blue shadow-lg'>
           <Link to='/sign-in' className='block py-2 px-6 text-sm'>
             SIGN IN
           </Link>
