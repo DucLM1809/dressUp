@@ -1,8 +1,38 @@
-import { Link } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import { Link, useLocation } from 'react-router-dom'
 import COVER_IMAGE from '../assets/background.jpg'
+import { NotificationCustom } from '../components/Notification'
+import AxiosPost from '../config/axiosPost'
 import { PATH } from '../constants/common'
 
 const ResetPasswordPage = () => {
+  const { search } = useLocation()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch
+  } = useForm()
+
+  const onSubmit = (values) => {
+    AxiosPost('auth/users/reset-password', {
+      token: search.split('token=')[1],
+      newPassword: values?.newPassword
+    }).then(() =>
+      NotificationCustom({
+        type: 'success',
+        message: 'Success',
+        description: 'Reset Password Successfully!'
+      }).catch((err) => {
+        NotificationCustom({
+          type: 'error',
+          message: 'Error',
+          description: err?.response?.data?.detail
+        })
+      })
+    )
+  }
+
   return (
     <div className='w-full h-screen flex items-start'>
       <div className='relative w-1/2 h-full flex flex-col'>
@@ -30,25 +60,28 @@ const ResetPasswordPage = () => {
             </p>
           </div>
 
-          <div className='w-full flex flex-col'>
-            <input
-              className='w-full text-black py-2 pl-2 my-2 bg-transparent border-b border-black outline-none focus:outline-none'
-              type='password'
-              placeholder='New Password'
-            />
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className='w-full flex flex-col'>
+              <input
+                className='w-full text-black py-2 pl-2 my-2 bg-transparent border-b border-black outline-none focus:outline-none'
+                type='password'
+                placeholder='New Password'
+                name='newPassword'
+              />
 
-            <input
-              className='w-full text-black py-2 pl-2 my-2 bg-transparent border-b border-black outline-none focus:outline-none'
-              type='password'
-              placeholder='Confirm Password'
-            />
-          </div>
+              <input
+                className='w-full text-black py-2 pl-2 my-2 bg-transparent border-b border-black outline-none focus:outline-none'
+                type='password'
+                placeholder='Confirm Password'
+              />
+            </div>
 
-          <div className='w-full flex flex-col my-4'>
-            <button className='w-full my-2 font-semibold text-white bg-black rounded-md p-4 text-center flex items-center justify-center cursor-pointer'>
-              Reset
-            </button>
-          </div>
+            <div className='w-full flex flex-col my-4'>
+              <button className='w-full my-2 font-semibold text-white bg-black rounded-md p-4 text-center flex items-center justify-center cursor-pointer'>
+                Reset
+              </button>
+            </div>
+          </form>
         </div>
 
         <div className='w-full flex items-center justify-center'>

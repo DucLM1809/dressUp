@@ -3,6 +3,7 @@ import PrivateRoutes from './components/PrivateRoutes'
 import PublicRoutes from './components/PublicRoutes'
 import { PATH } from './constants/common'
 import AboutUsPage from './pages/AboutUsPage'
+import ActivatePage from './pages/ActivatePage'
 import ContactPage from './pages/ContactPage'
 import ForgetPasswordPage from './pages/ForgetPasswordPage'
 import HomePage from './pages/HomePage'
@@ -21,6 +22,7 @@ function App() {
         <Route index exact path={PATH.EXPLORE} element={<LandingPage />} />
         <Route exact path={PATH.LOGIN} element={<LoginPage />} />
         <Route exact path={PATH.SIGNUP} element={<SignUpPage />} />
+        <Route exact path={PATH.ACTIVATE} element={<ActivatePage />} />
         <Route
           exact
           path={PATH.FORGET_PASSWORD}
@@ -31,6 +33,8 @@ function App() {
           path={PATH.RESET_PASSWORD}
           element={<ResetPasswordPage />}
         />
+      </Route>
+      <Route element={<PrivateRoutes />}>
         <Route exact path={PATH.HOME} element={<HomePage />} />{' '}
         <Route exact path={PATH.ABOUT_US} element={<AboutUsPage />} />
         <Route exact path={PATH.CONTACT} element={<ContactPage />} />
@@ -38,7 +42,6 @@ function App() {
         <Route exact path={PATH.PROFILE} element={<ProfilePage />} />
         <Route exact path={PATH.MY_CLOSET} element={<MyClosetPage />} />
       </Route>
-      {/* <Route element={<PrivateRoutes />}></Route> */}
     </Routes>
   )
 }

@@ -5,7 +5,7 @@ import { useAuth } from '../hooks/useAuth'
 
 const PublicRoutes = () => {
   const location = useLocation()
-  const auth = localStorage.getItem('accessToken')
+  const auth = useAuth()
 
   return (
     <>

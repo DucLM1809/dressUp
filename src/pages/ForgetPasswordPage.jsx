@@ -1,9 +1,29 @@
 import React from 'react'
+import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import COVER_IMAGE from '../assets/background.jpg'
+import { NotificationCustom } from '../components/Notification'
+import AxiosPost from '../config/axiosPost'
 import { PATH } from '../constants/common'
 
 const ForgetPasswordPage = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch
+  } = useForm()
+
+  const onSubmit = (values) => {
+    AxiosPost('auth/users/forgot-password', values).then((res) =>
+      NotificationCustom({
+        type: 'info',
+        message: 'Info',
+        description: res?.data?.detail
+      })
+    )
+  }
+
   return (
     <div className='w-full h-screen flex items-start'>
       <div className='relative w-1/2 h-full flex flex-col'>
@@ -31,19 +51,37 @@ const ForgetPasswordPage = () => {
             </p>
           </div>
 
-          <div className='w-full flex flex-col'>
-            <input
-              className='w-full text-black py-2 pl-2 my-2 bg-transparent border-b border-black outline-none focus:outline-none'
-              type='email'
-              placeholder='Email'
-            />
-          </div>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className='w-full flex flex-col'>
+              <input
+                className='w-full text-black py-2 pl-2 my-2 bg-transparent border-b border-black outline-none focus:outline-none'
+                type='email'
+                placeholder='Email'
+                name='email'
+                {...register('email', {
+                  required: 'You must specify an email.',
+                  pattern: {
+                    value: /\S+@\S+\.\S+/,
+                    message: 'Invalid email format.'
+                  }
+                })}
+              />
+              {errors?.email && (
+                <p className='p-1 text-[13px] font-normal text-red-500 '>
+                  {errors?.email?.message}
+                </p>
+              )}
+            </div>
 
-          <div className='w-full flex flex-col my-4'>
-            <button className='w-full my-2 font-semibold text-white bg-black rounded-md p-4 text-center flex items-center justify-center cursor-pointer'>
-              Confirm
-            </button>
-          </div>
+            <div className='w-full flex flex-col my-4'>
+              <button
+                type='submit'
+                className='w-full my-2 font-semibold text-white bg-black rounded-md p-4 text-center flex items-center justify-center cursor-pointer'
+              >
+                Confirm
+              </button>
+            </div>
+          </form>
         </div>
 
         <div className='w-full flex items-center justify-center'>

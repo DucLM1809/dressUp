@@ -12,9 +12,9 @@ export const PATH = Object.freeze({
   OUTFIT_DETAIL: '/outfit-detail',
   MY_CLOSET: '/my-closet',
   NOT_FOUND: '*',
+  ACTIVATE: '/users/activate',
   FORBIDDEN: '/forbidden',
   FORGET_PASSWORD: '/forget-password',
-  RESET_PASSWORD: '/reset-password/:id/:token',
-  ACTIVATE_ACCOUNT: '/users/:id/verify/:token',
+  RESET_PASSWORD: '/users/reset-password',
   PROFILE: '/profile'
 })
