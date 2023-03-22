@@ -11,6 +11,7 @@ export const PATH = Object.freeze({
   CONTACT: '/contact',
   OUTFIT_DETAIL: '/outfit-detail',
   MY_CLOSET: '/my-closet',
+  DISCOVER: '/discover',
   NOT_FOUND: '*',
   ACTIVATE: '/users/activate',
   FORBIDDEN: '/forbidden',

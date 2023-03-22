@@ -5,6 +5,7 @@ import { PATH } from './constants/common'
 import AboutUsPage from './pages/AboutUsPage'
 import ActivatePage from './pages/ActivatePage'
 import ContactPage from './pages/ContactPage'
+import DiscoverPage from './pages/DiscoverPage'
 import ForgetPasswordPage from './pages/ForgetPasswordPage'
 import HomePage from './pages/HomePage'
 import LandingPage from './pages/LandingPage'
@@ -41,6 +42,7 @@ function App() {
         <Route exact path={PATH.OUTFIT_DETAIL} element={<OutfitDetailPage />} />
         <Route exact path={PATH.PROFILE} element={<ProfilePage />} />
         <Route exact path={PATH.MY_CLOSET} element={<MyClosetPage />} />
+        <Route exact path={PATH.DISCOVER} element={<DiscoverPage />} />
       </Route>
     </Routes>
   )

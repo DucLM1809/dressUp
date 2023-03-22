@@ -15,6 +15,7 @@ const ResetPasswordPage = () => {
   } = useForm()
 
   const onSubmit = (values) => {
+    console.log(values)
     AxiosPost('auth/users/reset-password', {
       token: search.split('token=')[1],
       newPassword: values?.newPassword
@@ -67,17 +68,45 @@ const ResetPasswordPage = () => {
                 type='password'
                 placeholder='New Password'
                 name='newPassword'
+                {...register('newPassword', {
+                  required: 'You must specify a password',
+                  pattern: {
+                    value: /^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9])(?=.*?\W).*$/,
+                    message:
+                      'Password must contain at least one lower character, one upper character, digit or special symbol'
+                  }
+                })}
               />
+              {errors?.newPassword && (
+                <p className='p-1 text-[13px] font-normal text-red-500 '>
+                  {errors?.newPassword?.message}
+                </p>
+              )}
 
               <input
                 className='w-full text-black py-2 pl-2 my-2 bg-transparent border-b border-black outline-none focus:outline-none'
                 type='password'
                 placeholder='Confirm Password'
+                name='confirmPassword'
+                {...register('confirmPassword', {
+                  required: 'You must specify a confirm password',
+                  validate: (value) =>
+                    value === watch('newPassword') ||
+                    'The passwords do not match'
+                })}
               />
+              {errors?.confirmPassword && (
+                <p className='p-1 text-[13px] font-normal text-red-500 '>
+                  {errors?.confirmPassword?.message}
+                </p>
+              )}
             </div>
 
             <div className='w-full flex flex-col my-4'>
-              <button className='w-full my-2 font-semibold text-white bg-black rounded-md p-4 text-center flex items-center justify-center cursor-pointer'>
+              <button
+                type='submit'
+                className='w-full my-2 font-semibold text-white bg-black rounded-md p-4 text-center flex items-center justify-center cursor-pointer'
+              >
                 Reset
               </button>
             </div>
