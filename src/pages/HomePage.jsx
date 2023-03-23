@@ -3,7 +3,12 @@ import HeaderDark from '../components/HeaderDark'
 import HERO from '../assets/hero.png'
 import TREND from '../assets/trend4.png'
 import SHIPPING from '../assets/shipping.png'
+import SUPPORT from '../assets/support.png'
+import RETURN from '../assets/return.png'
+import SECURE from '../assets/secure.png'
 import Footer from '../components/Footer'
+import { Link } from 'react-router-dom'
+import { PATH } from '../constants/common'
 
 const HomePage = () => {
   return (
@@ -24,32 +29,53 @@ const HomePage = () => {
             <span className='font-semibold my-3'>Plain White Shirt</span>
           </div>
           <div className='flex flex-col items-center w-1/4 '>
-            <img src={TREND} className='object-cover h-[265px]' />
-            <span className='font-semibold my-3'>Plain White Shirt</span>
+            <img
+              src='https://i.pinimg.com/564x/c5/8f/35/c58f3560ad12b36fff8cad9cb00f8f42.jpg'
+              className='object-cover h-[265px]'
+            />
+            <span className='font-semibold my-3'>Denim Jacket</span>
           </div>
           <div className='flex flex-col items-center w-1/4 '>
-            <img src={TREND} className='object-cover h-[265px]' />
-            <span className='font-semibold my-3'>Plain White Shirt</span>
+            <img
+              src='https://i.pinimg.com/564x/22/6d/c5/226dc55dae4d80fecf8bc6d8c03a082e.jpg'
+              className='object-cover h-[265px]'
+            />
+            <span className='font-semibold my-3'>Black Polo Shirt</span>
           </div>
           <div className='flex flex-col items-center w-1/4 '>
-            <img src={TREND} className='object-cover h-[265px]' />
-            <span className='font-semibold my-3'>Plain White Shirt</span>
+            <img
+              src='https://i.pinimg.com/564x/cb/ec/c6/cbecc669864071fbcbc98fdc5d34c063.jpg'
+              className='object-cover h-[265px]'
+            />
+            <span className='font-semibold my-3'>Blue Sweater</span>
           </div>
           <div className='flex flex-col items-center w-1/4 '>
-            <img src={TREND} className='object-cover h-[265px]' />
-            <span className='font-semibold my-3'>Plain White Shirt</span>
+            <img
+              src='https://i.pinimg.com/564x/0a/33/94/0a3394b5909e8297b566f6ddd5f72995.jpg'
+              className='object-cover h-[265px]'
+            />
+            <span className='font-semibold my-3'>Blue Plain Shirt</span>
           </div>
           <div className='flex flex-col items-center w-1/4 '>
-            <img src={TREND} className='object-cover h-[265px]' />
-            <span className='font-semibold my-3'>Plain White Shirt</span>
+            <img
+              src='https://i.pinimg.com/564x/14/e4/04/14e404dd4e3c6f41cb59063714789134.jpg'
+              className='object-cover h-[265px]'
+            />
+            <span className='font-semibold my-3'>Dark Blue Shirt</span>
           </div>
           <div className='flex flex-col items-center w-1/4 '>
-            <img src={TREND} className='object-cover h-[265px]' />
-            <span className='font-semibold my-3'>Plain White Shirt</span>
+            <img
+              src='https://i.pinimg.com/564x/1b/18/13/1b1813adda398c179c950871e2c59c5a.jpg'
+              className='object-cover h-[265px]'
+            />
+            <span className='font-semibold my-3'>Outcast T Shirt</span>
           </div>
           <div className='flex flex-col items-center w-1/4 '>
-            <img src={TREND} className='object-cover h-[265px]' />
-            <span className='font-semibold my-3'>Plain White Shirt</span>
+            <img
+              src='https://i.pinimg.com/564x/c5/17/07/c51707a35c92a9de0c27e7562a5e848f.jpg'
+              className='object-cover h-[265px]'
+            />
+            <span className='font-semibold my-3'>Polo Plain Shirt</span>
           </div>
         </div>
 
@@ -63,26 +89,26 @@ const HomePage = () => {
           </div>
 
           <div className='flex gap-4 w-1/5'>
-            <img src={SHIPPING} className='h-[30px] w-[30px] object-cover' />
+            <img src={SUPPORT} className='h-[30px] w-[30px] object-cover' />
             <div className='flex flex-col '>
-              <span className='font-bold'>FREE SHIPPING</span>
-              <span>Enjoy free shipping on all orders above $100</span>
+              <span className='font-bold'>SUPPORT 24/7</span>
+              <span>Our support team is there to help you for queries</span>
             </div>
           </div>
 
           <div className='flex gap-4 w-1/5'>
-            <img src={SHIPPING} className='h-[30px] w-[30px] object-cover' />
+            <img src={RETURN} className='h-[30px] w-[30px] object-cover' />
             <div className='flex flex-col '>
-              <span className='font-bold'>FREE SHIPPING</span>
-              <span>Enjoy free shipping on all orders above $100</span>
+              <span className='font-bold'>30 DAYS RETURN</span>
+              <span>Simply return it within 30 days for an exchange.</span>
             </div>
           </div>
 
           <div className='flex gap-4 w-1/5'>
-            <img src={SHIPPING} className='h-[30px] w-[30px] object-cover' />
+            <img src={SECURE} className='h-[30px] w-[30px] object-cover' />
             <div className='flex flex-col '>
-              <span className='font-bold'>FREE SHIPPING</span>
-              <span>Enjoy free shipping on all orders above $100</span>
+              <span className='font-bold'>100% PAYMENT SECURE</span>
+              <span>Our payments are secured with 256 bit encryption</span>
             </div>
           </div>
         </div>
@@ -100,10 +126,10 @@ const HomePage = () => {
           </div>
 
           <div className='bg-black w-1/2 min-h-[300px] text-white p-24 flex flex-col items-center gap-5'>
-            <h1 className='text-2xl font-semibold'>PEACE OF MIND</h1>
+            <h1 className='text-2xl font-semibold'>Discover your style</h1>
             <p className='text-center'>
-              A one-stop platform for all your fashion needs, hassle-free. Live
-              in your own world
+              Find out your style and recommended styles based on your personal
+              preference
             </p>
             <button className='text-orange py-2 px-4 rounded-full text-xs bg-white'>
               GO NOW
@@ -118,24 +144,36 @@ const HomePage = () => {
 
         <div className='flex items-center justify-between w-full'>
           <div className='flex flex-col items-center w-1/4'>
-            <img src={TREND} className='object-cover h-[265px]' />
-            <span className='font-semibold my-3'>Plain White Shirt</span>
+            <img
+              src='https://i.pinimg.com/564x/ab/0c/88/ab0c880492959104043a6397bee06338.jpg'
+              className='object-cover h-[265px]'
+            />
+            <span className='font-semibold my-3'>Hoodie</span>
           </div>
           <div className='flex flex-col items-center w-1/4'>
-            <img src={TREND} className='object-cover h-[265px]' />
-            <span className='font-semibold my-3'>Plain White Shirt</span>
+            <img
+              src='https://i.pinimg.com/564x/17/42/7d/17427d0e806593be4c3118aaeaaa427d.jpg'
+              className='object-cover h-[265px]'
+            />
+            <span className='font-semibold my-3'>Bomber</span>
           </div>
           <div className='flex flex-col items-center w-1/4'>
-            <img src={TREND} className='object-cover h-[265px]' />
-            <span className='font-semibold my-3'>Plain White Shirt</span>
+            <img
+              src='https://i.pinimg.com/564x/39/f9/2e/39f92e26015b1fed2ed31de3d40860fa.jpg'
+              className='object-cover h-[265px]'
+            />
+            <span className='font-semibold my-3'>Blazer</span>
           </div>
           <div className='flex flex-col items-center w-1/4'>
-            <img src={TREND} className='object-cover h-[265px]' />
-            <span className='font-semibold my-3'>Plain White Shirt</span>
+            <img
+              src='https://i.pinimg.com/564x/ed/5e/5a/ed5e5a84d55ff73f98e8b81c45cbdcab.jpg'
+              className='object-cover h-[265px]'
+            />
+            <span className='font-semibold my-3'>Crop Top</span>
           </div>
         </div>
         <button className='text-white px-4 py-2  rounded-full text-base bg-orange my-12'>
-          FIND OUT MORE
+          <Link to={PATH.DISCOVER}>FIND OUT MORE</Link>
         </button>
       </div>
       <Footer />

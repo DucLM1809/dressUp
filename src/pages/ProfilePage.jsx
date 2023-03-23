@@ -4,6 +4,8 @@ import FACEBOOK from '../assets/facebook.png'
 import TIKTOK from '../assets/tiktok.png'
 import HeaderDark from '../components/HeaderDark'
 import Footer from '../components/Footer'
+import { Link } from 'react-router-dom'
+import { PATH } from '../constants/common'
 
 const ProfilePage = () => {
   return (
@@ -34,7 +36,7 @@ const ProfilePage = () => {
           </div>
           <div className='flex justify-between gap-4'>
             <button className='text-white px-4 py-2 w-fit rounded-full text-sm bg-orange my-12'>
-              MY CLOSET
+              <Link to={PATH.MY_CLOSET}>MY CLOSET</Link>
             </button>
             <button className='text-white px-4 py-2 w-fit rounded-full text-sm bg-orange my-12'>
               TRY MIX&MATCH

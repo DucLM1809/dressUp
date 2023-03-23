@@ -1,54 +1,55 @@
-import { Button, Space, Table, Tag } from 'antd'
+import { Button, Image, Space, Table, Tag } from 'antd'
 import React from 'react'
 import HeaderDark from '../components/HeaderDark'
 import Footer from '../components/Footer'
-import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons'
+import { DeleteOutlined } from '@ant-design/icons'
+import { InputNumber } from 'antd'
 
 const MyClosetPage = () => {
   const columns = [
     {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-      render: (text) => <a>{text}</a>
-    },
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age'
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address'
-    },
-    {
-      title: 'Tags',
-      key: 'tags',
-      dataIndex: 'tags',
-      render: (_, { tags }) => (
-        <>
-          {tags.map((tag) => {
-            let color = tag.length > 5 ? 'geekblue' : 'green'
-            if (tag === 'loser') {
-              color = 'volcano'
-            }
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            )
-          })}
-        </>
+      title: '',
+      dataIndex: 'image',
+      key: 'image',
+      align: 'center',
+      render: (text) => (
+        <Image
+          src='https://i.pinimg.com/564x/4f/75/a3/4f75a37e3b053109bef8b52156a0b99f.jpg'
+          width={150}
+        />
       )
+    },
+    {
+      title: 'Product',
+      dataIndex: 'product',
+      key: 'product'
+    },
+    {
+      title: 'Price',
+      dataIndex: 'price',
+      key: 'price'
+    },
+    {
+      title: 'Quantity',
+      key: 'quantity',
+      dataIndex: 'quantity',
+      render: (_, record) => (
+        <InputNumber defaultValue={record.quantity} className='w-[50px]' />
+      )
+    },
+    {
+      title: 'Total',
+      key: 'total',
+      dataIndex: 'total'
     },
     {
       title: 'Action',
       key: 'action',
       render: (_, record) => (
         <Space size='middle'>
-          <a>Invite {record.name}</a>
-          <a>Delete</a>
+          <Button danger className='flex items-center'>
+            <DeleteOutlined />
+          </Button>
         </Space>
       )
     }
@@ -56,24 +57,30 @@ const MyClosetPage = () => {
   const data = [
     {
       key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer']
+      image:
+        'https://i.pinimg.com/564x/4f/75/a3/4f75a37e3b053109bef8b52156a0b99f.jpg',
+      product: 'Jacket',
+      price: '$59.00',
+      quantity: 1,
+      total: '$59.00'
     },
     {
       key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['loser']
+      image:
+        'https://i.pinimg.com/564x/4f/75/a3/4f75a37e3b053109bef8b52156a0b99f.jpg',
+      product: 'Jacket',
+      price: '$59.00',
+      quantity: 1,
+      total: '$59.00'
     },
     {
       key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sydney No. 1 Lake Park',
-      tags: ['cool', 'teacher']
+      image:
+        'https://i.pinimg.com/564x/4f/75/a3/4f75a37e3b053109bef8b52156a0b99f.jpg',
+      product: 'Jacket',
+      price: '$59.00',
+      quantity: 1,
+      total: '$59.00'
     }
   ]
   return (
@@ -81,15 +88,9 @@ const MyClosetPage = () => {
       <HeaderDark />
       <div className='p-20'>
         <div style={{ marginBottom: 24, display: 'flex', gap: '10px' }}>
-          <Button>
-            <PlusOutlined style={{ color: 'green' }} />
-          </Button>
-          <Button>
-            <EditOutlined style={{ color: 'blue' }} />
-          </Button>
-          <Button>
-            <DeleteOutlined style={{ color: 'red' }} />
-          </Button>
+          <button className='text-white px-4 py-2 w-fit rounded-full text-sm bg-orange my-12'>
+            TRY MIX&MATCH
+          </button>
         </div>
         <Table columns={columns} dataSource={data} />;
       </div>
