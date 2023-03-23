@@ -50,6 +50,10 @@ const ContactPage = () => {
             >
               <Input.TextArea rows={5} />
             </Form.Item>
+
+            <button className='text-white px-4 py-2  rounded-full text-base bg-orange my-12'>
+              SEND MESSAGE
+            </button>
           </Form>
         </div>
 
