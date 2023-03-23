@@ -19,7 +19,7 @@ const HeaderDark = () => {
         NotificationCustom({
           type: 'success',
           message: 'Success',
-          description: 'Login Successfully!'
+          description: 'Logout Successfully!'
         })
         navigate(PATH.LOGIN)
       })
