@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import GoogleLogin, { useGoogleLogin } from 'react-google-login'
 import { Link, useNavigate } from 'react-router-dom'
 import COVER_IMAGE from '../assets/background.jpg'
@@ -10,6 +10,8 @@ import AxiosPost from '../config/axiosPost'
 import { NotificationCustom } from '../components/Notification'
 
 const LoginPage = () => {
+  const [activateMess, setActivateMess] = useState('')
+  const [email, setEmail] = useState('')
   const navigate = useNavigate()
   const {
     register,
@@ -40,6 +42,7 @@ const LoginPage = () => {
   }, [])
 
   const onSubmit = (values) => {
+    setEmail(values.email)
     AxiosPost('auth/users/tokens', values)
       .then((res) => {
         localStorage.setItem(
@@ -61,6 +64,7 @@ const LoginPage = () => {
           message: 'Error',
           description: err?.response?.data?.detail
         })
+        setActivateMess('Check your email to active account!')
       })
   }
 
@@ -87,6 +91,16 @@ const LoginPage = () => {
           description: err?.response?.data?.detail
         })
       })
+  }
+
+  const handleResendRequest = () => {
+    AxiosPost('auth/users/activate/request', { email }).then((res) =>
+      NotificationCustom({
+        type: 'info',
+        message: 'Info',
+        description: res?.data?.detail
+      })
+    )
   }
 
   return (
@@ -168,6 +182,18 @@ const LoginPage = () => {
                 <Link to={PATH.FORGET_PASSWORD}>Forgot Password?</Link>
               </p>
             </div>
+
+            {activateMess && (
+              <p>
+                {activateMess}{' '}
+                <span
+                  className='font-semibold underline underline-offset-2 cursor-pointer'
+                  onClick={handleResendRequest}
+                >
+                  Resend Email
+                </span>
+              </p>
+            )}
 
             <div className='w-full flex flex-col my-4'>
               <button
