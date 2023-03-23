@@ -155,17 +155,17 @@ const ProfilePage = () => {
                   {' '}
                   Body:{' '}
                   <span className='font-normal'>
-                    {dataProfile?.burst +
-                      ' - ' +
-                      dataProfile?.waist +
-                      ' - ' +
-                      dataProfile?.hip}
+                    {dataProfile?.burst || ''}
+                    {' - '}
+                    {dataProfile?.waist || ''}
+                    {' - '}
+                    {dataProfile?.hip || ''}
                   </span>
                 </>
               ) : (
                 <div className='flex gap-2'>
                   Body:
-                  <Form.Item name='bust' className='w-[100px]'>
+                  <Form.Item name='burst' className='w-[100px]'>
                     <Input placeholder='Bust' />
                   </Form.Item>
                   <Form.Item name='waist' className='w-[100px]'>
