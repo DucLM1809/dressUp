@@ -86,9 +86,9 @@ const MyClosetPage = () => {
   return (
     <div>
       <HeaderDark />
-      <div className='p-20'>
+      <div className='p-12'>
         <div style={{ marginBottom: 24, display: 'flex', gap: '10px' }}>
-          <button className='text-white px-4 py-2 w-fit rounded-full text-sm bg-orange my-12'>
+          <button className='text-white px-4 py-2 w-fit rounded-full text-sm bg-orange'>
             TRY MIX&MATCH
           </button>
         </div>
