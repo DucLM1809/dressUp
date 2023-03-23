@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import COVER_IMAGE from '../assets/background.jpg'
 import { NotificationCustom } from '../components/Notification'
 import AxiosPost from '../config/axiosPost'
@@ -7,6 +7,7 @@ import { PATH } from '../constants/common'
 
 const ResetPasswordPage = () => {
   const { search } = useLocation()
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -15,23 +16,25 @@ const ResetPasswordPage = () => {
   } = useForm()
 
   const onSubmit = (values) => {
-    console.log(values)
     AxiosPost('auth/users/reset-password', {
       token: search.split('token=')[1],
       newPassword: values?.newPassword
-    }).then(() =>
-      NotificationCustom({
-        type: 'success',
-        message: 'Success',
-        description: 'Reset Password Successfully!'
-      }).catch((err) => {
+    })
+      .then(() => {
+        NotificationCustom({
+          type: 'success',
+          message: 'Success',
+          description: 'Reset Password Successfully!'
+        })
+        navigate(PATH.LOGIN)
+      })
+      .catch((err) => {
         NotificationCustom({
           type: 'error',
           message: 'Error',
           description: err?.response?.data?.detail
         })
       })
-    )
   }
 
   return (
