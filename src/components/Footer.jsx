@@ -32,7 +32,7 @@ const Footer = () => {
             href='https://www.tiktok.com/'
             target='_blank'
             rel='noopener noreferrer'
-            class='ml-2'
+            className='ml-2'
           >
             <img src={TIKTOK} alt='TikTok' className='w-[32px] object-cover' />
           </a>
