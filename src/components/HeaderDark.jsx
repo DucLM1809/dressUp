@@ -37,9 +37,9 @@ const HeaderDark = () => {
       id='home'
       className='flex justify-between items-center px-28 bg-black text-white'
     >
-      <div className='flex items-center justify-center'>
-        <img src={LOGO} alt='logo' className='w-20' />
-      </div>
+      <Link to={PATH.HOME} className='flex items-center justify-center'>
+        <img src={LOGO} alt='logo' className='w-36' />
+      </Link>
       <ul className='flex p-8 text-medium-blue text-lg'>
         <li className='mx-8 cursor-pointer'>
           <Link
@@ -49,7 +49,7 @@ const HeaderDark = () => {
             spy={true}
             exact='true'
             activeClass='active'
-            className='hover:text-dark-blue hover:font-bold'
+            className='hover:text-orange transition duration-500 ease-in-out'
           >
             Home
           </Link>
@@ -62,7 +62,7 @@ const HeaderDark = () => {
             spy={true}
             exact='true'
             activeClass='active'
-            className='hover:text-dark-blue hover:font-bold'
+            className='hover:text-orange transition duration-500 ease-in-out'
           >
             About Us
           </Link>
@@ -75,7 +75,7 @@ const HeaderDark = () => {
             spy={true}
             exact='true'
             activeClass='active'
-            className='hover:text-dark-blue hover:font-bold'
+            className='hover:text-orange transition duration-500 ease-in-out'
           >
             Contact
           </Link>
@@ -88,7 +88,7 @@ const HeaderDark = () => {
             spy={true}
             exact='true'
             activeClass='active'
-            className='hover:text-dark-blue hover:font-bold'
+            className='hover:text-orange transition duration-500 ease-in-out'
           >
             Discover
           </Link>
