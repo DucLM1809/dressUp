@@ -12,7 +12,7 @@ const Header = () => {
       <ul className='flex p-8 text-medium-blue text-lg'>
         <li className='mx-8 cursor-pointer'>
           <Link
-            to='home'
+            to={PATH.HOME}
             smooth={true}
             duration={500}
             spy={true}
@@ -23,19 +23,7 @@ const Header = () => {
             Shopping
           </Link>
         </li>
-        <li className='mx-8 cursor-pointer'>
-          <Link
-            to='about'
-            smooth={true}
-            duration={500}
-            spy={true}
-            exact='true'
-            activeClass='active'
-            className='hover:text-dark-blue hover:font-bold'
-          >
-            Style
-          </Link>
-        </li>
+
         <li className='mx-8 cursor-pointer'>
           <Link
             to='services'
@@ -51,7 +39,7 @@ const Header = () => {
         </li>
         <li className='mx-8 cursor-pointer'>
           <Link
-            to='destinations'
+            to={PATH.CONTACT}
             smooth={true}
             duration={500}
             spy={true}
@@ -60,6 +48,19 @@ const Header = () => {
             className='hover:text-dark-blue hover:font-bold'
           >
             Contact
+          </Link>
+        </li>
+        <li className='mx-8 cursor-pointer'>
+          <Link
+            to={PATH.DISCOVER}
+            smooth={true}
+            duration={500}
+            spy={true}
+            exact='true'
+            activeClass='active'
+            className='hover:text-dark-blue hover:font-bold'
+          >
+            Discover
           </Link>
         </li>
       </ul>
