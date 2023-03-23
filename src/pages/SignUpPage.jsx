@@ -65,7 +65,7 @@ const SignUpPage = () => {
 
       <div className='w-1/2 h-full bg-background flex flex-col p-20 justify-between items-center'>
         <h1 className='w-full max-w-[500px] mx-auto text-xl text-black font-semibold'>
-          Interactive Brand
+          DressUp
         </h1>
 
         <div className='w-full flex flex-col max-w-[500px]'>
