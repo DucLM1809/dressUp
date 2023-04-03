@@ -14,7 +14,7 @@ import Footer from '../components/Footer'
 
 const AboutUsPage = () => {
   return (
-    <div>
+    <div className='w-full'>
       <HeaderDark />
       <div className='w-full m-auto text-white relative'>
         <img src={BG_ABOUT} className='w-full h-[300px] object-cover' />

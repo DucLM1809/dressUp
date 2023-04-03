@@ -92,7 +92,7 @@ const MyClosetPage = () => {
             TRY MIX&MATCH
           </button>
         </div>
-        <Table columns={columns} dataSource={data} />;
+        <Table columns={columns} dataSource={data} scroll={{ x: 1200 }} />
       </div>
 
       <Footer />

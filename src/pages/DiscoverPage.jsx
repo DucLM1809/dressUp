@@ -12,7 +12,7 @@ import { PATH } from '../constants/common'
 
 const DiscoverPage = () => {
   return (
-    <div>
+    <div className='w-full'>
       <HeaderDark />
       <Form layout='horizontal' className='mt-8'>
         <div className='flex flex-wrap justify-between gap-4 px-10 md:px-24'>

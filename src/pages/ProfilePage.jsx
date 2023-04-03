@@ -61,15 +61,13 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className='flex flex-col min-h-screen'>
+    <div className='w-full'>
       <HeaderDark />
 
       <Form name='profile' layout='horizontal' onFinish={onFinish} form={form}>
-        <div className='flex p-20 max-h-[68vh] object-cover gap-12'>
-          <div className='ml-20 -mr-14'>
-            <img src={PROFILE} className='max-h-[90%]' />
-          </div>
-          <div className='flex flex-col justify-between'>
+        <div className='flex md:flex-row flex-col p-20 gap-12 md:justify-around justify-center items-center'>
+          <img src={PROFILE} className='max-w-[300px] object-contain' />
+          <div className='flex flex-col gap-4 h-full'>
             <div>
               <h1 className='font-bold text-3xl flex items-center gap-2'>
                 {!isEdit ? (
@@ -196,11 +194,11 @@ const ProfilePage = () => {
               <img src={FACEBOOK} className='w-[30px]' />
               <img src={TIKTOK} className='w-[30px]' />
             </div>
-            <div className='flex gap-4'>
-              <button className='text-white px-4 py-2 w-fit rounded-full text-sm bg-orange my-12'>
+            <div className='flex md:flex-row flex-col gap-4 h-fit'>
+              <button className='text-white px-4 py-2 w-full md:w-fit rounded-full text-sm bg-orange my-4'>
                 <Link to={PATH.MY_CLOSET}>MY CLOSET</Link>
               </button>
-              <button className='text-white px-4 py-2 w-fit rounded-full text-sm bg-orange my-12'>
+              <button className='text-white px-4 py-2 w-full  md:w-fit rounded-full text-sm bg-orange my-4'>
                 TRY MIX&MATCH
               </button>
             </div>
