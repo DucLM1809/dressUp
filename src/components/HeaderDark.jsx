@@ -35,12 +35,12 @@ const HeaderDark = () => {
   return (
     <div
       id='home'
-      className='flex justify-between items-center px-28 bg-black text-white'
+      className='w-full flex flex-wrap items-center justify-between p-4 bg-black text-white'
     >
       <Link to={PATH.HOME} className='flex items-center justify-center'>
         <img src={LOGO} alt='logo' className='w-36' />
       </Link>
-      <ul className='flex p-8 text-medium-blue text-lg'>
+      <ul className='hidden md:flex p-8 text-medium-blue text-lg'>
         <li className='mx-8 cursor-pointer'>
           <Link
             to={PATH.HOME}

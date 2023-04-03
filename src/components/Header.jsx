@@ -5,11 +5,14 @@ import { PATH } from '../constants/common'
 
 const Header = () => {
   return (
-    <div id='home' className='flex justify-between items-center mx-28'>
+    <div
+      id='home'
+      className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'
+    >
       <div className='flex items-center justify-center'>
-        <img src={LOGO} alt='logo' className='w-20' />
+        <img src={LOGO} alt='logo' className='h-20' />
       </div>
-      <ul className='flex p-8 text-medium-blue text-lg'>
+      <ul className='hidden md:flex p-8 text-medium-blue text-lg'>
         <li className='mx-8 cursor-pointer'>
           <Link
             to={PATH.HOME}
@@ -66,7 +69,7 @@ const Header = () => {
       </ul>
       <div>
         <button className='bg-orange rounded-2xl text-white hover:bg-medium-blue shadow-lg'>
-          <Link to={PATH.LOGIN} className='block py-2 px-6 text-sm'>
+          <Link to={PATH.LOGIN} className='block py-2 px-6 text-xs md:text-sm'>
             SIGN IN
           </Link>
         </button>

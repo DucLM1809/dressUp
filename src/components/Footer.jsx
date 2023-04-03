@@ -11,7 +11,7 @@ import { PATH } from '../constants/common'
 
 const Footer = () => {
   return (
-    <div className='bg-[#F7931E] flex justify-around px-8 py-10'>
+    <div className='bg-[#F7931E] flex flex-col md:flex-row justify-around px-8 py-10'>
       <div className='flex flex-col items-center justify-center -mt-5'>
         <Link to={PATH.HOME}>
           <img src={LOGO2} alt='Logo' className='w-[100px]' />
