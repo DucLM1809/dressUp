@@ -26,7 +26,7 @@ const ForgetPasswordPage = () => {
 
   return (
     <div className='w-full h-screen flex items-start'>
-      <div className='relative w-1/2 h-full flex flex-col'>
+      <div className='relative w-1/2 h-full md:flex flex-col hidden'>
         <div className='absolute top-[20%] left-[10%] flex flex-col'>
           <h1 className='text-4xl text-white font-bold my-4'>
             Turn Your Ideas into reality
@@ -38,15 +38,17 @@ const ForgetPasswordPage = () => {
         <img src={COVER_IMAGE} className='w-full h-full object-cover' />
       </div>
 
-      <div className='w-1/2 h-full bg-background flex flex-col p-20 justify-between items-center'>
-        <h1 className='w-full max-w-[500px] mx-auto text-xl text-black font-semibold'>
+      <div className='w-full md:w-1/2 h-full bg-background flex flex-col p-20 justify-between items-center'>
+        <h1 className='w-full max-w-[500px] mx-auto text-lg md:text-xl text-black font-semibold'>
           DressUp
         </h1>
 
         <div className='w-full flex flex-col max-w-[500px]'>
           <div className='w-full flex flex-col mb-10'>
-            <h3 className='text-3xl font-semibold mb-2'>Forget Password</h3>
-            <p className='text-base mb-2'>
+            <h3 className='text-2xl md:text-3xl font-semibold mb-2'>
+              Forget Password
+            </h3>
+            <p className='text-sm md:text-base mb-2'>
               Forget your password? Please enter your email.
             </p>
           </div>
@@ -76,7 +78,7 @@ const ForgetPasswordPage = () => {
             <div className='w-full flex flex-col my-4'>
               <button
                 type='submit'
-                className='w-full my-2 font-semibold text-white bg-black rounded-md p-4 text-center flex items-center justify-center cursor-pointer'
+                className='w-full my-2 font-semibold text-white bg-black rounded-md py-2 md:p-4 text-center flex items-center justify-center cursor-pointer'
               >
                 Confirm
               </button>
