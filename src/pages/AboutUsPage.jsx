@@ -24,15 +24,15 @@ const AboutUsPage = () => {
       </div>
 
       <div className='w-full flex flex-col items-center'>
-        <div className='p-20 flex w-full justify-around'>
+        <div className='p-8 md:p-20 flex items-center gap-5 md:flex-row flex-col w-full justify-around'>
           <div className='relative'>
-            <img src={PEOPLE1} className='w-[400px] h-[400px] object-cover' />
+            <img src={PEOPLE1} className='w-[350px] h-[350px] object-cover' />
             <button className='text-white px-8 py-2 rounded-full text-base bg-orange my-12 absolute bottom-0 left-1/2 -translate-x-1/2'>
               SAVE
             </button>
           </div>
           <div className='relative'>
-            <img src={PEOPLE} className='w-[400px] h-[400px] object-cover' />
+            <img src={PEOPLE} className='w-[350px] h-[350px] object-cover' />
             <button className='text-white px-8 py-2 rounded-full text-base bg-orange my-12 absolute bottom-0 left-1/2 -translate-x-1/2'>
               SAVE
             </button>
@@ -41,20 +41,20 @@ const AboutUsPage = () => {
 
         <div className='text-2xl mb-12 font-medium'>The Founders</div>
 
-        <div className='flex items-center justify-between w-full'>
-          <div className='flex flex-col items-center justify-start w-1/4'>
+        <div className='flex flex-wrap items-center justify-between w-full'>
+          <div className='flex flex-col items-center justify-start w-full sm:w-1/2 md:w-1/4'>
             <img src={FOUNDER1} className='object-cover h-[265px]' />
             <span className='font-semibold my-3 '>HM Jawad</span>
           </div>
-          <div className='flex flex-col items-center justify-start w-1/4'>
+          <div className='flex flex-col items-center justify-start w-full sm:w-1/2 md:w-1/4'>
             <img src={FOUNDER2} className='object-cover h-[265px]' />
             <span className='font-semibold my-3'>Furqan Abid</span>
           </div>
-          <div className='flex flex-col items-center justify-start w-1/4'>
+          <div className='flex flex-col items-center justify-start w-full sm:w-1/2 md:w-1/4'>
             <img src={FOUNDER3} className='object-cover h-[265px]' />
             <span className='font-semibold my-3'>Abdullah Ah</span>
           </div>
-          <div className='flex flex-col items-center justify-start w-1/4'>
+          <div className='flex flex-col items-center justify-start w-full sm:w-1/2 md:w-1/4'>
             <img src={FOUNDER4} className='object-cover h-[265px]' />
             <span className='font-semibold my-3'>Abrar Khan</span>
           </div>
@@ -62,7 +62,7 @@ const AboutUsPage = () => {
 
         <div className='text-2xl my-12 font-medium'>The Founders</div>
         <div className='flex flex-col gap-16 w-2/3 h-full mb-12'>
-          <div className='flex gap-12 items-center'>
+          <div className='flex  md:flex-row flex-col gap-12 items-center'>
             <img src={TESTIMONIALS1} className='w-[150px]' />
             <div className='h-full'>
               <img src={QUOTE} className='h-[50px] w-[50px]' />
@@ -74,7 +74,7 @@ const AboutUsPage = () => {
               <span className='font-bold'>Stacy</span>
             </div>
           </div>
-          <div className='flex gap-12 items-center'>
+          <div className='flex md:flex-row flex-col gap-12 items-center'>
             <img src={TESTIMONIALS2} className='w-[150px]' />
             <div>
               <img src={QUOTE} className='h-[50px] w-[50px]' />
