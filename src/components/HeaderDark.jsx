@@ -123,7 +123,7 @@ const HeaderDark = () => {
       {!auth ? (
         <Link
           to={PATH.LOGIN}
-          className='text-[#BAB9B9] text-[18px] lg:text-[20px] mx-2'
+          className='text-gray-500 text-[18px] lg:text-[20px] mx-2'
         >
           Log In
         </Link>
