@@ -11,7 +11,7 @@ const PrivateRoutes = () => {
       {auth ? (
         <Outlet />
       ) : (
-        <Navigate to={PATH.EXPLORE} state={{ from: location }} replace />
+        <Navigate to={PATH.LOGIN} state={{ from: location }} replace />
       )}
     </>
   )
