@@ -7,11 +7,12 @@ import BRAND2 from '../assets/brand2.png'
 import Thumbnail from '../components/Thumbnail'
 import TREND2 from '../assets/trend2.jpg'
 import Footer from '../components/Footer'
+import HeaderDark from '../components/HeaderDark'
 
 const LandingPage = () => {
   return (
     <div className='w-full'>
-      <Header />
+      <HeaderDark />
       <img src={HERO} className='w-full md:w-2/5 m-auto object-cover' />
 
       <div className='bg-[#F6E7CB] w-full flex flex-col items-center'>
