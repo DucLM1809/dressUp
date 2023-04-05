@@ -17,7 +17,9 @@ const HomePage = () => {
     <div className='w-full'>
       <HeaderDark />
 
-      <img src={HERO} className='w-full md:w-2/5 m-auto object-cover' />
+      <div className='bg-gradient-to-b from-[#E5C8AD] to-[#fff]'>
+        <img src={HERO} className='w-full md:w-2/5 m-auto object-cover' />
+      </div>
 
       <div className='w-full flex flex-col items-center'>
         <div className='text-2xl mt-12 mb-6 font-medium'>

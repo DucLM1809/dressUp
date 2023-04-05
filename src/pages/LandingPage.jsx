@@ -124,15 +124,70 @@ const LandingPage = () => {
         </div>
       </div>
 
-      <div className='mt-4 w-full md:flex items-center justify-between p-10 hidden'>
-        <div className='flex flex-col items-center'>
-          <Thumbnail src='https://i.pinimg.com/564x/c4/2b/ec/c42becf2e7534424afb9dc2e1c74f56a.jpg' />
-          <Thumbnail src='https://i.pinimg.com/564x/1b/71/77/1b7177a7bfdc12e2184f1310e24f34f8.jpg' />
+      <div className='mt-4 w-full md:flex items-start justify-between hidden'>
+        <div className='flex flex-col items-center min-w-[500px]'>
+          <div className='flex flex-col items-center'>
+            <img
+              src='https://i.pinimg.com/564x/c4/2b/ec/c42becf2e7534424afb9dc2e1c74f56a.jpg'
+              className='w-full h-[300px]   object-contain'
+            />
+            <h4 className='text-base font-semibold my-4'>Long Coats</h4>
+            <p className='text-sm md:text-base text-center mb-4 max-w-[300px]'>
+              With the seasons changing soon, finding some men's winter coats
+              will be important. Update your wardrobe with some new coats this
+              season!
+            </p>
+          </div>
+
+          <div className='flex flex-col items-center'>
+            <img
+              src='https://i.pinimg.com/564x/1b/71/77/1b7177a7bfdc12e2184f1310e24f34f8.jpg'
+              className='w-full h-[300px]   object-contain'
+            />
+            <h4 className='text-base font-semibold my-4'>Long Coats</h4>
+            <p className='text-sm md:text-base text-center mb-4 max-w-[300px]'>
+              With the seasons changing soon, finding some men's winter coats
+              will be important. Update your wardrobe with some new coats this
+              season!
+            </p>
+          </div>
         </div>
-        <Thumbnail src='https://i.pinimg.com/564x/dc/6e/e0/dc6ee071549d55e2c7f801f8ccc0cf02.jpg' />
-        <div className='flex flex-col items-center'>
-          <Thumbnail src='https://i.pinimg.com/564x/8f/c6/01/8fc6016ff2d996ccb13a09cb34d17c55.jpg' />
-          <Thumbnail src='https://i.pinimg.com/564x/d9/85/3d/d9853dce8c867dfe48ffe7a51ca56701.jpg' />
+        <div className='hidden xl:flex flex-col items-center'>
+          <img
+            src='https://i.pinimg.com/564x/8f/c6/01/8fc6016ff2d996ccb13a09cb34d17c55.jpg'
+            className='w-full h-[300px]   object-contain'
+          />
+          <h4 className='text-base font-semibold my-4'>Long Coats</h4>
+          <p className='text-sm md:text-base text-center mb-4 max-w-[300px]'>
+            With the seasons changing soon, finding some men's winter coats will
+            be important. Update your wardrobe with some new coats this season!
+          </p>
+        </div>
+        <div className='flex flex-col items-center min-w-[500px]'>
+          <div className='flex flex-col items-center'>
+            <img
+              src='https://i.pinimg.com/564x/dc/6e/e0/dc6ee071549d55e2c7f801f8ccc0cf02.jpg'
+              className='w-full h-[300px]   object-contain'
+            />
+            <h4 className='text-base font-semibold my-4'>Long Coats</h4>
+            <p className='text-sm md:text-base text-center mb-4 max-w-[300px]'>
+              With the seasons changing soon, finding some men's winter coats
+              will be important. Update your wardrobe with some new coats this
+              season!
+            </p>
+          </div>
+          <div className='flex flex-col items-center'>
+            <img
+              src='https://i.pinimg.com/564x/d9/85/3d/d9853dce8c867dfe48ffe7a51ca56701.jpg'
+              className='w-full h-[300px]   object-contain'
+            />
+            <h4 className='text-base font-semibold my-4'>Long Coats</h4>
+            <p className='text-sm md:text-base text-center mb-4 max-w-[300px]'>
+              With the seasons changing soon, finding some men's winter coats
+              will be important. Update your wardrobe with some new coats this
+              season!
+            </p>
+          </div>
         </div>
       </div>
 
