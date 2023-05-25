@@ -9,18 +9,19 @@ import download from '../assets/download.png'
 import fileIcon from '../assets/file.png'
 import { Upload, message } from 'antd'
 import AxiosPost from '../config/axiosPost'
+import axios from 'axios'
 
 const OutfitBuilderPage = () => {
   const [state, setState] = useState({
     activeDrags: 0,
     deltaPosition: {
       x: 0,
-      y: 0
+      y: 0,
     },
     controlledPosition: {
       x: -400,
-      y: 200
-    }
+      y: 200,
+    },
   })
   const [file, setFile] = useState('')
 
@@ -30,8 +31,8 @@ const OutfitBuilderPage = () => {
       ...state,
       deltaPosition: {
         x: x + ui.deltaX,
-        y: y + ui.deltaY
-      }
+        y: y + ui.deltaY,
+      },
     })
   }
 
@@ -64,9 +65,15 @@ const OutfitBuilderPage = () => {
   const handleUploadFile = async (options) => {
     const { onSuccess, onError, file, onProgress } = options
     try {
-      const res = await AxiosPost('auth/presigned-urls/post', {
-        object_name: file
+      let res = await AxiosPost('auth/presigned-urls/post', {
+        object_name: file.name
       })
+      const formData = new FormData()
+      Object.entries(res.data.fields).forEach(([key, value]) => {
+        formData.append(key, value)
+      })
+      formData.append('file', file)
+      res = await axios.post(res.data.url + res.data.fields.key, formData)
 
       onSuccess('Ok')
       console.log('server res: ', res)
