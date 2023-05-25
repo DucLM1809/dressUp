@@ -13,6 +13,8 @@ import AxiosGet from '../config/axiosGet'
 import axios from 'axios'
 import Product from '../components/Product'
 import Banner from '../components/Banner'
+import CardStack from '../components/CardStack'
+import styles from '../components/styles.module.css'
 
 const HomePage = () => {
   const navigate = useNavigate()
@@ -50,7 +52,7 @@ const HomePage = () => {
           ))}
         </div>
 
-        <div className='flex flex-wrap w-full gap-5 p-16 sm:py-10 md:p-20 justify-center sm:justify-around'>
+        {/* <div className='flex flex-wrap w-full gap-5 p-16 sm:py-10 md:p-20 justify-center sm:justify-around'>
           <div className='flex gap-4 w-full sm:w-1/3 md:w-1/5'>
             <img src={SHIPPING} className='h-[30px] w-[30px] object-cover' />
             <div className='flex flex-col'>
@@ -82,7 +84,7 @@ const HomePage = () => {
               <span>Our payments are secured with 256 bit encryption</span>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className='flex md:flex-row flex-col gap-5 mb-12 px-6 md:px-20'>
           <div className='bg-advertise1 bg-no-repeat bg-cover bg-center w-full md:w-1/2 min-h-[300px] text-white p-12 md:p-24 flex flex-col items-center gap-5'>
@@ -126,6 +128,10 @@ const HomePage = () => {
         <button className='text-white px-4 py-2 text-base bg-orange my-12'>
           <Link to={PATH.DISCOVER}>FIND OUT MORE</Link>
         </button>
+      </div>
+
+      <div className={styles.container}>
+        <CardStack />
       </div>
       <Footer />
     </div>
