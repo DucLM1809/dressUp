@@ -7,7 +7,13 @@ module.exports = {
         black: '#060606',
         background: '#E0E0E0',
         disabled: '#D9D9D9',
-        orange: '#FF993A'
+        orange: '#FF993A',
+        redText: '#DF6951',
+        purpleText: '#181E4B',
+        lightPurpleText: '#5E6282',
+        yellowColor: '#F1A501',
+        textWhite: '#fff',
+        buttonColor: '#DF6951'
       },
       backgroundImage: {
         advertise1:

@@ -7,16 +7,69 @@ import BRAND2 from '../assets/brand2.png'
 import Thumbnail from '../components/Thumbnail'
 import TREND2 from '../assets/trend2.jpg'
 import Footer from '../components/Footer'
-import HeaderDark from '../components/HeaderDark'
+import DECORE from '../assets/decore.png'
+import DECORE_LINE from '../assets/decore_line.png'
+import MODEL from '../assets/model.png'
+import { motion, AnimatePresence } from 'framer-motion'
+import { headContainerAnimation, headTextAnimation } from '../config/motion'
 
 const LandingPage = () => {
   return (
     <div className='w-full'>
-      <HeaderDark />
-      <img src={HERO} className='w-full md:w-2/5 m-auto object-cover' />
+      <Header />
+
+      <div className='md:px-64 md:py-6 mb-32' {...headContainerAnimation}>
+        <img
+          src={DECORE}
+          alt='decore'
+          className='absolute right-0 top-0 -z-10'
+        />
+
+        {/* <img src={HERO} className='w-full md:w-2/5 m-auto object-cover' /> */}
+        <div className='pt-48 flex items-center' {...headTextAnimation}>
+          <div className='w-[450px]'>
+            <div>
+              <div className='grid gap-4'>
+                <span className='text-redText font-bold text-2xl'>
+                  Best Oufits around the world
+                </span>
+                <span className='font-bold text-6xl text-purpleText z-50'>
+                  Dress up, enjoy and creative!
+                </span>
+                <img
+                  src={DECORE_LINE}
+                  alt='decore_line'
+                  className='absolute top-[400px] left-[430px] h-[12px] w-[300px]'
+                />
+              </div>
+              <div>
+                <span className='text-lightPurpleText mt-2'>
+                  Step into the spotlight with confidence and embrace the
+                  transformative power of fashion. Fashion is more than just
+                  clothing; it's an expression of your unique style and
+                  personality.
+                </span>
+              </div>
+              <div className='flex items-center space-x-6 mt-2'>
+                <a
+                  href='#'
+                  className='px-4 py-2.5 rounded-md bg-yellowColor text-textWhite'
+                >
+                  Find out more
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className='absolute top-20 right-40'>
+            <img src={MODEL} alt='model' />
+          </div>
+        </div>
+      </div>
 
       <div className='bg-[#F6E7CB] w-full flex flex-col items-center'>
-        <div className='text-2xl my-8 md:my-12 font-medium'>TRENDS</div>
+        <div className='text-2xl my-8 md:my-12 font-medium bg-black w-80 text-white py-2 text-center'>
+          TRENDS
+        </div>
         <div className='w-full md:px-20 flex-col flex md:flex-row items-center justify-between'>
           <Thumbnail src='https://i.pinimg.com/564x/b2/ab/82/b2ab824741b4dbfe0362ace56e1668ea.jpg' />
           <Thumbnail src='https://i.pinimg.com/564x/54/7e/54/547e546f20c19436b24433af4b421c77.jpg' />
@@ -25,7 +78,9 @@ const LandingPage = () => {
       </div>
 
       <div className='w-full flex flex-col items-center'>
-        <div className='text-2xl my-12 font-medium'>RECOMMENDED BRANDS</div>
+        <div className='text-2xl my-8 md:my-12 font-medium bg-black w-80 text-white py-2 text-center'>
+          RECOMMENDED BRANDS
+        </div>
         <div className='flex flex-wrap items-center justify-evenly'>
           <img
             src={BRAND}
@@ -70,7 +125,47 @@ const LandingPage = () => {
         </div>
       </div>
 
+      <div className='bg-[#FDEDED] w-full flex flex-col items-center'>
+        <div className='text-2xl my-8 md:my-12 font-medium bg-black w-80 text-white py-2 text-center'>
+          KNOWLEDGES
+        </div>
+        <div className='w-full md:px-20 flex md:flex-row flex-col items-center justify-between'>
+          <Thumbnail src='https://i.pinimg.com/564x/9a/7a/19/9a7a19e74667aee85cc133a196b14c0c.jpg' />
+          <Thumbnail src='https://i.pinimg.com/564x/8d/9b/1e/8d9b1ef1486033ec83ac70b2d30f50be.jpg' />
+          <Thumbnail src='https://i.pinimg.com/564x/a7/01/3e/a7013e992a5a6e5e5146cb55fcdc86ab.jpg' />
+        </div>
+      </div>
+
       <div className='w-full flex flex-col items-center'>
+        <div className='text-2xl my-8 md:my-12 font-medium bg-black w-80 text-white py-2 text-center'>
+          GALLERY
+        </div>
+        <div className='w-full max-w-5xl p-5 pb-10 mx-auto mb-10 gap-5 columns-3 space-y-5'>
+          <img
+            src='https://i.pinimg.com/564x/dd/9a/a7/dd9aa7598cec18ac60244ad027a731fc.jpg'
+            alt=''
+          />
+          <img
+            src='https://i.pinimg.com/564x/51/6b/82/516b820447e79080d8cd81b9f5075f9a.jpg'
+            alt=''
+          />
+
+          <img
+            src='https://i.pinimg.com/564x/89/e4/a0/89e4a04f9afbff472ac870350865f732.jpg'
+            alt=''
+          />
+          <img
+            src='https://i.pinimg.com/564x/4f/8c/d5/4f8cd553c862e15d2fc05efbea28d528.jpg'
+            alt=''
+          />
+          <img
+            src='https://i.pinimg.com/564x/cf/7b/c8/cf7bc893d30da932ee1ad4138b38b817.jpg'
+            alt=''
+          />
+        </div>
+      </div>
+
+      {/* <div className='w-full flex flex-col items-center'>
         <img src={HERO2} className='md:w-2/5 m-auto' />
       </div>
 
@@ -197,7 +292,7 @@ const LandingPage = () => {
         <Thumbnail src='https://i.pinimg.com/564x/1b/71/77/1b7177a7bfdc12e2184f1310e24f34f8.jpg' />
         <Thumbnail src='https://i.pinimg.com/564x/8f/c6/01/8fc6016ff2d996ccb13a09cb34d17c55.jpg' />
         <Thumbnail src='https://i.pinimg.com/564x/d9/85/3d/d9853dce8c867dfe48ffe7a51ca56701.jpg' />
-      </div>
+      </div> */}
 
       <Footer />
     </div>
