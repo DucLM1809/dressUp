@@ -10,6 +10,7 @@ import Footer from '../components/Footer'
 import DECORE from '../assets/decore.png'
 import DECORE_LINE from '../assets/decore_line.png'
 import MODEL from '../assets/model.png'
+import VIDEO from '../assets/walkingGirl.mp4'
 import { headContainerAnimation, headTextAnimation } from '../config/motion'
 
 const LandingPage = () => {
@@ -134,6 +135,17 @@ const LandingPage = () => {
           <Thumbnail src='https://i.pinimg.com/564x/8d/9b/1e/8d9b1ef1486033ec83ac70b2d30f50be.jpg' />
           <Thumbnail src='https://i.pinimg.com/564x/a7/01/3e/a7013e992a5a6e5e5146cb55fcdc86ab.jpg' />
         </div>
+      </div>
+
+      <div className='w-full h-[0px]'>
+        <video
+          src={VIDEO}
+          type='video/mp4'
+          autoPlay
+          muted
+          loop
+          className='object-cover'
+        />
       </div>
 
       <div className='w-full flex flex-col items-center'>
