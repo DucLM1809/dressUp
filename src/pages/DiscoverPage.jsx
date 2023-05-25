@@ -11,22 +11,37 @@ import { Link } from 'react-router-dom'
 import { PATH } from '../constants/common'
 import axios from 'axios'
 import Product from '../components/Product'
+import AxiosGet from '../config/axiosGet'
+import { NotificationCustom } from '../components/Notification'
 
 const DiscoverPage = () => {
   const [data, setData] = useState([])
+  const [paging, setPaging] = useState({ size: 20, offset: 0 })
 
-  const fetchData = async () => {
-    const res = await axios.get(
-      'https://fakestoreapiserver.reactbd.com/products'
-    )
-    if (res) {
-      setData(res.data)
-    }
+  const fetchData = () => {
+    AxiosGet('products', { size: paging.size })
+      .then((res) => setData(res.data))
+      .catch((err) =>
+        NotificationCustom({
+          type: 'error',
+          message: 'Error',
+          description: err?.response?.data?.detail
+        })
+      )
   }
 
   useEffect(() => {
     fetchData()
-  }, [])
+  }, [paging])
+
+  console.log(paging)
+
+  const handlePaging = () => {
+    setPaging({
+      ...paging,
+      size: paging.size + 20
+    })
+  }
 
   return (
     <div className='w-full'>
@@ -118,12 +133,14 @@ const DiscoverPage = () => {
 
         <div className='max-w-screen-xl mx-auto py-10 grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10'>
           {data.map((item) => (
-            <Product key={item._id} product={item} />
+            <Product key={item?.id} product={item} />
           ))}
         </div>
 
         <button className='text-white px-4 py-2 text-base bg-orange my-12'>
-          <Link to={PATH.DISCOVER}>FIND OUT MORE</Link>
+          <Link to={PATH.DISCOVER} onClick={handlePaging}>
+            FIND OUT MORE
+          </Link>
         </button>
       </div>
       <Footer />

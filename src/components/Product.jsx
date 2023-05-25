@@ -6,7 +6,7 @@ const Product = ({ product }) => {
     <div className='group'>
       <div className='w-full h-96 cursor-pointer overflow-hidden'>
         <img
-          src={product.image}
+          src={product?.image || product?.transparentBackgroundImage}
           alt='productImg'
           className='w-full h-full object-cover group-hover:scale-110 duration-500'
         />
@@ -16,7 +16,8 @@ const Product = ({ product }) => {
         <div className='flex justify-between'>
           <div>
             <h2 className='font-bold text-base'>
-              {product.title.substring(0, 15)}
+              {product?.title?.substring(0, 15) ||
+                product?.name?.substring(0, 15)}
             </h2>
           </div>
 
