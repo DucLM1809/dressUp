@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import HeaderDark from '../components/HeaderDark'
 import HERO from '../assets/hero.png'
 import TREND from '../assets/trend4.png'
@@ -9,89 +9,45 @@ import SECURE from '../assets/secure.png'
 import Footer from '../components/Footer'
 import { Link, useNavigate } from 'react-router-dom'
 import { PATH } from '../constants/common'
+import AxiosGet from '../config/axiosGet'
+import axios from 'axios'
+import Product from '../components/Product'
+import Banner from '../components/Banner'
 
 const HomePage = () => {
   const navigate = useNavigate()
+  const [data, setData] = useState([])
+
+  const fetchData = async () => {
+    const res = await axios.get(
+      'https://fakestoreapiserver.reactbd.com/products'
+    )
+    if (res) {
+      setData(res.data)
+    }
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   return (
     <div className='w-full'>
       <HeaderDark />
 
-      <div className='bg-gradient-to-b from-[#E5C8AD] to-[#fff]'>
-        <img src={HERO} className='w-full md:w-2/5 m-auto object-cover' />
-      </div>
+      <Banner />
 
-      <div className='w-full flex flex-col items-center'>
-        <div className='text-2xl mt-12 mb-6 font-medium'>
+      <div className='w-full flex flex-col items-center gap-4'>
+        <div className='text-2xl mt-10  font-medium bg-black w-80 text-white py-2 text-center'>
           Discover NEW TREND
         </div>
-        <div className='text-base font-thin mb-12'>Recently added shirts</div>
+        <span className='w-20 h-[3px] bg-black'></span>
+        <div className='text-base font-light mb-12'>Recently added shirts</div>
 
-        <div className='flex items-center justify-between w-full flex-wrap'>
-          <div className='flex flex-col items-center w-full sm:w-1/2 md:w-1/4'>
-            <img
-              src={TREND}
-              className='object-cover h-[265px]'
-              onClick={() => navigate(PATH.OUTFIT_DETAIL)}
-            />
-            <span className='font-semibold my-3'>Plain White Shirt</span>
-          </div>
-          <div className='flex flex-col items-center w-full sm:w-1/2 md:w-1/4'>
-            <img
-              src='https://i.pinimg.com/564x/c5/8f/35/c58f3560ad12b36fff8cad9cb00f8f42.jpg'
-              className='object-cover h-[265px]'
-              onClick={() => navigate(PATH.OUTFIT_DETAIL)}
-            />
-            <span className='font-semibold my-3'>Denim Jacket</span>
-          </div>
-          <div className='flex flex-col items-center w-full sm:w-1/2 md:w-1/4'>
-            <img
-              src='https://i.pinimg.com/564x/22/6d/c5/226dc55dae4d80fecf8bc6d8c03a082e.jpg'
-              className='object-cover h-[265px]'
-              onClick={() => navigate(PATH.OUTFIT_DETAIL)}
-            />
-            <span className='font-semibold my-3'>Black Polo Shirt</span>
-          </div>
-          <div className='flex flex-col items-center w-full sm:w-1/2 md:w-1/4'>
-            <img
-              src='https://i.pinimg.com/564x/cb/ec/c6/cbecc669864071fbcbc98fdc5d34c063.jpg'
-              className='object-cover h-[265px]'
-              onClick={() => navigate(PATH.OUTFIT_DETAIL)}
-            />
-            <span className='font-semibold my-3'>Blue Sweater</span>
-          </div>
-          <div className='flex flex-col items-center w-full sm:w-1/2 md:w-1/4'>
-            <img
-              src='https://i.pinimg.com/564x/0a/33/94/0a3394b5909e8297b566f6ddd5f72995.jpg'
-              className='object-cover h-[265px]'
-              onClick={() => navigate(PATH.OUTFIT_DETAIL)}
-            />
-            <span className='font-semibold my-3'>Blue Plain Shirt</span>
-          </div>
-          <div className='flex flex-col items-center w-full sm:w-1/2 md:w-1/4'>
-            <img
-              src='https://i.pinimg.com/564x/14/e4/04/14e404dd4e3c6f41cb59063714789134.jpg'
-              className='object-cover h-[265px]'
-              onClick={() => navigate(PATH.OUTFIT_DETAIL)}
-            />
-            <span className='font-semibold my-3'>Dark Blue Shirt</span>
-          </div>
-          <div className='flex flex-col items-center w-full sm:w-1/2 md:w-1/4'>
-            <img
-              src='https://i.pinimg.com/564x/1b/18/13/1b1813adda398c179c950871e2c59c5a.jpg'
-              className='object-cover h-[265px]'
-              onClick={() => navigate(PATH.OUTFIT_DETAIL)}
-            />
-            <span className='font-semibold my-3'>Outcast T Shirt</span>
-          </div>
-          <div className='flex flex-col items-center w-full sm:w-1/2 md:w-1/4'>
-            <img
-              src='https://i.pinimg.com/564x/c5/17/07/c51707a35c92a9de0c27e7562a5e848f.jpg'
-              className='object-cover h-[265px]'
-              onClick={() => navigate(PATH.OUTFIT_DETAIL)}
-            />
-            <span className='font-semibold my-3'>Polo Plain Shirt</span>
-          </div>
+        <div className='max-w-screen-xl mx-auto py-10 grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10'>
+          {data.map((item) => (
+            <Product key={item._id} product={item} />
+          ))}
         </div>
 
         <div className='flex flex-wrap w-full gap-5 p-16 sm:py-10 md:p-20 justify-center sm:justify-around'>
@@ -129,7 +85,7 @@ const HomePage = () => {
         </div>
 
         <div className='flex md:flex-row flex-col gap-5 mb-12 px-6 md:px-20'>
-          <div className='bg-black w-full md:w-1/2 min-h-[300px] text-white p-12 md:p-24 flex flex-col items-center gap-5'>
+          <div className='bg-advertise1 bg-no-repeat bg-cover bg-center w-full md:w-1/2 min-h-[300px] text-white p-12 md:p-24 flex flex-col items-center gap-5'>
             <h1 className='text-2xl font-semibold'>PEACE OF MIND</h1>
             <p className='text-center'>
               A one-stop platform for all your fashion needs, hassle-free. Live
@@ -140,7 +96,9 @@ const HomePage = () => {
             </button>
           </div>
 
-          <div className='bg-black w-full md:w-1/2 min-h-[300px] text-white p-12 md:p-24 flex flex-col items-center gap-5'>
+          <div
+            className={`bg-advertise2 bg-no-repeat bg-cover bg-center w-full md:w-1/2 min-h-[300px] text-white p-12 md:p-24 flex flex-col items-center gap-5`}
+          >
             <h1 className='text-2xl font-semibold'>Discover your style</h1>
             <p className='text-center'>
               Find out your style and recommended styles based on your personal
@@ -152,46 +110,20 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div className='text-2xl mt-12 mb-6 font-medium'>Most Popular</div>
-        <div className='text-base font-thin mb-12'>
+        <div className='text-2xl font-medium bg-black w-80 text-white py-2 text-center'>
+          Most Popular
+        </div>
+        <span className='w-20 h-[3px] bg-black'></span>
+        <div className='text-base font-light mb-12'>
           Browse our most popular products
         </div>
 
-        <div className='flex flex-wrap items-center justify-between w-full'>
-          <div className='flex flex-col items-center w-full sm:w-1/2 md:w-1/4'>
-            <img
-              src='https://i.pinimg.com/564x/ab/0c/88/ab0c880492959104043a6397bee06338.jpg'
-              className='object-cover h-[265px]'
-              onClick={() => navigate(PATH.OUTFIT_DETAIL)}
-            />
-            <span className='font-semibold my-3'>Hoodie</span>
-          </div>
-          <div className='flex flex-col items-center w-full sm:w-1/2 md:w-1/4'>
-            <img
-              src='https://i.pinimg.com/564x/17/42/7d/17427d0e806593be4c3118aaeaaa427d.jpg'
-              className='object-cover h-[265px]'
-              onClick={() => navigate(PATH.OUTFIT_DETAIL)}
-            />
-            <span className='font-semibold my-3'>Bomber</span>
-          </div>
-          <div className='flex flex-col items-center w-full sm:w-1/2 md:w-1/4'>
-            <img
-              src='https://i.pinimg.com/564x/39/f9/2e/39f92e26015b1fed2ed31de3d40860fa.jpg'
-              className='object-cover h-[265px]'
-              onClick={() => navigate(PATH.OUTFIT_DETAIL)}
-            />
-            <span className='font-semibold my-3'>Blazer</span>
-          </div>
-          <div className='flex flex-col items-center w-full sm:w-1/2 md:w-1/4'>
-            <img
-              src='https://i.pinimg.com/564x/ed/5e/5a/ed5e5a84d55ff73f98e8b81c45cbdcab.jpg'
-              className='object-cover h-[265px]'
-              onClick={() => navigate(PATH.OUTFIT_DETAIL)}
-            />
-            <span className='font-semibold my-3'>Crop Top</span>
-          </div>
+        <div className='max-w-screen-xl mx-auto py-10 grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10'>
+          {data.splice(0, 4).map((item) => (
+            <Product key={item._id} product={item} />
+          ))}
         </div>
-        <button className='text-white px-4 py-2  rounded-full text-base bg-orange my-12'>
+        <button className='text-white px-4 py-2 text-base bg-orange my-12'>
           <Link to={PATH.DISCOVER}>FIND OUT MORE</Link>
         </button>
       </div>

@@ -46,10 +46,10 @@ const HeaderDark = () => {
   return (
     <div
       id='home'
-      className='w-full flex flex-col lg:flex-row flex-wrap items-center justify-between px-2 lg:px-10 bg-[#FFF1E4] text-white sticky top-0 z-10'
+      className='w-full flex flex-col lg:flex-row flex-wrap items-center justify-between px-2 lg:px-10 bg-gradient-to-b from-[#FFF1E4] to-[#fff] text-white sticky top-0 z-10 shadow-md'
     >
       <div className='flex items-center pt-2 lg:pt-0'>
-        <div
+        {/* <div
           className='mr-2 lg:mr-4 cursor-pointer'
           onClick={() => navigate(-1)}
         >
@@ -58,12 +58,12 @@ const HeaderDark = () => {
             alt='back-button'
             className='w-[20px] lg:w-[26px]'
           />
-        </div>
+        </div> */}
         <Link to={PATH.HOME} className='mb-2'>
-          <img src={LOGO} alt='logo' className='w-36 lg:w-56' />
+          <img src={LOGO} alt='logo' className='w-32 lg:w-36' />
         </Link>
       </div>
-      <ul className='flex p-1 lg:p-6 text-[#6F6F6F] text-[13.5px] lg:text-[20px] font-medium'>
+      <ul className='flex p-1 lg:p-6 text-[#6F6F6F] text-[13.5px] lg:text-[16px] font-medium'>
         <li className='mx-2 lg:mx-10 cursor-pointer'>
           <Link
             to={PATH.HOME}

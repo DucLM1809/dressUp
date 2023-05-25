@@ -27,13 +27,13 @@ const AboutUsPage = () => {
         <div className='p-8 md:p-20 flex items-center gap-5 md:flex-row flex-col w-full justify-around'>
           <div className='relative'>
             <img src={PEOPLE1} className='w-[350px] h-[350px] object-cover' />
-            <button className='text-white px-8 py-2 rounded-full text-base bg-orange my-12 absolute bottom-0 left-1/2 -translate-x-1/2'>
+            <button className='text-white px-8 py-2 text-base border border-orange shadow-md bg-orange hover:opacity-90 my-12 absolute bottom-0 left-1/2 -translate-x-1/2 duration-300'>
               SAVE
             </button>
           </div>
           <div className='relative'>
             <img src={PEOPLE} className='w-[350px] h-[350px] object-cover' />
-            <button className='text-white px-8 py-2 rounded-full text-base bg-orange my-12 absolute bottom-0 left-1/2 -translate-x-1/2'>
+            <button className='text-white px-8 py-2 text-base border border-orange shadow-md bg-orange hover:opacity-90 my-12 absolute bottom-0 left-1/2 -translate-x-1/2 duration-300'>
               SAVE
             </button>
           </div>
