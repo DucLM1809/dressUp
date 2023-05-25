@@ -10,7 +10,6 @@ import Footer from '../components/Footer'
 import DECORE from '../assets/decore.png'
 import DECORE_LINE from '../assets/decore_line.png'
 import MODEL from '../assets/model.png'
-import { motion, AnimatePresence } from 'framer-motion'
 import { headContainerAnimation, headTextAnimation } from '../config/motion'
 
 const LandingPage = () => {
