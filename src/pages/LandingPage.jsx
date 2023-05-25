@@ -25,7 +25,6 @@ const LandingPage = () => {
           className='absolute right-0 top-0 -z-10'
         />
 
-        {/* <img src={HERO} className='w-full md:w-2/5 m-auto object-cover' /> */}
         <div className='pt-48 flex items-center' {...headTextAnimation}>
           <div className='w-[450px]'>
             <div>
@@ -76,6 +75,8 @@ const LandingPage = () => {
           <Thumbnail src='https://i.pinimg.com/564x/3c/5c/7c/3c5c7c00afb8b07aa2edca3605d3b649.jpg' />
         </div>
       </div>
+
+      <img src={HERO} className='w-full md:w-2/5 m-auto object-cover' />
 
       <div className='w-full flex flex-col items-center'>
         <div className='text-2xl my-8 md:my-12 font-medium bg-black w-80 text-white py-2 text-center'>
