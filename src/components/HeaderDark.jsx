@@ -25,7 +25,7 @@ const HeaderDark = () => {
         NotificationCustom({
           type: 'success',
           message: 'Success',
-          description: 'Logout Successfully!',
+          description: 'Logout Successfully!'
         })
         navigate(PATH.LOGIN)
       })
@@ -33,7 +33,7 @@ const HeaderDark = () => {
         NotificationCustom({
           type: 'error',
           message: 'Error',
-          description: err?.response?.data?.detail,
+          description: err?.response?.data?.detail
         })
       })
   }
@@ -156,7 +156,7 @@ const HeaderDark = () => {
                     My Closet
                   </Link>
                   <Link
-                    to='#'
+                    to={PATH.OUTFIT_BUILDER}
                     className='block px-4 pr-20 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900'
                   >
                     Mix&Match

@@ -15,6 +15,7 @@ import OutfitDetailPage from './pages/OutfitDetailPage'
 import ProfilePage from './pages/ProfilePage'
 import ResetPasswordPage from './pages/ResetPasswordPage'
 import SignUpPage from './pages/SignUpPage'
+import OutfitBuilderPage from './pages/OutfitBuilderPage'
 
 function App() {
   return (
@@ -40,6 +41,11 @@ function App() {
         <Route exact path={PATH.ABOUT_US} element={<AboutUsPage />} />
         <Route exact path={PATH.CONTACT} element={<ContactPage />} />
         <Route exact path={PATH.OUTFIT_DETAIL} element={<OutfitDetailPage />} />
+        <Route
+          exact
+          path={PATH.OUTFIT_BUILDER}
+          element={<OutfitBuilderPage />}
+        />
         <Route exact path={PATH.PROFILE} element={<ProfilePage />} />
         <Route exact path={PATH.MY_CLOSET} element={<MyClosetPage />} />
         <Route exact path={PATH.DISCOVER} element={<DiscoverPage />} />

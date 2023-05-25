@@ -1,3 +1,6 @@
+import fileIcon from '../assets/file.png'
+import ai from '../assets/ai.png'
+
 export const LOCAL_STORAGE_ITEMS = Object.freeze({
   ACCESS_TOKEN: 'accessToken'
 })
@@ -10,6 +13,7 @@ export const PATH = Object.freeze({
   ABOUT_US: '/about-us',
   CONTACT: '/contact',
   OUTFIT_DETAIL: '/outfit-detail',
+  OUTFIT_BUILDER: '/outfit-builder',
   MY_CLOSET: '/my-closet',
   DISCOVER: '/discover',
   NOT_FOUND: '*',
@@ -19,3 +23,10 @@ export const PATH = Object.freeze({
   RESET_PASSWORD: '/users/reset-password',
   PROFILE: '/profile'
 })
+
+export const EditorTabs = [
+  {
+    name: 'filepicker',
+    icon: fileIcon
+  }
+]

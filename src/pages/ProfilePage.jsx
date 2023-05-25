@@ -199,7 +199,7 @@ const ProfilePage = () => {
                 <Link to={PATH.MY_CLOSET}>MY CLOSET</Link>
               </button>
               <button className='text-white px-4 py-2 w-full  md:w-fit rounded-full text-sm bg-orange my-4'>
-                TRY MIX&MATCH
+                <Link to={PATH.OUTFIT_BUILDER}>TRY MIX&MATCH</Link>
               </button>
             </div>
           </div>
