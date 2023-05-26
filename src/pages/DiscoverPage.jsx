@@ -7,7 +7,7 @@ import RETURN from '../assets/return.png'
 import SECURE from '../assets/secure.png'
 import Footer from '../components/Footer'
 import { Form, Input, Select } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { PATH } from '../constants/common'
 import axios from 'axios'
 import Product from '../components/Product'
@@ -15,6 +15,8 @@ import AxiosGet from '../config/axiosGet'
 import { NotificationCustom } from '../components/Notification'
 
 const DiscoverPage = () => {
+  const navigate = useNavigate()
+
   const [data, setData] = useState([])
   const [paging, setPaging] = useState({ size: 20, offset: 0 })
 
@@ -131,7 +133,11 @@ const DiscoverPage = () => {
 
         <div className='max-w-screen-xl mx-auto py-10 grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10'>
           {data.map((item) => (
-            <Product key={item?.id} product={item} />
+            <Product
+              key={item?.id}
+              product={item}
+              handleClick={() => navigate(`/outfit-detail/${item?.id}`)}
+            />
           ))}
         </div>
 

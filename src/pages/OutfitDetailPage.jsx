@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import HeaderDark from '../components/HeaderDark'
 import OUTFIT_DETAIL from '../assets/outfitDetail.png'
-import { Rate, Select } from 'antd'
+import { Image, Rate, Select } from 'antd'
 import { TbBrandShopee } from 'react-icons/tb'
 import { BiMessageDetail, BiEnvelope } from 'react-icons/bi'
 import { BsFillTelephoneFill } from 'react-icons/bs'
@@ -52,6 +52,27 @@ const OutfitDetailPage = () => {
     fetchDetail()
   }, [])
 
+  const handleRating = (value, product) => {
+    AxiosPut(`/products/${product?.id}/rating`, {
+      score: value
+    })
+      .then(() => {
+        fetchDetail()
+        NotificationCustom({
+          type: 'success',
+          message: 'Success',
+          description: 'Rating successfully!'
+        })
+      })
+      .catch((err) =>
+        NotificationCustom({
+          type: 'error',
+          message: 'Error',
+          description: err?.response?.data?.detail
+        })
+      )
+  }
+
   return (
     <div>
       <HeaderDark />
@@ -59,14 +80,25 @@ const OutfitDetailPage = () => {
       <div className='flex flex-col gap-4'>
         <div className='flex md:flex-row flex-col p-10 md:p-20 object-cover gap-12'>
           <div className='flex flex-col gap-3'>
-            <img
+            <Image
               src={product?.transparentBackgroundImage}
-              className='object-contain max-w-[420px]'
+              className='object-contain xl:w-[420px]'
+              style={{
+                maxWidth: '420px',
+                width: 'fit-content',
+                objectFit: 'contain'
+              }}
             />
             <div className='flex flex-wrap '>
               {product?.imageUrls?.map((image) => (
-                <img
+                <Image
                   src={image}
+                  style={{
+                    objectFit: 'contain',
+                    width: '100px',
+                    marginRight: '4px',
+                    marginBottom: '4px'
+                  }}
                   className='object-contain w-[100px] mr-1 mb-1'
                 />
               ))}
@@ -75,7 +107,11 @@ const OutfitDetailPage = () => {
           <div className='flex flex-col justify-between md:gap-0 gap-3 items-center md:items-start'>
             <div>
               <h1 className='font-bold text-3xl'>{product?.name}</h1>
-              <Rate allowHalf defaultValue={2.5} />
+              <Rate
+                allowHalf
+                defaultValue={product?.myRatingScore}
+                onChange={(value) => handleRating(value, product)}
+              />
             </div>
             <p>{product?.description}</p>
             {/* <Select placeholder='Select Size' className='w-[200px]'>
@@ -133,17 +169,17 @@ const OutfitDetailPage = () => {
                 className='inline-block w-fit p-4 text-gray-900 bg-gray-100 rounded-l-lg focus:ring-4 focus:ring-blue-300 active focus:outline-none  dark:text-gray-900'
                 aria-current='page'
               >
-                Description
+                Reviews
               </a>
             </li>
-            <li className='w-fit'>
+            {/* <li className='w-fit'>
               <a
                 href='#'
                 className='inline-block w-fit p-4 bg-white hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:hover:text-gray-900 '
               >
                 Reviews
               </a>
-            </li>
+            </li> */}
           </ul>
 
           <p className='p-10 leading-8 border border-gray-300 max-h-[300px] overflow-scroll'>
