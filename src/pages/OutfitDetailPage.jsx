@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import HeaderDark from '../components/HeaderDark'
 import OUTFIT_DETAIL from '../assets/outfitDetail.png'
 import { Rate, Select } from 'antd'
@@ -10,9 +10,23 @@ import Footer from '../components/Footer'
 import { useParams } from 'react-router-dom'
 import AxiosPut from '../config/axiosPut'
 import { NotificationCustom } from '../components/Notification'
+import AxiosGet from '../config/axiosGet'
 
 const OutfitDetailPage = () => {
   const { id } = useParams()
+  const [product, setProduct] = useState()
+
+  const fetchDetail = () => {
+    AxiosGet(`/products/${id}`)
+      .then((res) => setProduct(res.data))
+      .catch((err) =>
+        NotificationCustom({
+          type: 'error',
+          message: 'Error',
+          description: err?.response?.data?.detail
+        })
+      )
+  }
 
   const handleAddToCloset = () => {
     AxiosPut('/closets/me', {
@@ -34,31 +48,44 @@ const OutfitDetailPage = () => {
       )
   }
 
+  useEffect(() => {
+    fetchDetail()
+  }, [])
+
   return (
     <div>
       <HeaderDark />
 
       <div className='flex flex-col gap-4'>
         <div className='flex md:flex-row flex-col p-10 md:p-20 object-cover gap-12'>
-          <img src={OUTFIT_DETAIL} className='object-contain max-h-[350px]' />
+          <div className='flex flex-col gap-3'>
+            <img
+              src={product?.transparentBackgroundImage}
+              className='object-contain max-w-[420px]'
+            />
+            <div className='flex flex-wrap '>
+              {product?.imageUrls?.map((image) => (
+                <img
+                  src={image}
+                  className='object-contain w-[100px] mr-1 mb-1'
+                />
+              ))}
+            </div>
+          </div>
           <div className='flex flex-col justify-between md:gap-0 gap-3 items-center md:items-start'>
             <div>
-              <h1 className='font-bold text-3xl'>Plain White Shirt</h1>
+              <h1 className='font-bold text-3xl'>{product?.name}</h1>
               <Rate allowHalf defaultValue={2.5} />
             </div>
-            <p className='max-w-[500px]'>
-              A classic t-shirt never goes out of style. This is our most
-              premium collection of shirt. This plain white shirt is made up of
-              pure cotton and has a premium finish.
-            </p>
-            <Select placeholder='Select Size' className='w-[200px]'>
+            <p>{product?.description}</p>
+            {/* <Select placeholder='Select Size' className='w-[200px]'>
               <Select.Option>S</Select.Option>
               <Select.Option>M</Select.Option>
               <Select.Option>L</Select.Option>
               <Select.Option>XL</Select.Option>
               <Select.Option>XXL</Select.Option>
               <Select.Option>XXXL</Select.Option>
-            </Select>
+            </Select> */}
             <button
               className='text-white px-4 py-2 w-fit rounded-full text-sm bg-orange my-12'
               onClick={handleAddToCloset}
@@ -66,10 +93,16 @@ const OutfitDetailPage = () => {
               ADD TO CLOSET
             </button>
             <span className='font-semibold'>
-              Category: <span className='font-normal'>Women, Polo, Casual</span>
+              Categories:{' '}
+              <span className='font-normal'>
+                {product?.categories?.join(', ')}
+              </span>
             </span>
             <span className='font-semibold'>
-              Tags: <span className='font-normal'>Modern, Design, Cotton</span>
+              Pattern: <span className='font-normal'>{product?.pattern}</span>
+            </span>
+            <span className='font-semibold'>
+              Styles: <span className='font-normal'>{product?.style}</span>
             </span>
 
             <div className='flex items-center gap-2'>

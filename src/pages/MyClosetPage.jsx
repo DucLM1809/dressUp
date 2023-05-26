@@ -95,8 +95,13 @@ const MyClosetPage = () => {
     {
       title: 'Action',
       key: 'action',
+      align: 'center',
       render: (_, item) => (
         <Space size='middle'>
+          <Button onClick={() => navigate(`/outfit-detail/${item?.id}`)}>
+            View Details
+          </Button>
+
           <Button
             danger
             className='flex items-center'
