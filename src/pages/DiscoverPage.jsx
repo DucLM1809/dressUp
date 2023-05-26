@@ -34,8 +34,6 @@ const DiscoverPage = () => {
     fetchData()
   }, [paging])
 
-  console.log(paging)
-
   const handlePaging = () => {
     setPaging({
       ...paging,

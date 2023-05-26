@@ -1,9 +1,9 @@
 import React from 'react'
 import { BsArrowRight } from 'react-icons/bs'
 
-const Product = ({ product }) => {
+const Product = ({ product, handleClick }) => {
   return (
-    <div className='group'>
+    <div className='group' onClick={handleClick}>
       <div className='w-full h-96 cursor-pointer overflow-hidden'>
         <img
           src={product?.image || product?.transparentBackgroundImage}
