@@ -73,7 +73,7 @@ const OutfitBuilderPage = () => {
         formData.append(key, value)
       })
       formData.append('file', file)
-      res = await axios.post(res.data.url + res.data.fields.key, formData)
+      res = await axios.postForm(res.data.url, formData)
 
       onSuccess('Ok')
       console.log('server res: ', res)
