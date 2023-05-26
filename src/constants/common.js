@@ -12,7 +12,7 @@ export const PATH = Object.freeze({
   EXPLORE: '/',
   ABOUT_US: '/about-us',
   CONTACT: '/contact',
-  OUTFIT_DETAIL: '/outfit-detail',
+  OUTFIT_DETAIL: '/outfit-detail/:id',
   OUTFIT_BUILDER: '/outfit-builder',
   MY_CLOSET: '/my-closet',
   DISCOVER: '/discover',

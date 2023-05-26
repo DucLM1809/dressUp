@@ -7,8 +7,33 @@ import { BiMessageDetail, BiEnvelope } from 'react-icons/bi'
 import { BsFillTelephoneFill } from 'react-icons/bs'
 import { FiLink2 } from 'react-icons/fi'
 import Footer from '../components/Footer'
+import { useParams } from 'react-router-dom'
+import AxiosPut from '../config/axiosPut'
+import { NotificationCustom } from '../components/Notification'
 
 const OutfitDetailPage = () => {
+  const { id } = useParams()
+
+  const handleAddToCloset = () => {
+    AxiosPut('/closets/me', {
+      addedProductIds: [id]
+    })
+      .then(() =>
+        NotificationCustom({
+          type: 'success',
+          message: 'Success',
+          description: 'Add to closet successfully!'
+        })
+      )
+      .catch((err) =>
+        NotificationCustom({
+          type: 'error',
+          message: 'Error',
+          description: err?.response?.data?.detail
+        })
+      )
+  }
+
   return (
     <div>
       <HeaderDark />
@@ -34,7 +59,10 @@ const OutfitDetailPage = () => {
               <Select.Option>XXL</Select.Option>
               <Select.Option>XXXL</Select.Option>
             </Select>
-            <button className='text-white px-4 py-2 w-fit rounded-full text-sm bg-orange my-12'>
+            <button
+              className='text-white px-4 py-2 w-fit rounded-full text-sm bg-orange my-12'
+              onClick={handleAddToCloset}
+            >
               ADD TO CLOSET
             </button>
             <span className='font-semibold'>

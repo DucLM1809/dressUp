@@ -1,4 +1,4 @@
-import { Button, Image, Space, Table, Tag } from 'antd'
+import { Button, Image, Modal, Space, Table, Tag } from 'antd'
 import React, { useEffect, useState } from 'react'
 import HeaderDark from '../components/HeaderDark'
 import Footer from '../components/Footer'
@@ -8,22 +8,25 @@ import AxiosGet from '../config/axiosGet'
 import { NotificationCustom } from '../components/Notification'
 import { useNavigate } from 'react-router-dom'
 import { PATH } from '../constants/common'
+import AxiosPut from '../config/axiosPut'
+
+const { confirm } = Modal
 
 const MyClosetPage = () => {
   const [data, setData] = useState([])
   const navigate = useNavigate()
 
   const fetchCloset = () => {
-    AxiosGet('closet/me')
-      .then((res) => setData(res.data))
+    AxiosGet('closets/me')
+      .then((res) =>
+        setData([...res.data.publicProducts, ...res.data.ownedProducts])
+      )
       .catch((err) =>
-        setData(
-          NotificationCustom({
-            type: 'error',
-            message: 'Error',
-            description: err?.response?.data?.detail
-          })
-        )
+        NotificationCustom({
+          type: 'error',
+          message: 'Error',
+          description: err?.response?.data?.detail
+        })
       )
   }
 
@@ -31,48 +34,74 @@ const MyClosetPage = () => {
     fetchCloset()
   }, [])
 
+  const handleRemoveCloset = (item) => {
+    confirm({
+      title: 'Confirm',
+      content: 'Are you sure you want to remove?',
+      onOk: () => {
+        AxiosPut('/closets/me', {
+          removedProductIds: [item.id]
+        })
+          .then(() => {
+            NotificationCustom({
+              type: 'success',
+              message: 'Success',
+              description: 'Remove out of closet successfully!'
+            })
+            fetchCloset()
+          })
+          .catch((err) =>
+            NotificationCustom({
+              type: 'error',
+              message: 'Error',
+              description: err?.response?.data?.detail
+            })
+          )
+      }
+    })
+  }
+
   const columns = [
     {
       title: '',
-      dataIndex: 'image',
-      key: 'image',
-      align: 'center',
-      render: (text) => (
-        <Image
-          src='https://i.pinimg.com/564x/4f/75/a3/4f75a37e3b053109bef8b52156a0b99f.jpg'
-          width={150}
-        />
+      dataIndex: 'transparentBackgroundImage',
+      key: 'transparentBackgroundImage',
+      align: 'transparentBackgroundImage',
+      render: (transparentBackgroundImage) => (
+        <Image src={transparentBackgroundImage} width={150} />
       )
     },
     {
       title: 'Product',
-      dataIndex: 'product',
-      key: 'product'
+      dataIndex: 'name',
+      key: 'name'
     },
     {
-      title: 'Price',
-      dataIndex: 'price',
-      key: 'price'
+      title: 'Brand',
+      dataIndex: 'brand',
+      key: 'brand'
     },
     {
-      title: 'Quantity',
-      key: 'quantity',
-      dataIndex: 'quantity',
-      render: (_, record) => (
-        <InputNumber defaultValue={record.quantity} className='w-[50px]' />
-      )
+      title: 'Categories',
+      key: 'categories',
+      dataIndex: 'categories',
+      render: (categories) => categories.join(', ')
     },
     {
-      title: 'Total',
-      key: 'total',
-      dataIndex: 'total'
+      title: 'Pattern',
+      key: 'pattern',
+      dataIndex: 'pattern'
     },
     {
       title: 'Action',
       key: 'action',
-      render: (_, record) => (
+      render: (_, item) => (
         <Space size='middle'>
-          <Button danger className='flex items-center'>
+          <Button
+            danger
+            className='flex items-center'
+            onClick={() => handleRemoveCloset(item)}
+          >
             <DeleteOutlined />
           </Button>
         </Space>
