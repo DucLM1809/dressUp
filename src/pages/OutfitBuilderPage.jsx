@@ -240,7 +240,7 @@ const OutfitBuilderPage = () => {
         }
       >
         <div className='max-w-screen-xl mx-auto py-10 grid grid-cols-2 gap-10'>
-          {products.map((item) => (
+          {products?.products?.map((item) => (
             <Product
               key={item.id}
               product={item}
@@ -251,7 +251,7 @@ const OutfitBuilderPage = () => {
         <div className='flex justify-center'>
           <Pagination
             defaultCurrent={1}
-            total={200}
+            total={products.totalRows}
             showSizeChanger={false}
             onChange={handlePaging}
             pageSize={20}

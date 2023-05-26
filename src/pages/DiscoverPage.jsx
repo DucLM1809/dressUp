@@ -132,7 +132,7 @@ const DiscoverPage = () => {
         <div className='text-base font-light mb-12'>Recently added shirts</div>
 
         <div className='max-w-screen-xl mx-auto py-10 grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10'>
-          {data.map((item) => (
+          {data?.products?.map((item) => (
             <Product
               key={item?.id}
               product={item}
@@ -150,7 +150,7 @@ const DiscoverPage = () => {
         <div className='mt-4 mb-6'>
           <Pagination
             defaultCurrent={1}
-            total={200}
+            total={data.totalRows}
             showSizeChanger={false}
             onChange={handlePaging}
             pageSize={20}
