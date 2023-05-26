@@ -6,7 +6,7 @@ import SUPPORT from '../assets/support.png'
 import RETURN from '../assets/return.png'
 import SECURE from '../assets/secure.png'
 import Footer from '../components/Footer'
-import { Form, Input, Select } from 'antd'
+import { Form, Input, Pagination, Select } from 'antd'
 import { Link, useNavigate } from 'react-router-dom'
 import { PATH } from '../constants/common'
 import axios from 'axios'
@@ -21,7 +21,7 @@ const DiscoverPage = () => {
   const [paging, setPaging] = useState({ size: 20, offset: 0 })
 
   const fetchData = () => {
-    AxiosGet('products', { size: paging.size })
+    AxiosGet('products', { offset: paging.offset, size: paging.size })
       .then((res) => setData(res.data))
       .catch((err) =>
         NotificationCustom({
@@ -36,10 +36,10 @@ const DiscoverPage = () => {
     fetchData()
   }, [paging])
 
-  const handlePaging = () => {
+  const handlePaging = (page, pageSize) => {
     setPaging({
-      ...paging,
-      size: paging.size + 20
+      offset: page,
+      size: pageSize
     })
   }
 
@@ -141,11 +141,21 @@ const DiscoverPage = () => {
           ))}
         </div>
 
-        <button className='text-white px-4 py-2 text-base bg-orange my-12'>
+        {/* <button className='text-white px-4 py-2 text-base bg-orange my-12'>
           <Link to={PATH.DISCOVER} onClick={handlePaging}>
             FIND OUT MORE
           </Link>
-        </button>
+        </button> */}
+
+        <div className='mt-4 mb-6'>
+          <Pagination
+            defaultCurrent={1}
+            total={200}
+            showSizeChanger={false}
+            onChange={handlePaging}
+            pageSize={20}
+          />
+        </div>
       </div>
       <Footer />
     </div>

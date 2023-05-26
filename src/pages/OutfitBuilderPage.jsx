@@ -4,11 +4,11 @@ import { EditorTabs, PATH } from '../constants/common'
 import Tab from '../components/Tab'
 import { downloadImage, reader } from '../config/helpers'
 import FilePicker from '../components/FilePicker'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import download from '../assets/download.png'
 import fileIcon from '../assets/file.png'
 import shirtIcon from '../assets/stylish-tshirt.png'
-import { Drawer, Upload, message } from 'antd'
+import { Drawer, Pagination, Upload, message } from 'antd'
 import AxiosPost from '../config/axiosPost'
 import axios from 'axios'
 import { NotificationCustom } from '../components/Notification'
@@ -16,6 +16,7 @@ import AxiosGet from '../config/axiosGet'
 import Product from '../components/Product'
 
 const OutfitBuilderPage = () => {
+  const navigate = useNavigate()
   const [state, setState] = useState({
     activeDrags: 0,
     deltaPosition: {
@@ -30,12 +31,12 @@ const OutfitBuilderPage = () => {
   const [file, setFile] = useState('')
   const [fileList, setFileList] = useState([])
   const [openDrawer, setOpenDrawer] = useState(false)
-  const [paging, setPaging] = useState({ size: 20, offset: 0 })
   const [products, setProducts] = useState([])
   const [selectedProducts, setSelectedProducts] = useState(new Map())
+  const [paging, setPaging] = useState({ size: 20, offset: 0 })
 
   const fetchProducts = () => {
-    AxiosGet('products', { size: paging.size })
+    AxiosGet('products', { offset: paging.offset, size: paging.size })
       .then((res) => setProducts(res.data))
       .catch((err) =>
         NotificationCustom({
@@ -44,6 +45,17 @@ const OutfitBuilderPage = () => {
           description: err?.response?.data?.detail
         })
       )
+  }
+
+  useEffect(() => {
+    fetchProducts()
+  }, [paging])
+
+  const handlePaging = (page, pageSize) => {
+    setPaging({
+      offset: page,
+      size: pageSize
+    })
   }
 
   useEffect(() => {
@@ -126,8 +138,11 @@ const OutfitBuilderPage = () => {
 
   return (
     <div className='bg-gray-200 min-h-screen relative'>
-      <button className='text-white px-4 py-2  rounded-md text-base bg-orange my-12 absolute top-2 right-4'>
-        <Link to={PATH.HOME}>Go Back</Link>
+      <button
+        className='text-white px-4 py-2  rounded-md text-base bg-orange my-12 absolute top-2 right-4'
+        onClick={() => navigate(-1)}
+      >
+        Go Back
       </button>
 
       {fileList.map((item) => (
@@ -150,7 +165,7 @@ const OutfitBuilderPage = () => {
         </Draggable>
       ))}
 
-      {Array.from(selectedProducts.values()).map((product) => (
+      {Array.from(selectedProducts.values()).map((product, index) => (
         <Draggable
           handle='.handle'
           defaultPosition={{
@@ -163,7 +178,13 @@ const OutfitBuilderPage = () => {
           onDrag={handleDrag}
           onStop={handleStop}
         >
-          <img className='handle max-w-[300px] max-h-[300px]' src={product} />
+          <img
+            className='handle max-w-[300px] max-h-[300px]'
+            src={product}
+            style={{
+              zIndex: index
+            }}
+          />
         </Draggable>
       ))}
 
@@ -210,7 +231,7 @@ const OutfitBuilderPage = () => {
       </div>
 
       <Drawer
-        title='Basic Drawer'
+        title='Choose Outfits'
         placement='right'
         onClose={() => setOpenDrawer(false)}
         open={openDrawer}
@@ -226,6 +247,15 @@ const OutfitBuilderPage = () => {
               handleClick={() => handleClick(item)}
             />
           ))}
+        </div>
+        <div className='flex justify-center'>
+          <Pagination
+            defaultCurrent={1}
+            total={200}
+            showSizeChanger={false}
+            onChange={handlePaging}
+            pageSize={20}
+          />
         </div>
       </Drawer>
 
