@@ -86,9 +86,9 @@ const HomePage = () => {
           </div>
         </div> */}
 
-        <div className={styles.container}>
+        {/* <div className={styles.container}>
           <CardStack />
-        </div>
+        </div> */}
 
         <div className='flex md:flex-row flex-col gap-5 mb-12 px-6 md:px-20'>
           <div className='bg-advertise1 bg-no-repeat bg-cover bg-center w-full md:w-1/2 min-h-[300px] text-white p-12 md:p-24 flex flex-col items-center gap-5'>

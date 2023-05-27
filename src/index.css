@@ -104,3 +104,7 @@ input[type='file'] {
 .sketch-picker > div:nth-child(3) {
   display: none !important;
 }
+
+.ant-btn-primary {
+  background-color: #1677ff;
+}

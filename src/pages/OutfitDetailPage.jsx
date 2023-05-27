@@ -140,6 +140,14 @@ const OutfitDetailPage = () => {
             <span className='font-semibold'>
               Styles: <span className='font-normal'>{product?.style}</span>
             </span>
+            {product?.hashtags?.length && (
+              <span className='font-semibold'>
+                Hashtag:{' '}
+                <span className='font-normal'>
+                  {product?.hashtags?.join(', ')}
+                </span>
+              </span>
+            )}
 
             <div className='flex items-center gap-2'>
               <span className='p-1 bg-gray-200 rounded-full'>

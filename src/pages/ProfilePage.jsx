@@ -36,9 +36,11 @@ const ProfilePage = () => {
 
   useEffect(() => {
     if (isEdit) {
-      form.setFieldsValue(dataProfile)
+      form.setFieldsValue({ ...dataProfile, styles: dataProfile?.styles || [] })
     }
   }, [isEdit])
+
+  console.log(dataProfile)
 
   const onFinish = (values) => {
     AxiosPut('users/me', { ...values, styles: values?.styles })
@@ -153,7 +155,7 @@ const ProfilePage = () => {
                   {' '}
                   Body:{' '}
                   <span className='font-normal'>
-                    {dataProfile?.burst || ''}
+                    {dataProfile?.bust || ''}
                     {' - '}
                     {dataProfile?.waist || ''}
                     {' - '}
@@ -163,7 +165,7 @@ const ProfilePage = () => {
               ) : (
                 <div className='flex gap-2'>
                   Body:
-                  <Form.Item name='burst' className='w-[100px]'>
+                  <Form.Item name='bust' className='w-[100px]'>
                     <Input placeholder='Bust' />
                   </Form.Item>
                   <Form.Item name='waist' className='w-[100px]'>
@@ -185,7 +187,12 @@ const ProfilePage = () => {
                   </span>
                 </>
               ) : (
-                <Form.Item name='styles' label='Style' className='w-[200px]'>
+                <Form.Item
+                  name='styles'
+                  label='Style'
+                  className='w-[200px]'
+                  initialValue={dataProfile?.styles || []}
+                >
                   <Select mode='tags' placeholder='Korea' />
                 </Form.Item>
               )}
