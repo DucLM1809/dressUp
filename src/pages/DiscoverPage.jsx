@@ -101,25 +101,6 @@ const DiscoverPage = () => {
                 <Select.Option>XXXL</Select.Option>
               </Select>
             </Form.Item>
-            <Form.Item
-              label='Discount'
-              name='discount'
-              className=' min-w-[200px] font-semibold'
-            >
-              <Select placeholder='Up to 20%' className='w-[200px]'>
-                <Select.Option>Up to 20%</Select.Option>
-                <Select.Option>20% - 30%</Select.Option>
-                <Select.Option>30% - 40%</Select.Option>
-                <Select.Option>40% - 50%</Select.Option>
-              </Select>
-            </Form.Item>
-            <Form.Item
-              label='Price'
-              name='price'
-              className=' min-w-[200px] font-semibold'
-            >
-              <Input placeholder='Price' />
-            </Form.Item>
           </div>
         </Form>
       </div>
