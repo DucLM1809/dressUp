@@ -55,10 +55,10 @@ const DiscoverPage = () => {
               className=' min-w-[200px] font-semibold'
             >
               <Select placeholder='Recommended' className='w-[200px]'>
-                <Select.Option>Recommended</Select.Option>
-                <Select.Option>What's new</Select.Option>
-                <Select.Option>Price high to low</Select.Option>
-                <Select.Option>Price low to high</Select.Option>
+                <Select.Option value='recommended'>Recommended</Select.Option>
+                <Select.Option value='new'>What's new</Select.Option>
+                <Select.Option value='low'>Price high to low</Select.Option>
+                <Select.Option value='high'>Price low to high</Select.Option>
               </Select>
             </Form.Item>
 
@@ -68,11 +68,11 @@ const DiscoverPage = () => {
               className=' min-w-[200px] font-semibold'
             >
               <Select placeholder='Tops' className='w-[200px]'>
-                <Select.Option>Tops</Select.Option>
-                <Select.Option>Footware</Select.Option>
-                <Select.Option>Jeans & Trousers</Select.Option>
-                <Select.Option>Shorts</Select.Option>
-                <Select.Option>Dresses</Select.Option>
+                <Select.Option value='tops'>Tops</Select.Option>
+                <Select.Option value='footware'>Footware</Select.Option>
+                <Select.Option value='jeans'>Jeans & Trousers</Select.Option>
+                <Select.Option value='shorts'>Shorts</Select.Option>
+                <Select.Option value='dresses'>Dresses</Select.Option>
               </Select>
             </Form.Item>
             <Form.Item
@@ -81,24 +81,12 @@ const DiscoverPage = () => {
               className=' min-w-[200px] font-semibold'
             >
               <Select placeholder='Baseball' className='w-[200px]'>
-                <Select.Option>Baseball</Select.Option>
-                <Select.Option>Bodycon</Select.Option>
-                <Select.Option>Bomber Jacket</Select.Option>
-                <Select.Option>Crop</Select.Option>
-              </Select>
-            </Form.Item>
-            <Form.Item
-              label='Size'
-              name='size'
-              className=' min-w-[200px] font-semibold'
-            >
-              <Select placeholder='Select Size' className='w-[200px]'>
-                <Select.Option>S</Select.Option>
-                <Select.Option>M</Select.Option>
-                <Select.Option>L</Select.Option>
-                <Select.Option>XL</Select.Option>
-                <Select.Option>XXL</Select.Option>
-                <Select.Option>XXXL</Select.Option>
+                <Select.Option value='baseball'>Baseball</Select.Option>
+                <Select.Option value='bodycon'>Bodycon</Select.Option>
+                <Select.Option value='bomberjacket'>
+                  Bomber Jacket
+                </Select.Option>
+                <Select.Option value='crop'>Crop</Select.Option>
               </Select>
             </Form.Item>
           </div>
