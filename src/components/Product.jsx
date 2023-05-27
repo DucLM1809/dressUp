@@ -10,7 +10,7 @@ const Product = ({ product, handleClick }) => {
     <div className='group' onClick={handleClick}>
       <div className='w-full h-96 cursor-pointer overflow-hidden'>
         <img
-          src={product?.image || product?.transparentBackgroundImage}
+          src={product?.transparentBackgroundImage || product?.image || product?.imageUrls[0]}
           alt='productImg'
           className='w-full h-full object-cover group-hover:scale-110 duration-500'
         />
