@@ -48,7 +48,7 @@ const DiscoverPage = () => {
       <HeaderDark />
       <div className='mb-10'>
         <Form layout='horizontal' className='mt-8'>
-          <div className='flex flex-wrap justify-between gap-4 px-10 md:px-24'>
+          <div className='flex flex-wrap justify-center gap-4 px-10 md:px-24'>
             <Form.Item
               label='Sort'
               name='sort'
