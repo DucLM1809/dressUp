@@ -110,6 +110,7 @@ const OutfitDetailPage = () => {
               <Rate
                 allowHalf
                 defaultValue={product?.myRatingScore}
+                value={product?.myRatingScore}
                 onChange={(value) => handleRating(value, product)}
               />
             </div>
