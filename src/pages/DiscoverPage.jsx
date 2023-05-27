@@ -38,7 +38,7 @@ const DiscoverPage = () => {
 
   const handlePaging = (page, pageSize) => {
     setPaging({
-      offset: page,
+      offset: (page - 1) * pageSize,
       size: pageSize
     })
   }
