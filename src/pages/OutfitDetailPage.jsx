@@ -112,7 +112,7 @@ const OutfitDetailPage = () => {
       )
   }
 
-  const handleDeleteReview = (id) => {
+  const handleDeleteReview = () => {
     confirm({
       title: 'Confirm',
       content: 'Are you sure you want to delete this review?',
@@ -280,7 +280,7 @@ const OutfitDetailPage = () => {
                       />,
                       <AiOutlineDelete
                         style={{ color: 'red', cursor: 'pointer' }}
-                        onClick={() => handleDeleteReview(item?.id)}
+                        onClick={handleDeleteReview}
                       />
                     ]
                   }
