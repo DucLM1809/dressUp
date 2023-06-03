@@ -267,7 +267,7 @@ const OutfitDetailPage = () => {
             )}
             <List
               className='comment-list'
-              header={`${reviews.length} replies`}
+              header={`${reviews.length} reviews`}
               itemLayout='horizontal'
               dataSource={reviews}
               renderItem={(item) => (
@@ -302,9 +302,17 @@ const OutfitDetailPage = () => {
                           setIsEdit={setIsEdit}
                         />
                       ) : (
-                        <div
-                          dangerouslySetInnerHTML={{ __html: item?.content }}
-                        />
+                        <>
+                          <Rate
+                            allowHalf
+                            defaultValue={item?.ratingScore}
+                            value={item?.ratingScore}
+                            disabled
+                          />
+                          <div
+                            dangerouslySetInnerHTML={{ __html: item?.content }}
+                          />
+                        </>
                       )
                     }
                   />

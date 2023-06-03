@@ -197,7 +197,7 @@ const Editor = ({
           onKeyDown={(e) => {
             handleSubmitComment(e, 'content')
           }}
-          placeholder='Enter your comment...'
+          placeholder='Enter your review...'
         />
       </Form.Item>
     </Form>
