@@ -40,8 +40,6 @@ const ProfilePage = () => {
     }
   }, [isEdit])
 
-  console.log(dataProfile)
-
   const onFinish = (values) => {
     AxiosPut('users/me', { ...values, styles: values?.styles })
       .then(() => {

@@ -1,20 +1,40 @@
 import React, { useEffect, useState } from 'react'
 import HeaderDark from '../components/HeaderDark'
 import OUTFIT_DETAIL from '../assets/outfitDetail.png'
-import { Image, Rate, Select } from 'antd'
+import { Image, List, Rate, Avatar, Dropdown, Modal } from 'antd'
 import { TbBrandShopee } from 'react-icons/tb'
 import { BiMessageDetail, BiEnvelope } from 'react-icons/bi'
 import { BsFillTelephoneFill } from 'react-icons/bs'
 import { FiLink2 } from 'react-icons/fi'
+import { AiOutlineDelete, AiOutlineEdit, AiOutlineMore } from 'react-icons/ai'
 import Footer from '../components/Footer'
 import { useParams } from 'react-router-dom'
 import AxiosPut from '../config/axiosPut'
 import { NotificationCustom } from '../components/Notification'
 import AxiosGet from '../config/axiosGet'
+import Editor from '../components/Editor/Editor'
+import AxiosDelete from '../config/axiosDelete'
+
+const { confirm } = Modal
 
 const OutfitDetailPage = () => {
   const { id } = useParams()
   const [product, setProduct] = useState()
+  const [reviews, setReviews] = useState([])
+  const [reviewsMe, setReviewsMe] = useState()
+  const [profile, setProfile] = useState()
+  const [isEdit, setIsEdit] = useState(false)
+  const handleFetchProfile = () => {
+    AxiosGet('users/me')
+      .then((res) => setProfile(res.data))
+      .catch((err) =>
+        NotificationCustom({
+          type: 'error',
+          message: 'Error',
+          description: err?.response?.data?.detail
+        })
+      )
+  }
 
   const fetchDetail = () => {
     AxiosGet(`/products/${id}`)
@@ -26,6 +46,22 @@ const OutfitDetailPage = () => {
           description: err?.response?.data?.detail
         })
       )
+  }
+
+  const fetchReviews = () => {
+    AxiosGet(`/products/${id}/reviews`)
+      .then((res) => setReviews(res.data))
+      .catch((err) =>
+        NotificationCustom({
+          type: 'error',
+          message: 'Error',
+          description: err?.response?.data?.detail
+        })
+      )
+  }
+
+  const fetchReviewsMe = () => {
+    AxiosGet(`/products/${id}/reviews/me`).then((res) => setReviewsMe(res.data))
   }
 
   const handleAddToCloset = () => {
@@ -50,6 +86,9 @@ const OutfitDetailPage = () => {
 
   useEffect(() => {
     fetchDetail()
+    fetchReviews()
+    handleFetchProfile()
+    fetchReviewsMe()
   }, [])
 
   const handleRating = (value, product) => {
@@ -71,6 +110,32 @@ const OutfitDetailPage = () => {
           description: err?.response?.data?.detail
         })
       )
+  }
+
+  const handleDeleteReview = (id) => {
+    confirm({
+      title: 'Confirm',
+      content: 'Are you sure you want to delete this review?',
+      onOk: () => {
+        AxiosDelete(`/products/${id}/reviews/me`)
+          .then(() => {
+            NotificationCustom({
+              type: 'success',
+              message: 'Success',
+              description: 'Delete review successfully!'
+            })
+            fetchReviews()
+            fetchReviewsMe()
+          })
+          .catch((err) =>
+            NotificationCustom({
+              type: 'error',
+              message: 'Error',
+              description: err?.response?.data?.detail
+            })
+          )
+      }
+    })
   }
 
   return (
@@ -186,24 +251,67 @@ const OutfitDetailPage = () => {
                 href='#'
                 className='inline-block w-fit p-4 bg-white hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:hover:text-gray-900 '
               >
-                Reviews
+                Reviewss
               </a>
             </li> */}
           </ul>
 
-          <p className='p-10 leading-8 border border-gray-300 max-h-[300px] overflow-scroll'>
-            A key objective is engaging digital marketing customers and allowing
-            them to interact with the brand through servicing and delivery of
-            digital media. Information is easy to access at a fast rate through
-            the use of digital communications. Users with access to the Internet
-            can use many digital mediums, such as Facebook, YouTube, Forums, and
-            Email etc. Through Digital communications it creates a
-            Multi-communication channel where information can be quickly
-            exchanged around the world by anyone without any regard to whom they
-            are.[28] Social segregation plays no part through social mediums due
-            to lack of face to face communication and information being wide
-            spread instead to a selective audience.{' '}
-          </p>
+          <div className='p-10 leading-8 border border-gray-300 max-h-[600px] overflow-scroll'>
+            {!reviewsMe && (
+              <Editor
+                reviews={reviews}
+                id={id}
+                fetchReviews={fetchReviews}
+                fetchReviewsMe={fetchReviewsMe}
+              />
+            )}
+            <List
+              className='comment-list'
+              header={`${reviews.length} replies`}
+              itemLayout='horizontal'
+              dataSource={reviews}
+              renderItem={(item) => (
+                <List.Item
+                  actions={
+                    item?.id === reviewsMe?.id && [
+                      <AiOutlineEdit
+                        style={{ color: 'blue', cursor: 'pointer' }}
+                        onClick={() => setIsEdit(!isEdit)}
+                      />,
+                      <AiOutlineDelete
+                        style={{ color: 'red', cursor: 'pointer' }}
+                        onClick={() => handleDeleteReview(item?.id)}
+                      />
+                    ]
+                  }
+                >
+                  <List.Item.Meta
+                    avatar={<Avatar src={item?.author.avatarUrl} />}
+                    title={
+                      item?.author.firstName + item?.author.lastName ||
+                      item?.author.email
+                    }
+                    description={
+                      isEdit && item?.id === reviewsMe?.id ? (
+                        <Editor
+                          reviews={reviews}
+                          id={id}
+                          fetchReviews={fetchReviews}
+                          fetchReviewsMe={fetchReviewsMe}
+                          item={item}
+                          setIsEdit={setIsEdit}
+                        />
+                      ) : (
+                        <div
+                          dangerouslySetInnerHTML={{ __html: item?.content }}
+                        />
+                      )
+                    }
+                  />
+                </List.Item>
+              )}
+            />
+          </div>
         </div>
       </div>
 

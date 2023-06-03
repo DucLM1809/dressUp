@@ -37,7 +37,7 @@ const MyClosetPage = () => {
   const handleRemoveCloset = (item) => {
     confirm({
       title: 'Confirm',
-      content: 'Are you sure you want to remove?',
+      content: 'Are you sure you want to remove this outfit?',
       onOk: () => {
         AxiosPut('/closets/me', {
           removedProductIds: [item.id]
