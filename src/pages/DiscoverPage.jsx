@@ -18,10 +18,20 @@ const DiscoverPage = () => {
   const navigate = useNavigate()
 
   const [data, setData] = useState([])
+  const [filterOptions, setFilterOptions] = useState({})
   const [paging, setPaging] = useState({ size: 20, offset: 0 })
+  const [categories, setCategories] = useState([])
+  const [styles, setStyles] = useState([])
+  const [patterns, setPatterns] = useState([])
 
   const fetchData = () => {
-    AxiosGet('products', { offset: paging.offset, size: paging.size })
+    AxiosGet('products', {
+      offset: paging.offset,
+      size: paging.size,
+      ...(categories.length && { categories: categories.join(', ') }),
+      ...(styles.length && { styles: styles.join(', ') }),
+      ...(patterns.length && { patterns: patterns.join(', ') })
+    })
       .then((res) => setData(res.data))
       .catch((err) =>
         NotificationCustom({
@@ -32,9 +42,25 @@ const DiscoverPage = () => {
       )
   }
 
+  const fetchFilterOptions = () => {
+    AxiosGet('products/filter-options')
+      .then((res) => setFilterOptions(res.data))
+      .catch((err) =>
+        NotificationCustom({
+          type: 'error',
+          message: 'Error',
+          description: err?.response?.data?.detail
+        })
+      )
+  }
+
+  useEffect(() => {
+    fetchFilterOptions()
+  }, [])
+
   useEffect(() => {
     fetchData()
-  }, [paging])
+  }, [paging, categories, styles, patterns])
 
   const handlePaging = (page, pageSize) => {
     setPaging({
@@ -43,54 +69,65 @@ const DiscoverPage = () => {
     })
   }
 
+  console.log(data?.totalRows)
+
   return (
     <div className='w-full'>
       <HeaderDark />
       <div className='mb-10'>
-        <Form layout='horizontal' className='mt-8'>
-          <div className='flex flex-wrap justify-center gap-4 px-10 md:px-24'>
-            <Form.Item
-              label='Sort'
-              name='sort'
-              className=' min-w-[200px] font-semibold'
+        {/* <Form layout='horizontal' className='mt-8'> */}
+        <div className='flex flex-wrap justify-center gap-4 px-10 md:px-24 mt-10'>
+          <Form.Item
+            label='Categories'
+            name='categories'
+            className='min-w-[200px] font-semibold'
+          >
+            <Select
+              mode='multiple'
+              placeholder='Jeans'
+              className='w-[200px]'
+              onChange={(value) => setCategories(value)}
             >
-              <Select placeholder='Recommended' className='w-[200px]'>
-                <Select.Option value='recommended'>Recommended</Select.Option>
-                <Select.Option value='new'>What's new</Select.Option>
-                <Select.Option value='low'>Price high to low</Select.Option>
-                <Select.Option value='high'>Price low to high</Select.Option>
-              </Select>
-            </Form.Item>
+              {filterOptions?.categories?.map((item) => (
+                <Select.Option value={item}>{item}</Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
 
-            <Form.Item
-              label='Category'
-              name='category'
-              className=' min-w-[200px] font-semibold'
+          <Form.Item
+            label='Styles'
+            name='styles'
+            className='min-w-[200px] font-semibold'
+          >
+            <Select
+              mode='multiple'
+              placeholder='Retro'
+              className='w-[200px]'
+              onChange={(value) => setStyles(value)}
             >
-              <Select placeholder='Tops' className='w-[200px]'>
-                <Select.Option value='tops'>Tops</Select.Option>
-                <Select.Option value='footware'>Footware</Select.Option>
-                <Select.Option value='jeans'>Jeans & Trousers</Select.Option>
-                <Select.Option value='shorts'>Shorts</Select.Option>
-                <Select.Option value='dresses'>Dresses</Select.Option>
-              </Select>
-            </Form.Item>
-            <Form.Item
-              label='Style'
-              name='style'
-              className=' min-w-[200px] font-semibold'
+              {filterOptions?.styles?.map((item) => (
+                <Select.Option value={item}>{item}</Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item
+            label='Patterns'
+            name='patterns'
+            className='min-w-[200px] font-semibold'
+          >
+            <Select
+              mode='multiple'
+              placeholder='In'
+              className='w-[200px]'
+              onChange={(value) => setPatterns(value)}
             >
-              <Select placeholder='Baseball' className='w-[200px]'>
-                <Select.Option value='baseball'>Baseball</Select.Option>
-                <Select.Option value='bodycon'>Bodycon</Select.Option>
-                <Select.Option value='bomberjacket'>
-                  Bomber Jacket
-                </Select.Option>
-                <Select.Option value='crop'>Crop</Select.Option>
-              </Select>
-            </Form.Item>
-          </div>
-        </Form>
+              {filterOptions?.patterns?.map((item) => (
+                <Select.Option value={item}>{item}</Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+        </div>
+        {/* </Form> */}
       </div>
 
       <div className='w-full flex flex-col items-center gap-4'>
