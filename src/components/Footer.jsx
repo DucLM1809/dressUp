@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import LOGO3 from '../assets/logo-3.png'
+import LOGO2 from '../assets/logoFooter.png'
 import FACEBOOK from '../assets/facebook.png'
 import TIKTOK from '../assets/tiktok.png'
 import SHOPEE from '../assets/shoppee.png'
@@ -16,7 +16,7 @@ const Footer = () => {
         <div className='md:flex md:justify-between'>
           <div className='flex flex-col items-center justify-center -mt-5 py-3 lg:py-0'>
             <Link to={PATH.HOME} className='mb-2'>
-              <img src={LOGO3} alt='Logo' className='w-[180px] lg:w-[200px]' />
+              <img src={LOGO2} alt='Logo' className='w-[120px]' />
             </Link>
             <div className='flex gap-3 mt-1'>
               <Link

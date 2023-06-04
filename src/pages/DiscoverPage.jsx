@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import HeaderDark from '../components/HeaderDark'
-import TREND from '../assets/trend4.png'
-import SHIPPING from '../assets/shipping.png'
-import SUPPORT from '../assets/support.png'
-import RETURN from '../assets/return.png'
-import SECURE from '../assets/secure.png'
 import Footer from '../components/Footer'
-import { Form, Input, Pagination, Select } from 'antd'
+import { Button, Drawer, Form, Input, Pagination, Select } from 'antd'
 import { Link, useNavigate } from 'react-router-dom'
-import { PATH } from '../constants/common'
-import axios from 'axios'
 import Product from '../components/Product'
 import AxiosGet from '../config/axiosGet'
 import { NotificationCustom } from '../components/Notification'
+import DiscoverBanner from '../components/DiscorverBanner'
+import { IoIosOptions } from 'react-icons/io'
 
 const DiscoverPage = () => {
   const navigate = useNavigate()
@@ -23,6 +18,7 @@ const DiscoverPage = () => {
   const [categories, setCategories] = useState([])
   const [styles, setStyles] = useState([])
   const [patterns, setPatterns] = useState([])
+  const [openDrawer, setOpenDrawer] = useState(false)
 
   const fetchData = () => {
     AxiosGet('products', {
@@ -69,14 +65,15 @@ const DiscoverPage = () => {
     })
   }
 
-  console.log(data?.totalRows)
-
   return (
     <div className='w-full'>
-      <HeaderDark />
-      <div className='mb-10'>
-        {/* <Form layout='horizontal' className='mt-8'> */}
-        <div className='flex flex-wrap justify-center gap-4 px-10 md:px-24 mt-10'>
+      <Drawer
+        title='Filters'
+        placement='left'
+        open={openDrawer}
+        onClose={() => setOpenDrawer(false)}
+      >
+        <Form layout='vertical'>
           <Form.Item
             label='Categories'
             name='categories'
@@ -126,11 +123,26 @@ const DiscoverPage = () => {
               ))}
             </Select>
           </Form.Item>
+        </Form>
+      </Drawer>
+
+      <HeaderDark />
+      <DiscoverBanner />
+      <div className='py-10 bg-white'>
+        {/* <Form layout='horizontal' className='mt-8'> */}
+        <div className='flex flex-wrap gap-4 px-10 md:px-24 mt-10'>
+          <button
+            className='px-4 py-2 rounded-md bg-[#f2f3f5] hover:bg-[#dcdfe2] flex items-center gap-3 transition-all duration-150'
+            onClick={() => setOpenDrawer(true)}
+          >
+            <IoIosOptions />
+            <span>All Filters</span>
+          </button>
         </div>
         {/* </Form> */}
       </div>
 
-      <div className='w-full flex flex-col items-center gap-4'>
+      <div className='w-full flex flex-col items-center gap-4 bg-white'>
         <div className='text-2xl  font-medium bg-black w-80 text-white py-2 text-center'>
           Discover NEW TREND
         </div>

@@ -39,7 +39,7 @@ const HomePage = () => {
 
       <Banner />
 
-      <div className='w-full flex flex-col items-center gap-4'>
+      <div className='w-full flex flex-col items-center gap-4 bg-white'>
         <div className='text-2xl mt-10  font-medium bg-black w-80 text-white py-2 text-center'>
           Discover NEW TREND
         </div>
