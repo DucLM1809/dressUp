@@ -21,7 +21,8 @@ export const PATH = Object.freeze({
   FORBIDDEN: '/forbidden',
   FORGET_PASSWORD: '/forget-password',
   RESET_PASSWORD: '/users/reset-password',
-  PROFILE: '/profile'
+  PROFILE: '/profile',
+  PRICING: '/pricing'
 })
 
 export const EditorTabs = [

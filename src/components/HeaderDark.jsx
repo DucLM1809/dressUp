@@ -1,17 +1,14 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import LOGO from '../assets/Logo.png'
-import { BiSearch } from 'react-icons/bi'
-import { CgProfile } from 'react-icons/cg'
-import { AiOutlineSetting } from 'react-icons/ai'
 import AxiosDelete from '../config/axiosDelete'
 import { LOCAL_STORAGE_ITEMS, PATH } from '../constants/common'
 import { NotificationCustom } from './Notification'
-import BACK_BUTTON from '../assets/arrow-left-circle.png'
 import USER_HEADER from '../assets/user-1.png'
 import CART from '../assets/cart.png'
 import MENU from '../assets/menu.png'
 import { useAuth } from '../hooks/useAuth'
+import DIAMOND from '../assets/diamond.png'
 
 const HeaderDark = () => {
   const [hidden, setHidden] = useState(true)
@@ -159,7 +156,14 @@ const HeaderDark = () => {
                     to={PATH.OUTFIT_BUILDER}
                     className='block px-4 pr-20 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900'
                   >
-                    Mix&Match
+                    Mix & Match
+                  </Link>
+                  <Link
+                    to={PATH.PRICING}
+                    className='block px-4 pr-20 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 flex items-center gap-2'
+                  >
+                    Go Premium
+                    <img src={DIAMOND} alt='premium' className='w-4 h-4' />
                   </Link>
                   <Link
                     onClick={handleLogout}
