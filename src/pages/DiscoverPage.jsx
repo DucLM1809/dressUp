@@ -15,19 +15,25 @@ const DiscoverPage = () => {
   const [data, setData] = useState([])
   const [filterOptions, setFilterOptions] = useState({})
   const [paging, setPaging] = useState({ size: 20, offset: 0 })
-  const [categories, setCategories] = useState([])
-  const [styles, setStyles] = useState([])
-  const [patterns, setPatterns] = useState([])
+  const [categoriesSelect, setCategoriesSelect] = useState([])
+  const [stylesSelect, setStylesSelect] = useState([])
+  const [patternsSelect, setPatternsSelect] = useState([])
   const [openDrawer, setOpenDrawer] = useState(false)
 
   const fetchData = () => {
-    AxiosGet('products', {
-      offset: paging.offset,
-      size: paging.size,
-      ...(categories.length && { categories: categories.join(', ') }),
-      ...(styles.length && { styles: styles.join(', ') }),
-      ...(patterns.length && { patterns: patterns.join(', ') })
-    })
+    const params = new URLSearchParams()
+    params.append('offset', paging.offset)
+    params.append('size', paging.size)
+    categoriesSelect.length > 0 &&
+      categoriesSelect.map((category) => params.append('categories', category))
+
+    stylesSelect.length > 0 &&
+      stylesSelect.map((style) => params.append('styles', style))
+
+    patternsSelect.length > 0 &&
+      patternsSelect.map((pattern) => params.append('patterns', pattern))
+
+    AxiosGet('products', params)
       .then((res) => setData(res.data))
       .catch((err) =>
         NotificationCustom({
@@ -56,7 +62,7 @@ const DiscoverPage = () => {
 
   useEffect(() => {
     fetchData()
-  }, [paging, categories, styles, patterns])
+  }, [paging, categoriesSelect, stylesSelect, patternsSelect])
 
   const handlePaging = (page, pageSize) => {
     setPaging({
@@ -81,9 +87,10 @@ const DiscoverPage = () => {
           >
             <Select
               mode='multiple'
+              maxTagCount={'responsive'}
               placeholder='Jeans'
               className='w-[200px]'
-              onChange={(value) => setCategories(value)}
+              onChange={(value) => setCategoriesSelect(value)}
             >
               {filterOptions?.categories?.map((item) => (
                 <Select.Option value={item}>{item}</Select.Option>
@@ -98,9 +105,10 @@ const DiscoverPage = () => {
           >
             <Select
               mode='multiple'
+              maxTagCount={'responsive'}
               placeholder='Retro'
               className='w-[200px]'
-              onChange={(value) => setStyles(value)}
+              onChange={(value) => setStylesSelect(value)}
             >
               {filterOptions?.styles?.map((item) => (
                 <Select.Option value={item}>{item}</Select.Option>
@@ -114,9 +122,10 @@ const DiscoverPage = () => {
           >
             <Select
               mode='multiple'
+              maxTagCount={'responsive'}
               placeholder='In'
               className='w-[200px]'
-              onChange={(value) => setPatterns(value)}
+              onChange={(value) => setPatternsSelect(value)}
             >
               {filterOptions?.patterns?.map((item) => (
                 <Select.Option value={item}>{item}</Select.Option>
