@@ -1,6 +1,7 @@
 import React from 'react'
 import HeaderDark from '../components/HeaderDark'
 import Footer from '../components/Footer'
+import MOMO from '../assets/logo-momo.jpg'
 
 const PricingPage = () => {
   return (
@@ -439,9 +440,10 @@ const PricingPage = () => {
                   </p>
                   <a
                     href='#'
-                    className='mt-10 block w-full rounded-md bg-[#ff993a] px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-[#f9aa61] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f9aa61]'
+                    className='mt-10 block w-full rounded-md bg-[#ff993a] px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-[#f9aa61] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f9aa61] flex items-center justify-between'
                   >
                     Get access
+                    <img src={MOMO} alt='momo' className='w-8 h-8' />
                   </a>
                   <p className='mt-6 text-xs leading-5 text-gray-600'>
                     Invoices and receipts available for easy company
