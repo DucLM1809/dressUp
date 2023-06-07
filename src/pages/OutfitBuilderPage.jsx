@@ -425,6 +425,7 @@ const OutfitBuilderPage = () => {
 
         <div className='max-w-screen-xl mx-auto py-10 grid grid-cols-2 gap-10'>
           {!isFromPublic &&
+            products?.length >= 0 &&
             products?.map((item) => (
               <Product
                 key={item.id}
