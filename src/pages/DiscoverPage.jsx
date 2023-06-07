@@ -26,6 +26,11 @@ const DiscoverPage = () => {
   const [searchKeyword, setSearchKeyword] = useState('')
   const [openDrawer, setOpenDrawer] = useState(false)
   const [openModal, setOpenModal] = useState(false)
+  const [text, setText] = useState('')
+  const [fullText, setFullText] = useState(
+    'Our sophisticated artificial intelligence proffers fashion recommendations derived from garments you have meticulously uploaded onto your virtual wardrobe...'
+  )
+  const [index, setIndex] = useState(0)
 
   const fetchData = () => {
     const params = new URLSearchParams()
@@ -93,6 +98,20 @@ const DiscoverPage = () => {
     setSearchKeyword(e.target.value)
   }
 
+  useEffect(() => {
+    if (openModal && index < fullText.length) {
+      setTimeout(() => {
+        setText(text + fullText[index])
+        setIndex(index + 1)
+      }, 20)
+    }
+
+    if (!openModal) {
+      setIndex(0)
+      setText('')
+    }
+  }, [index, openModal])
+
   return (
     <div className='w-full'>
       <Modal
@@ -101,6 +120,7 @@ const DiscoverPage = () => {
         onCancel={() => setOpenModal(false)}
       >
         <Lottie animationData={aiAnimated} loop={true} />
+        <div class='text-base font-semibold text-justify'>{text}</div>
       </Modal>
 
       <Drawer
@@ -113,7 +133,7 @@ const DiscoverPage = () => {
           <Form.Item
             label='Categories'
             name='categories'
-            className='min-w-[200px] font-semibold'
+            className='min-w-[200px] font-medium'
           >
             <Select
               mode='multiple'
