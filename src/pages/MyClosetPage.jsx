@@ -158,8 +158,6 @@ const MyClosetPage = () => {
       })
       formData.append('file', file)
 
-      console.log(file.uid)
-
       res = await axios.postForm(res.data.url, formData)
 
       if (res) {
@@ -239,7 +237,7 @@ const MyClosetPage = () => {
           </button>
           <div
             key='filepicker'
-            className={`w-10 h-10 cursor-pointer rounded-4`}
+            className={`w-11 h-11 cursor-pointer rounded-4 border rounded-md hover:border-blue-400 duration-150`}
             // style={activeStyles}
             onClick={() => setOpenDrawer(true)}
           >

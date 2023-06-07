@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import HeaderDark from '../components/HeaderDark'
 import Footer from '../components/Footer'
-import { Button, Drawer, Form, Input, Pagination, Select } from 'antd'
+import { Button, Drawer, Form, Input, Modal, Pagination, Select } from 'antd'
 import { Link, useNavigate } from 'react-router-dom'
 import Product from '../components/Product'
 import AxiosGet from '../config/axiosGet'
 import { NotificationCustom } from '../components/Notification'
 import DiscoverBanner from '../components/DiscorverBanner'
 import { IoIosOptions } from 'react-icons/io'
+import aiIcon from '../assets/ai.png'
+import Lottie from 'lottie-react'
+import aiAnimated from '../assets/ai-animated.json'
 
 const { Search } = Input
 
@@ -22,6 +25,7 @@ const DiscoverPage = () => {
   const [patternsSelect, setPatternsSelect] = useState([])
   const [searchKeyword, setSearchKeyword] = useState('')
   const [openDrawer, setOpenDrawer] = useState(false)
+  const [openModal, setOpenModal] = useState(false)
 
   const fetchData = () => {
     const params = new URLSearchParams()
@@ -91,6 +95,14 @@ const DiscoverPage = () => {
 
   return (
     <div className='w-full'>
+      <Modal
+        open={openModal}
+        footer={null}
+        onCancel={() => setOpenModal(false)}
+      >
+        <Lottie animationData={aiAnimated} loop={true} />
+      </Modal>
+
       <Drawer
         title='Filters'
         placement='left'
@@ -165,6 +177,14 @@ const DiscoverPage = () => {
             <IoIosOptions />
             <span>All Filters</span>
           </button>
+          <div
+            key='filepicker'
+            className={`w-11 h-11 cursor-pointer rounded-4 border rounded-md hover:border-blue-400  duration-150`}
+            // style={activeStyles}
+            onClick={() => setOpenModal(true)}
+          >
+            <img src={aiIcon} alt={'aipicker'} className={'object-contain'} />
+          </div>
           <Search
             placeholder='input search text'
             // onSearch={onSearch}
