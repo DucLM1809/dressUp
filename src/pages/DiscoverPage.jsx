@@ -9,6 +9,8 @@ import { NotificationCustom } from '../components/Notification'
 import DiscoverBanner from '../components/DiscorverBanner'
 import { IoIosOptions } from 'react-icons/io'
 
+const { Search } = Input
+
 const DiscoverPage = () => {
   const navigate = useNavigate()
 
@@ -18,12 +20,14 @@ const DiscoverPage = () => {
   const [categoriesSelect, setCategoriesSelect] = useState([])
   const [stylesSelect, setStylesSelect] = useState([])
   const [patternsSelect, setPatternsSelect] = useState([])
+  const [searchKeyword, setSearchKeyword] = useState('')
   const [openDrawer, setOpenDrawer] = useState(false)
 
   const fetchData = () => {
     const params = new URLSearchParams()
     params.append('offset', paging.offset)
     params.append('size', paging.size)
+    searchKeyword && params.append('search_keyword', searchKeyword)
     categoriesSelect.length > 0 &&
       categoriesSelect.map((category) => params.append('categories', category))
 
@@ -64,11 +68,25 @@ const DiscoverPage = () => {
     fetchData()
   }, [paging, categoriesSelect, stylesSelect, patternsSelect])
 
+  useEffect(() => {
+    const timeOut = setTimeout(() => {
+      fetchData()
+    }, 300)
+
+    return () => {
+      clearTimeout(timeOut)
+    }
+  }, [searchKeyword])
+
   const handlePaging = (page, pageSize) => {
     setPaging({
       offset: (page - 1) * pageSize,
       size: pageSize
     })
+  }
+
+  const onSearch = (e) => {
+    setSearchKeyword(e.target.value)
   }
 
   return (
@@ -139,7 +157,7 @@ const DiscoverPage = () => {
       <DiscoverBanner />
       <div className='py-10 bg-white'>
         {/* <Form layout='horizontal' className='mt-8'> */}
-        <div className='flex flex-wrap gap-4 px-10 md:px-24 mt-10'>
+        <div className='flex flex-wrap gap-4 px-10 md:px-24 mt-10 items-center'>
           <button
             className='px-4 py-2 rounded-md bg-[#f2f3f5] hover:bg-[#dcdfe2] flex items-center gap-3 transition-all duration-150'
             onClick={() => setOpenDrawer(true)}
@@ -147,6 +165,13 @@ const DiscoverPage = () => {
             <IoIosOptions />
             <span>All Filters</span>
           </button>
+          <Search
+            placeholder='input search text'
+            // onSearch={onSearch}
+            onChange={onSearch}
+            style={{ width: 200 }}
+            size='large'
+          />
         </div>
         {/* </Form> */}
       </div>
