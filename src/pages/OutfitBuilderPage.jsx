@@ -229,7 +229,7 @@ const OutfitBuilderPage = () => {
     if (!selectedProducts.get(item.id)) {
       const newSelectedProducts = new Map(selectedProducts).set(
         item.id,
-        item.transparentBackgroundImage
+        item.transparentBackgroundImage || item.imageUrls[0]
       )
 
       setSelectedProducts(newSelectedProducts)
