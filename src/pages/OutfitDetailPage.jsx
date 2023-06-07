@@ -97,6 +97,8 @@ const OutfitDetailPage = () => {
     })
       .then(() => {
         fetchDetail()
+        fetchReviews()
+        fetchReviewsMe()
         NotificationCustom({
           type: 'success',
           message: 'Success',
