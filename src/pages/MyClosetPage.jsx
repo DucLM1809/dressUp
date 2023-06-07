@@ -21,7 +21,7 @@ import { NotificationCustom } from '../components/Notification'
 import { useNavigate } from 'react-router-dom'
 import { PATH } from '../constants/common'
 import AxiosPut from '../config/axiosPut'
-import fileIcon from '../assets/file.png'
+import outfitIcon from '../assets/logo-tshirt.png'
 import AxiosPost from '../config/axiosPost'
 import axios from 'axios'
 
@@ -95,8 +95,11 @@ const MyClosetPage = () => {
       dataIndex: 'transparentBackgroundImage',
       key: 'transparentBackgroundImage',
       align: 'transparentBackgroundImage',
-      render: (transparentBackgroundImage) => (
-        <Image src={transparentBackgroundImage} width={150} />
+      render: (transparentBackgroundImage, record) => (
+        <Image
+          src={transparentBackgroundImage || record.imageUrls[0]}
+          width={150}
+        />
       )
     },
     {
@@ -242,7 +245,7 @@ const MyClosetPage = () => {
             onClick={() => setOpenDrawer(true)}
           >
             <img
-              src={fileIcon}
+              src={outfitIcon}
               alt={'filepicker'}
               className={'object-contain'}
             />
@@ -299,7 +302,7 @@ const MyClosetPage = () => {
               footer={null}
               onCancel={handleCancel}
             >
-              <img alt='example' style={{ width: '100%' }} src={previewImage} />
+              <img alt='preview' style={{ width: '100%' }} src={previewImage} />
             </Modal>
           </Form.Item>
 

@@ -35,9 +35,23 @@ const OutfitBuilderPage = () => {
   const [selectedProducts, setSelectedProducts] = useState(new Map())
   const [paging, setPaging] = useState({ size: 20, offset: 0 })
 
+  // const fetchProducts = () => {
+  //   AxiosGet('products', { offset: paging.offset, size: paging.size })
+  //     .then((res) => setProducts(res.data))
+  //     .catch((err) =>
+  //       NotificationCustom({
+  //         type: 'error',
+  //         message: 'Error',
+  //         description: err?.response?.data?.detail
+  //       })
+  //     )
+  // }
+
   const fetchProducts = () => {
-    AxiosGet('products', { offset: paging.offset, size: paging.size })
-      .then((res) => setProducts(res.data))
+    AxiosGet('closets/me')
+      .then((res) =>
+        setProducts([...res.data.ownedProducts, ...res.data.publicProducts])
+      )
       .catch((err) =>
         NotificationCustom({
           type: 'error',
@@ -195,7 +209,7 @@ const OutfitBuilderPage = () => {
           ))}
 
           {generateTabContent()} */}
-          <Upload
+          {/* <Upload
             name='file'
             accept='image/*'
             onChange={onChangeUploadFile}
@@ -213,7 +227,7 @@ const OutfitBuilderPage = () => {
                 className={'w-11/12 h-11/12 object-contain'}
               />
             </div>
-          </Upload>
+          </Upload> */}
 
           <div
             key='productPicker'
@@ -240,7 +254,7 @@ const OutfitBuilderPage = () => {
         }
       >
         <div className='max-w-screen-xl mx-auto py-10 grid grid-cols-2 gap-10'>
-          {products?.products?.map((item) => (
+          {products?.map((item) => (
             <Product
               key={item.id}
               product={item}
@@ -248,7 +262,7 @@ const OutfitBuilderPage = () => {
             />
           ))}
         </div>
-        <div className='flex justify-center'>
+        {/* <div className='flex justify-center'>
           <Pagination
             defaultCurrent={1}
             total={products.totalRows}
@@ -256,7 +270,7 @@ const OutfitBuilderPage = () => {
             onChange={handlePaging}
             pageSize={20}
           />
-        </div>
+        </div> */}
       </Drawer>
 
       {/* <div className='filtertabs-container'>

@@ -9,6 +9,7 @@ import { NotificationCustom } from '../components/Notification'
 import DiscoverBanner from '../components/DiscorverBanner'
 import { IoIosOptions } from 'react-icons/io'
 import aiIcon from '../assets/ai.png'
+import refreshIcon from '../assets/refresh.png'
 import Lottie from 'lottie-react'
 import aiAnimated from '../assets/ai-animated.json'
 
@@ -55,6 +56,15 @@ const DiscoverPage = () => {
           description: err?.response?.data?.detail
         })
       )
+  }
+
+  const fetchRecommend = (isPublic) => {
+    AxiosGet('/products/recommendation', {
+      include_public_products: isPublic
+    }).then((res) => {
+      setData(res.data)
+      setOpenModal(false)
+    })
   }
 
   const fetchFilterOptions = () => {
@@ -120,7 +130,24 @@ const DiscoverPage = () => {
         onCancel={() => setOpenModal(false)}
       >
         <Lottie animationData={aiAnimated} loop={true} />
-        <div class='text-base font-semibold text-justify'>{text}</div>
+        <div className='flex items-center justify-around'>
+          <Button
+            type='primary'
+            onClick={() => {
+              fetchRecommend(false)
+            }}
+          >
+            Recommend without public
+          </Button>
+          <Button
+            onClick={() => {
+              fetchRecommend(true)
+            }}
+          >
+            Recommend with public
+          </Button>
+        </div>
+        <div class='text-base font-medium mt-5 tracking-wider'>{text}</div>
       </Modal>
 
       <Drawer
@@ -198,12 +225,22 @@ const DiscoverPage = () => {
             <span>All Filters</span>
           </button>
           <div
-            key='filepicker'
-            className={`w-11 h-11 cursor-pointer rounded-4 border rounded-md hover:border-blue-400  duration-150`}
+            className={`w-11 h-11 cursor-pointer rounded-4 border rounded-md hover:border-blue-400 duration-150`}
             // style={activeStyles}
             onClick={() => setOpenModal(true)}
           >
             <img src={aiIcon} alt={'aipicker'} className={'object-contain'} />
+          </div>
+          <div
+            className={`w-11 h-11 p-1 cursor-pointer rounded-4 border rounded-md hover:border-blue-400  duration-150`}
+            // style={activeStyles}
+            onClick={() => fetchData()}
+          >
+            <img
+              src={refreshIcon}
+              alt={'aipicker'}
+              className={'object-contain'}
+            />
           </div>
           <Search
             placeholder='input search text'
