@@ -24,9 +24,25 @@ const OutfitDetailPage = () => {
   const [reviewsMe, setReviewsMe] = useState()
   const [profile, setProfile] = useState()
   const [isEdit, setIsEdit] = useState(false)
+  const [closet, setCloset] = useState([])
+
   const handleFetchProfile = () => {
     AxiosGet('users/me')
       .then((res) => setProfile(res.data))
+      .catch((err) =>
+        NotificationCustom({
+          type: 'error',
+          message: 'Error',
+          description: err?.response?.data?.detail
+        })
+      )
+  }
+
+  const fetchCloset = () => {
+    AxiosGet('closets/me')
+      .then((res) =>
+        setCloset([...res.data.publicProducts, ...res.data.ownedProducts])
+      )
       .catch((err) =>
         NotificationCustom({
           type: 'error',
@@ -68,13 +84,14 @@ const OutfitDetailPage = () => {
     AxiosPut('/closets/me', {
       addedProductIds: [id]
     })
-      .then(() =>
+      .then(() => {
+        fetchCloset()
         NotificationCustom({
           type: 'success',
           message: 'Success',
           description: 'Add to closet successfully!'
         })
-      )
+      })
       .catch((err) =>
         NotificationCustom({
           type: 'error',
@@ -89,6 +106,7 @@ const OutfitDetailPage = () => {
     fetchReviews()
     handleFetchProfile()
     fetchReviewsMe()
+    fetchCloset()
   }, [])
 
   const handleRating = (value, product) => {
@@ -191,8 +209,12 @@ const OutfitDetailPage = () => {
               <Select.Option>XXXL</Select.Option>
             </Select> */}
             <button
-              className='text-white px-4 py-2 w-fit rounded-full text-sm bg-orange my-12'
+              className={`text-white px-4 py-2 w-fit rounded-full text-sm bg-orange my-12 ${
+                closet.some((item) => item?.id === product?.id) &&
+                'cursor-not-allowed'
+              }`}
               onClick={handleAddToCloset}
+              disabled={closet.some((item) => item?.id === product?.id)}
             >
               ADD TO CLOSET
             </button>
