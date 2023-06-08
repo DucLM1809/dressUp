@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import LOGO from '../assets/Logo.png'
 import AxiosDelete from '../config/axiosDelete'
@@ -39,6 +39,10 @@ const HeaderDark = () => {
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <div
