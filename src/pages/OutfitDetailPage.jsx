@@ -15,7 +15,7 @@ import AxiosGet from '../config/axiosGet'
 import Editor from '../components/Editor/Editor'
 import AxiosDelete from '../config/axiosDelete'
 import shopeeIcon from '../assets/shopee.png'
-import tikiIcon from '../assets/tiki.png'
+import tiktokIcon from '../assets/tiktokIcon.png'
 import lazadaIcon from '../assets/lazada.png'
 
 const { confirm } = Modal
@@ -258,12 +258,20 @@ const OutfitDetailPage = () => {
                 </a>
               </span>
 
-              <span className='p-1 rounded-full'>
-                <img alt='tiki' src={tikiIcon} className='w-10 h-10' />
+              <span className='p-1 rounded-full '>
+                <img
+                  alt='tiki'
+                  src={tiktokIcon}
+                  className='w-10 h-10 opacity-50'
+                />
               </span>
 
               <span className='p-1 rounded-full'>
-                <img alt='lazada' src={lazadaIcon} className='w-10 h-10' />
+                <img
+                  alt='lazada'
+                  src={lazadaIcon}
+                  className='w-10 h-10 opacity-50'
+                />
               </span>
             </div>
           </div>
