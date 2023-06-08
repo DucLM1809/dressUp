@@ -2,8 +2,15 @@ import React from 'react'
 import HeaderDark from '../components/HeaderDark'
 import Footer from '../components/Footer'
 import MOMO from '../assets/logo-momo.jpg'
+import { useNavigate } from 'react-router-dom'
+import { PATH } from '../constants/common'
+import { useDispatch } from 'react-redux'
+import { setPrice } from '../app/price.store'
 
 const PricingPage = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
   return (
     <div>
       <HeaderDark />
@@ -116,12 +123,15 @@ const PricingPage = () => {
                   </span>
                 </li>
               </ul>
-              <a
-                href='#'
+              <button
+                onClick={() => {
+                  navigate(PATH.PRICING_INFO)
+                  dispatch(setPrice(29))
+                }}
                 className='bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900'
               >
                 Get started
-              </a>
+              </button>
             </div>
             <div className='flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8'>
               <h3 className='mb-4 text-2xl font-semibold'>Company</h3>
@@ -218,12 +228,15 @@ const PricingPage = () => {
                   </span>
                 </li>
               </ul>
-              <a
-                href='#'
+              <button
+                onClick={() => {
+                  navigate(PATH.PRICING_INFO)
+                  dispatch(setPrice(99))
+                }}
                 className='bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900'
               >
                 Get started
-              </a>
+              </button>
             </div>
             <div className='flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8'>
               <h3 className='mb-4 text-2xl font-semibold'>Enterprise</h3>
@@ -320,12 +333,15 @@ const PricingPage = () => {
                   </span>
                 </li>
               </ul>
-              <a
-                href='#'
+              <button
+                onClick={() => {
+                  navigate(PATH.PRICING_INFO)
+                  dispatch(setPrice(499))
+                }}
                 className='bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900'
               >
                 Get started
-              </a>
+              </button>
             </div>
           </div>
         </div>

@@ -22,7 +22,8 @@ export const PATH = Object.freeze({
   FORGET_PASSWORD: '/forget-password',
   RESET_PASSWORD: '/users/reset-password',
   PROFILE: '/profile',
-  PRICING: '/pricing'
+  PRICING: '/pricing',
+  PRICING_INFO: '/pricing/info'
 })
 
 export const EditorTabs = [
