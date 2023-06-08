@@ -5,6 +5,7 @@ import { Form, Input } from 'antd'
 import Footer from '../components/Footer'
 import AxiosGet from '../config/axiosGet'
 import { NotificationCustom } from '../components/Notification'
+import AxiosPost from '../config/axiosPost'
 
 const ContactPage = () => {
   const [form] = Form.useForm()
@@ -29,6 +30,25 @@ const ContactPage = () => {
     handleFetchProfile()
   }, [])
 
+  const onFinish = (values) => {
+    AxiosPost('users/me/contact', values)
+      .then((res) => {
+        form.resetFields(['name', 'message'])
+        NotificationCustom({
+          type: 'success',
+          message: 'Success',
+          description: 'Thank you for contacting us!'
+        })
+      })
+      .catch((err) =>
+        NotificationCustom({
+          type: 'error',
+          message: 'Error',
+          description: err?.response?.data?.detail
+        })
+      )
+  }
+
   return (
     <div className='w-full'>
       <HeaderDark />
@@ -48,7 +68,12 @@ const ContactPage = () => {
             If you have any query or any type of suggestion, you can contact us
             here. We would love to hear from you.
           </p>
-          <Form form={form} layout='vertical' className='mt-8'>
+          <Form
+            form={form}
+            layout='vertical'
+            className='mt-8'
+            onFinish={onFinish}
+          >
             <div className='flex md:flex-row flex-col justify-between gap-4'>
               <Form.Item
                 label='Name'
@@ -64,7 +89,7 @@ const ContactPage = () => {
                 className='w-full min-w-[200px] font-semibold'
                 required
               >
-                <Input />
+                <Input readOnly />
               </Form.Item>
             </div>
 
