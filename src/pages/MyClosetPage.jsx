@@ -7,6 +7,7 @@ import {
   Modal,
   Space,
   Table,
+  Tabs,
   Tag,
   Upload,
   message
@@ -46,9 +47,7 @@ const MyClosetPage = () => {
 
   const fetchCloset = () => {
     AxiosGet('closets/me')
-      .then((res) =>
-        setData([...res.data.publicProducts, ...res.data.ownedProducts])
-      )
+      .then((res) => setData(res.data))
       .catch((err) =>
         NotificationCustom({
           type: 'error',
@@ -251,7 +250,33 @@ const MyClosetPage = () => {
             />
           </div>
         </div>
-        <Table columns={columns} dataSource={data} scroll={{ x: 1200 }} />
+        <Tabs
+          type='card'
+          items={[
+            {
+              label: 'Public Products',
+              key: 'public',
+              children: (
+                <Table
+                  columns={columns}
+                  dataSource={data.publicProducts}
+                  scroll={{ x: 1200 }}
+                />
+              )
+            },
+            {
+              label: 'Owned Products',
+              key: 'pwned',
+              children: (
+                <Table
+                  columns={columns}
+                  dataSource={data.ownedProducts}
+                  scroll={{ x: 1200 }}
+                />
+              )
+            }
+          ]}
+        />
       </div>
 
       <Drawer

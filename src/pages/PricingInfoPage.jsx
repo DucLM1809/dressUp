@@ -3,9 +3,31 @@ import HeaderDark from '../components/HeaderDark'
 import Footer from '../components/Footer'
 import { useSelector } from 'react-redux'
 import MOMO_QR from '../assets/momoQR.jpg'
+import { Modal } from 'antd'
+
+const { confirm } = Modal
 
 const PricingInfoPage = () => {
   const price = useSelector((state) => state.price?.price)
+
+  const handleConfirm = () => {
+    confirm({
+      title: 'Confirm',
+      content: (
+        <>
+          <div>
+            Thank you for your payment! Our staff will check and your
+            subscription will be applied if it's valid! If things don't go well,
+            please contact us at:
+          </div>
+          <span className='text-blue-500'>
+            dressup.customerservice@gmail.com
+          </span>
+        </>
+      ),
+      onOk: () => {}
+    })
+  }
 
   return (
     <div>
@@ -111,6 +133,9 @@ const PricingInfoPage = () => {
                   <p className='text-base font-semibold text-gray-600'>
                     Pay once, own it forever
                   </p>
+                  <p className='text-sm text-orange'>
+                    Make sure you send the exact amount!
+                  </p>
                   <p className='mt-6 flex items-baseline justify-center gap-x-2 mb-3'>
                     <span className='text-5xl font-bold tracking-tight text-gray-900'>
                       ${price}
@@ -121,7 +146,7 @@ const PricingInfoPage = () => {
                   </p>
                   <img alt='qr' src={MOMO_QR} />
                   <button
-                    href='#'
+                    onClick={handleConfirm}
                     className='mt-10 block w-full rounded-md bg-[#ff993a] px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-[#f9aa61] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f9aa61]'
                   >
                     Confirm Transaction
