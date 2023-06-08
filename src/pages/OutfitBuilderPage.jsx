@@ -29,10 +29,12 @@ import { IoIosOptions } from 'react-icons/io'
 import aiAnimated from '../assets/ai-animated.json'
 import aiIcon from '../assets/ai.png'
 import refreshIcon from '../assets/refresh.png'
+import cancelIcon from '../assets/cancel.png'
 
 const { Search } = Input
 
 const OutfitBuilderPage = () => {
+  const [form] = Form.useForm()
   const navigate = useNavigate()
   const [state, setState] = useState({
     activeDrags: 0,
@@ -64,6 +66,7 @@ const OutfitBuilderPage = () => {
   )
   const [index, setIndex] = useState(0)
   const [filterOptions, setFilterOptions] = useState({})
+  const [openModalSave, setOpenModalSave] = useState(false)
 
   const fetchProducts = () => {
     const params = new URLSearchParams()
@@ -240,6 +243,40 @@ const OutfitBuilderPage = () => {
     }
   }
 
+  const handleRemove = (id) => {
+    const newSelectedProducts = new Map(selectedProducts)
+    newSelectedProducts.delete(id)
+    setSelectedProducts(newSelectedProducts)
+  }
+
+  const handleSaveToCloset = () => {
+    setOpenModalSave(true)
+  }
+
+  const onFinish = (values) => {
+    AxiosPost('/products', {
+      ...values,
+      imageUrls: Array.from(selectedProducts.values()).map((item) => item)
+    })
+      .then(() => {
+        form.resetFields()
+        setOpenModalSave(false)
+        fetchClosets()
+        NotificationCustom({
+          type: 'success',
+          message: 'Success',
+          description: 'Save outfit to your closet successfully!'
+        })
+      })
+      .catch((err) =>
+        NotificationCustom({
+          type: 'error',
+          message: 'Error',
+          description: err?.response?.data?.detail
+        })
+      )
+  }
+
   return (
     <div className='bg-gray-200 min-h-screen relative'>
       <Modal
@@ -266,6 +303,37 @@ const OutfitBuilderPage = () => {
           </Button>
         </div>
         <div class='text-base font-medium mt-5 tracking-wider'>{text}</div>
+      </Modal>
+
+      <Modal
+        open={openModalSave}
+        footer={
+          <Button type='primary' form='outfit' htmlType='submit'>
+            Save To Closet
+          </Button>
+        }
+        onCancel={() => setOpenModalSave(false)}
+        title='Save to closet'
+      >
+        <Form layout='vertical' form={form} name='outfit' onFinish={onFinish}>
+          <Form.Item
+            label='Name'
+            name='name'
+            rules={[
+              {
+                required: true,
+                message: "Please enter outfit's name."
+              }
+            ]}
+            requiredMark
+          >
+            <Input size='large' />
+          </Form.Item>
+
+          <Form.Item label='Description' name='description'>
+            <Input.TextArea rows={5} size='large' />
+          </Form.Item>
+        </Form>
       </Modal>
 
       <button
@@ -308,13 +376,22 @@ const OutfitBuilderPage = () => {
           onDrag={handleDrag}
           onStop={handleStop}
         >
-          <img
-            className='handle max-w-[300px] max-h-[300px]'
-            src={product}
-            style={{
-              zIndex: index
-            }}
-          />
+          <div className='relative w-fit'>
+            <img
+              className='handle max-w-[300px] max-h-[300px]'
+              src={product}
+              style={{
+                zIndex: index
+              }}
+            />
+            <img
+              src={cancelIcon}
+              className='w-6 h-6 absolute top-2 right-3 hover:opacity-80 cursor-pointer z-20'
+              onClick={() =>
+                handleRemove(Array.from(selectedProducts.keys())[index])
+              }
+            />
+          </div>
         </Draggable>
       ))}
 
@@ -518,15 +595,15 @@ const OutfitBuilderPage = () => {
         </Form>
       </Drawer>
 
-      {/* <div className='filtertabs-container'>
-        <button className='download-btn' onClick={downloadImage}>
+      <div className='filtertabs-container'>
+        <button className='download-btn' onClick={handleSaveToCloset}>
           <img
             src={download}
             alt='download_image'
             className='w-3/5 h-3/5 object-contain'
           />
         </button>
-      </div> */}
+      </div>
     </div>
   )
 }
