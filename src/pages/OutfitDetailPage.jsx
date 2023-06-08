@@ -14,6 +14,9 @@ import { NotificationCustom } from '../components/Notification'
 import AxiosGet from '../config/axiosGet'
 import Editor from '../components/Editor/Editor'
 import AxiosDelete from '../config/axiosDelete'
+import shopeeIcon from '../assets/shopee.png'
+import tikiIcon from '../assets/tiki.png'
+import lazadaIcon from '../assets/lazada.png'
 
 const { confirm } = Modal
 
@@ -218,18 +221,24 @@ const OutfitDetailPage = () => {
             >
               ADD TO CLOSET
             </button>
-            <span className='font-semibold'>
-              Categories:{' '}
-              <span className='font-normal'>
-                {product?.categories?.join(', ')}
+            {product?.categories?.length > 0 && (
+              <span className='font-semibold mb-2'>
+                Categories:{' '}
+                <span className='font-normal'>
+                  {product?.categories?.join(', ')}
+                </span>
               </span>
-            </span>
-            <span className='font-semibold'>
-              Pattern: <span className='font-normal'>{product?.pattern}</span>
-            </span>
-            <span className='font-semibold'>
-              Styles: <span className='font-normal'>{product?.style}</span>
-            </span>
+            )}
+            {product?.pattern && (
+              <span className='font-semibold mb-2'>
+                Pattern: <span className='font-normal'>{product?.pattern}</span>
+              </span>
+            )}
+            {product?.style && (
+              <span className='font-semibold mb-2'>
+                Styles: <span className='font-normal'>{product?.style}</span>
+              </span>
+            )}
             {product?.hashtags?.length && (
               <span className='font-semibold'>
                 Hashtag:{' '}
@@ -239,21 +248,22 @@ const OutfitDetailPage = () => {
               </span>
             )}
 
-            <div className='flex items-center gap-2'>
-              <span className='p-1 bg-gray-200 rounded-full'>
-                <TbBrandShopee size={20} />
+            <div className='flex items-center gap-2 mt-10'>
+              <span className='p-1 rounded-full'>
+                <a
+                  href={product?.shopeeAffiliateUrl || product?.originalUrl}
+                  target='_blank'
+                >
+                  <img alt='shopee' src={shopeeIcon} className='w-10 h-10' />
+                </a>
               </span>
-              <span className='p-1 bg-gray-200 rounded-full'>
-                <BiMessageDetail size={20} />
+
+              <span className='p-1 rounded-full'>
+                <img alt='tiki' src={tikiIcon} className='w-10 h-10' />
               </span>
-              <span className='p-1 bg-gray-200 rounded-full'>
-                <BsFillTelephoneFill size={20} />
-              </span>
-              <span className='p-1 bg-gray-200 rounded-full'>
-                <FiLink2 size={20} />
-              </span>
-              <span className='p-1 bg-gray-200 rounded-full'>
-                <BiEnvelope size={20} />
+
+              <span className='p-1 rounded-full'>
+                <img alt='lazada' src={lazadaIcon} className='w-10 h-10' />
               </span>
             </div>
           </div>
