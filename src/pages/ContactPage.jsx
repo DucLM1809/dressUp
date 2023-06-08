@@ -1,10 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import HeaderDark from '../components/HeaderDark'
 import CONTACT from '../assets/contact.jpg'
 import { Form, Input } from 'antd'
 import Footer from '../components/Footer'
+import AxiosGet from '../config/axiosGet'
+import { NotificationCustom } from '../components/Notification'
 
 const ContactPage = () => {
+  const [form] = Form.useForm()
+  const [profile, setProfile] = useState()
+
+  const handleFetchProfile = () => {
+    AxiosGet('users/me')
+      .then((res) => {
+        form.setFieldValue('email', res.data?.email)
+        setProfile(res.data)
+      })
+      .catch((err) =>
+        NotificationCustom({
+          type: 'error',
+          message: 'Error',
+          description: err?.response?.data?.detail
+        })
+      )
+  }
+
+  useEffect(() => {
+    handleFetchProfile()
+  }, [])
+
   return (
     <div className='w-full'>
       <HeaderDark />
@@ -24,7 +48,7 @@ const ContactPage = () => {
             If you have any query or any type of suggestion, you can contact us
             here. We would love to hear from you.
           </p>
-          <Form layout='vertical' className='mt-8'>
+          <Form form={form} layout='vertical' className='mt-8'>
             <div className='flex md:flex-row flex-col justify-between gap-4'>
               <Form.Item
                 label='Name'
@@ -38,6 +62,7 @@ const ContactPage = () => {
                 label='Email'
                 name='email'
                 className='w-full min-w-[200px] font-semibold'
+                required
               >
                 <Input />
               </Form.Item>

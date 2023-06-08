@@ -14,11 +14,11 @@ const Header = () => {
       </Link>
 
       <div>
-        <button className='border px-4 py-1.5 rounded-md border-orange font-semibold text-orange hover:bg-orange hover:text-white duration-200'>
-          <Link to={PATH.LOGIN} className='block text-xs md:text-sm'>
+        <Link to={PATH.LOGIN} className='block text-xs md:text-sm'>
+          <button className='border px-4 py-1.5 rounded-md border-orange font-semibold text-orange hover:bg-orange hover:text-white duration-200'>
             SIGN IN
-          </Link>
-        </button>
+          </button>
+        </Link>
       </div>
     </div>
   )

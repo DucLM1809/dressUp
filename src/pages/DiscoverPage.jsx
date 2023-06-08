@@ -85,7 +85,20 @@ const DiscoverPage = () => {
 
   useEffect(() => {
     fetchData()
+    window.scrollTo({
+      top: 800,
+      left: 0,
+      behavior: 'smooth'
+    })
   }, [paging, categoriesSelect, stylesSelect, patternsSelect])
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    })
+  }, [])
 
   useEffect(() => {
     const timeOut = setTimeout(() => {
