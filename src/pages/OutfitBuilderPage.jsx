@@ -30,8 +30,10 @@ import aiAnimated from '../assets/ai-animated.json'
 import aiIcon from '../assets/ai.png'
 import refreshIcon from '../assets/refresh.png'
 import cancelIcon from '../assets/cancel.png'
+import AxiosPut from '../config/axiosPut'
 
 const { Search } = Input
+const { confirm } = Modal
 
 const OutfitBuilderPage = () => {
   const [form] = Form.useForm()
@@ -66,7 +68,6 @@ const OutfitBuilderPage = () => {
   )
   const [index, setIndex] = useState(0)
   const [filterOptions, setFilterOptions] = useState({})
-  const [openModalSave, setOpenModalSave] = useState(false)
 
   const fetchProducts = () => {
     const params = new URLSearchParams()
@@ -188,52 +189,9 @@ const OutfitBuilderPage = () => {
     setState({ ...state, activeDrags: --state.activeDrags })
   }
 
-  const generateTabContent = () => {
-    return <FilePicker file={file} setFile={setFile} readFile={readFile} />
-  }
-
-  const readFile = (type) => {
-    reader(file).then((result) => {
-      // setActiveEditorTab('')
-    })
-  }
-
-  const onChangeUploadFile = (info) => {
-    if (info.file.status === 'done') {
-      setFileList([...fileList, info.file])
-      message.success(`${info.file.name} file uploaded successfully`)
-    } else if (info.file.status === 'error') {
-      message.error(`${info.file.name} file upload failed.`)
-    }
-  }
-
-  const handleUploadFile = async (options) => {
-    const { onSuccess, onError, file, onProgress } = options
-    try {
-      let res = await AxiosPost('auth/presigned-urls/post', {
-        object_name: file.name
-      })
-      const formData = new FormData()
-      Object.entries(res.data.fields).forEach(([key, value]) => {
-        formData.append(key, value)
-      })
-      formData.append('file', file)
-      res = await axios.postForm(res.data.url, formData)
-
-      onSuccess('Ok')
-      console.log('server res: ', res)
-    } catch (error) {
-      console.log('Eroor: ', error)
-      onError({ error })
-    }
-  }
-
   const handleClick = (item) => {
     if (!selectedProducts.get(item.id)) {
-      const newSelectedProducts = new Map(selectedProducts).set(
-        item.id,
-        item.transparentBackgroundImage || item.imageUrls[0]
-      )
+      const newSelectedProducts = new Map(selectedProducts).set(item.id, item)
 
       setSelectedProducts(newSelectedProducts)
     } else {
@@ -250,32 +208,41 @@ const OutfitBuilderPage = () => {
   }
 
   const handleSaveToCloset = () => {
-    setOpenModalSave(true)
+    confirm({
+      title: 'Confirm',
+      content: 'Do you want to save these products to your closet?',
+      onOk: () =>
+        AxiosPut('/closets/me', {
+          addedProductIds: Array.from(selectedProducts.keys())
+        })
+          .then(() =>
+            NotificationCustom({
+              type: 'success',
+              message: 'Success',
+              description: 'Add to closet successfully!'
+            })
+          )
+          .catch((err) =>
+            NotificationCustom({
+              type: 'error',
+              message: 'Error',
+              description: err?.response?.data?.detail
+            })
+          )
+    })
   }
 
-  const onFinish = (values) => {
-    AxiosPost('/products', {
-      ...values,
-      imageUrls: Array.from(selectedProducts.values()).map((item) => item)
+  const selectedProductsContainNotPublic =
+    products?.length >= 0 &&
+    products?.find((product) => {
+      console.log(selectedProducts.get(product.id))
+      return selectedProducts.get(product.id)
     })
-      .then(() => {
-        form.resetFields()
-        setOpenModalSave(false)
-        fetchClosets()
-        NotificationCustom({
-          type: 'success',
-          message: 'Success',
-          description: 'Save outfit to your closet successfully!'
-        })
-      })
-      .catch((err) =>
-        NotificationCustom({
-          type: 'error',
-          message: 'Error',
-          description: err?.response?.data?.detail
-        })
-      )
-  }
+
+  console.log(
+    selectedProductsContainNotPublic &&
+      Array.from(selectedProducts.keys()).length
+  )
 
   return (
     <div className='bg-gray-200 min-h-screen relative'>
@@ -303,37 +270,6 @@ const OutfitBuilderPage = () => {
           </Button>
         </div>
         <div class='text-base font-medium mt-5 tracking-wider'>{text}</div>
-      </Modal>
-
-      <Modal
-        open={openModalSave}
-        footer={
-          <Button type='primary' form='outfit' htmlType='submit'>
-            Save To Closet
-          </Button>
-        }
-        onCancel={() => setOpenModalSave(false)}
-        title='Save to closet'
-      >
-        <Form layout='vertical' form={form} name='outfit' onFinish={onFinish}>
-          <Form.Item
-            label='Name'
-            name='name'
-            rules={[
-              {
-                required: true,
-                message: "Please enter outfit's name."
-              }
-            ]}
-            requiredMark
-          >
-            <Input size='large' />
-          </Form.Item>
-
-          <Form.Item label='Description' name='description'>
-            <Input.TextArea rows={5} size='large' />
-          </Form.Item>
-        </Form>
       </Modal>
 
       <button
@@ -379,7 +315,7 @@ const OutfitBuilderPage = () => {
           <div className='relative w-fit'>
             <img
               className='handle max-w-[300px] max-h-[300px]'
-              src={product}
+              src={product.transparentBackgroundImage || product.imageUrls[0]}
               style={{
                 zIndex: index
               }}
@@ -397,30 +333,6 @@ const OutfitBuilderPage = () => {
 
       <div className='absolute top-1/2 -translate-y-1/2'>
         <div className='editortabs-container tabs'>
-          {/* {EditorTabs.map((tab) => (
-            <Tab key={tab.name} tab={tab} />
-          ))}
-
-          {generateTabContent()} */}
-          {/* <Upload
-            name='file'
-            accept='image/*'
-            onChange={onChangeUploadFile}
-            showUploadList={false}
-            customRequest={handleUploadFile}
-          >
-            <div
-              key='filepicker'
-              className={`tab-btn rounded-4`}
-              // style={activeStyles}
-            >
-              <img
-                src={fileIcon}
-                alt={'filepicker'}
-                className={'w-11/12 h-11/12 object-contain'}
-              />
-            </div>
-          </Upload> */}
           <div
             key='closetPicker'
             className={`tab-btn rounded-4`}
@@ -596,11 +508,22 @@ const OutfitBuilderPage = () => {
       </Drawer>
 
       <div className='filtertabs-container'>
-        <button className='download-btn' onClick={handleSaveToCloset}>
+        <button
+          className='download-btn'
+          onClick={handleSaveToCloset}
+          disabled={
+            selectedProductsContainNotPublic ||
+            Array.from(selectedProducts.keys()).length === 0
+          }
+        >
           <img
             src={download}
             alt='download_image'
-            className='w-3/5 h-3/5 object-contain'
+            className={`w-3/5 h-3/5 object-contain ${
+              (selectedProductsContainNotPublic ||
+                Array.from(selectedProducts.keys()).length === 0) &&
+              'cursor-not-allowed'
+            }`}
           />
         </button>
       </div>
