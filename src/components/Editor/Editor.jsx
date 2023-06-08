@@ -170,6 +170,10 @@ const Editor = ({
     item && form.setFieldValue('content', item?.content)
   }, [item])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <Form form={form} onFinish={(values) => onFinish(values)}>
       <Form.Item
