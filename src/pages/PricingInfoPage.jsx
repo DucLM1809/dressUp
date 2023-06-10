@@ -37,7 +37,7 @@ const PricingInfoPage = () => {
             NotificationCustom({
               type: 'success',
               message: 'Success',
-              description: 'Payment was successful!'
+              description: 'We have received you payment!'
             })
           )
           .catch((err) =>
