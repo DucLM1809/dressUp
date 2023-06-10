@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi'
 import POSTER1 from '../assets/DRESSUPposter-01.png'
-import POSTER2 from '../assets/DRESSUPposter-02.png'
+import POSTER3 from '../assets/DRESSUPposter-03.jpeg'
+import POSTER4 from '../assets/DRESSUPposter-04.jpg'
+import POSTER5 from '../assets/DRESSUPposter-05.jpeg'
 
 const Banner = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
 
-  const data = [POSTER1, POSTER2]
+  const data = [POSTER1, POSTER4, POSTER5, POSTER3]
 
   const prevSlide = () => {
     setCurrentSlide(currentSlide === 0 ? 3 : (prev) => prev - 1)
@@ -29,9 +31,19 @@ const Banner = () => {
             alt='img1'
           />
           <img
-            className='w-screen h-full object-cover'
+            className='w-screen h-full object-fill'
             src={data[1]}
             alt='img2'
+          />
+          <img
+            className='w-screen h-full object-fill'
+            src={data[2]}
+            alt='img3'
+          />
+          <img
+            className='w-screen h-full object-fill'
+            src={data[3]}
+            alt='img4'
           />
         </div>
 
