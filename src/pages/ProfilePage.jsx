@@ -320,17 +320,27 @@ const ProfilePage = () => {
               <img src={FACEBOOK} className='w-[30px]' />
               <img src={TIKTOK} className='w-[30px]' />
             </div>
-            <div className='flex md:flex-row flex-col gap-4 h-fit'>
-              <button className='text-white px-4 py-2 w-full md:w-fit rounded-full text-sm bg-orange my-4'>
-                <Link to={PATH.MY_CLOSET}>MY CLOSET</Link>
-              </button>
-              <button className='text-white px-4 py-2 w-full  md:w-fit rounded-full text-sm bg-orange my-4'>
-                <Link to={PATH.OUTFIT_BUILDER}>TRY MIX&MATCH</Link>
-              </button>
-            </div>
           </div>
         </div>
       </Form>
+      <div className='flex md:flex-row flex-col gap-4 h-fit md:justify-center items-center'>
+        <Link to={PATH.MY_CLOSET}>
+          <button
+            className='text-white px-4 py-2 w-[200px] md:w-fit rounded-full text-sm bg-orange my-4'
+            onClick={(e) => e.stopPropagation()}
+          >
+            MY CLOSET
+          </button>
+        </Link>
+        <Link to={PATH.OUTFIT_BUILDER}>
+          <button
+            className='text-white px-4 py-2 w-[200px]  md:w-fit rounded-full text-sm bg-orange my-4'
+            onClick={(e) => e.stopPropagation()}
+          >
+            TRY MIX&MATCH
+          </button>
+        </Link>
+      </div>
       <div className='mt-auto'>
         <Footer />
       </div>

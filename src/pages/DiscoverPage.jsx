@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import HeaderDark from '../components/HeaderDark'
 import Footer from '../components/Footer'
-import { Button, Drawer, Form, Input, Modal, Pagination, Select } from 'antd'
+import {
+  Alert,
+  Button,
+  Drawer,
+  Form,
+  Input,
+  Modal,
+  Pagination,
+  Select
+} from 'antd'
 import { Link, useNavigate } from 'react-router-dom'
 import Product from '../components/Product'
 import AxiosGet from '../config/axiosGet'
@@ -19,6 +28,7 @@ const DiscoverPage = () => {
   const navigate = useNavigate()
 
   const [data, setData] = useState([])
+  const [closet, setCloset] = useState([])
   const [filterOptions, setFilterOptions] = useState({})
   const [paging, setPaging] = useState({ size: 20, offset: 0 })
   const [categoriesSelect, setCategoriesSelect] = useState([])
@@ -79,8 +89,21 @@ const DiscoverPage = () => {
       )
   }
 
+  const fetchCloset = () => {
+    AxiosGet('closets/me')
+      .then((res) => setCloset(res.data))
+      .catch((err) =>
+        NotificationCustom({
+          type: 'error',
+          message: 'Error',
+          description: err?.response?.data?.detail
+        })
+      )
+  }
+
   useEffect(() => {
     fetchFilterOptions()
+    fetchCloset()
   }, [])
 
   useEffect(() => {
@@ -143,7 +166,7 @@ const DiscoverPage = () => {
         onCancel={() => setOpenModal(false)}
       >
         <Lottie animationData={aiAnimated} loop={true} />
-        <div className='flex items-center justify-around'>
+        <div className='flex items-center justify-around mb-4'>
           <Button
             type='primary'
             onClick={() => {
@@ -160,6 +183,20 @@ const DiscoverPage = () => {
             Recommend with public
           </Button>
         </div>
+        {data?.products?.length === 0 && (
+          <Alert
+            message={`${"There's no products in discover, the result might be incorrect!"}`}
+            type='warning'
+          />
+        )}
+
+        {closet?.ownedProducts?.length === 0 && (
+          <Alert
+            message={`${"There's no products in your closet, the result might be incorrect!"}`}
+            type='warning'
+          />
+        )}
+
         <div class='text-base font-medium mt-5 tracking-wider'>{text}</div>
       </Modal>
 
