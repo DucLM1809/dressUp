@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import DISCOVER from '../assets/discover.png'
+import POSTER2 from '../assets/DRESSUPposter-02.jpg'
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi'
 
 const DiscoverBanner = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
 
-  const data = [DISCOVER]
+  const data = [POSTER2]
 
   const prevSlide = () => {
     setCurrentSlide(currentSlide === 0 ? 3 : (prev) => prev - 1)
