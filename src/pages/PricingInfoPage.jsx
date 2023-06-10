@@ -4,11 +4,14 @@ import Footer from '../components/Footer'
 import { useSelector } from 'react-redux'
 import MOMO_QR from '../assets/momoQR.jpg'
 import { Modal } from 'antd'
+import AxiosPost from '../config/axiosPost'
+import { NotificationCustom } from '../components/Notification'
 
 const { confirm } = Modal
 
 const PricingInfoPage = () => {
   const price = useSelector((state) => state.price?.price)
+  const subscriptionId = useSelector((state) => state.price?.subscriptionId)
 
   const handleConfirm = () => {
     confirm({
@@ -25,7 +28,26 @@ const PricingInfoPage = () => {
           </span>
         </>
       ),
-      onOk: () => {}
+      onOk: () => {
+        AxiosPost('payments/request', {
+          price,
+          subscriptionId
+        })
+          .then(() =>
+            NotificationCustom({
+              type: 'success',
+              message: 'Success',
+              description: 'Payment was successful!'
+            })
+          )
+          .catch((err) =>
+            NotificationCustom({
+              type: 'error',
+              message: 'Error',
+              description: err?.response?.data?.detail
+            })
+          )
+      }
     })
   }
 
