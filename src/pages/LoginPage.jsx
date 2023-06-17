@@ -2,10 +2,32 @@ import React from 'react'
 
 import { Form, Input, Button, Checkbox } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
+import { LOCAL_STORAGE_ITEMS, PATH } from '../constants/common'
+import { NotificationCustom } from '../components/Notification'
+import AxiosPost from '../config/axiosPost'
+import { useNavigate } from 'react-router-dom'
 
 const LoginPage = () => {
-  const onFinish = (values) => {
-    console.log(values)
+  const navigate = useNavigate()
+  const onFinish = async (values) => {
+    try {
+      const res = await AxiosPost('Home/login', { ...values })
+      if (res) {
+        console.log(res)
+        localStorage.setItem(LOCAL_STORAGE_ITEMS.ACCESS_TOKEN, res.data?.token)
+        NotificationCustom({
+          type: 'success',
+          message: 'Success',
+          description: 'Login successfully!'
+        })
+        navigate(PATH.PRODUCT)
+      }
+    } catch (error) {
+      NotificationCustom({
+        type: 'Error',
+        message: 'Success'
+      })
+    }
   }
 
   return (
