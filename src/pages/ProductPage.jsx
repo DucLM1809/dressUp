@@ -408,7 +408,7 @@ const ProductPage = () => {
                             <Input size='large' />
                           </Form.Item>
 
-                          <Form.Item label='DOB' name='dob'>
+                          <Form.Item label='DOB' name={[field.name, 'dob']}>
                             <DatePicker picker={'date'} size='large' />
                           </Form.Item>
                         </>
