@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import AxiosDelete from '../config/axiosDelete'
 import { LOCAL_STORAGE_ITEMS, PATH } from '../constants/common'
 import { NotificationCustom } from './Notification'
+import { Button } from 'antd'
 
 const HeaderDark = () => {
   const navigate = useNavigate()
@@ -83,7 +84,31 @@ const HeaderDark = () => {
             PRODUCT
           </Link>
         </li>
+        {localStorage.getItem('role') === 'ADMIN' && (
+          <li className='mx-2 lg:mx-10 cursor-pointer'>
+            <Link
+              to={PATH.MANAGEMENT}
+              smooth={true}
+              duration={500}
+              spy={true}
+              exact='true'
+              activeClass='active'
+              className='hover:text-orange transition duration-500 ease-in-out'
+            >
+              MANAGEMENT
+            </Link>
+          </li>
+        )}
       </ul>
+
+      <Button
+        onClick={() => {
+          localStorage.removeItem('accessToken')
+          navigate(PATH.LOGIN)
+        }}
+      >
+        Logout
+      </Button>
     </div>
   )
 }

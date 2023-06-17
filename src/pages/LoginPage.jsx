@@ -15,6 +15,11 @@ const LoginPage = () => {
       if (res) {
         console.log(res)
         localStorage.setItem(LOCAL_STORAGE_ITEMS.ACCESS_TOKEN, res.data?.token)
+        if (values.email === 'admin@gmail.com') {
+          localStorage.setItem('role', 'ADMIN')
+        } else {
+          localStorage.setItem('role', 'USER')
+        }
         NotificationCustom({
           type: 'success',
           message: 'Success',
