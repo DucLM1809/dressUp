@@ -31,16 +31,6 @@ const Product = ({ product, handleClick }) => {
 
   return (
     <div className='group' onClick={handleClick}>
-      <div className='w-full h-96 cursor-pointer overflow-hidden'>
-        <img
-          src={
-            'https://images.thdstatic.com/productImages/e1f8af99-7af9-45ee-8fdd-ae44760e3e0d/svn/milwaukee-janitorial-carts-sc38-64_1000.jpg'
-          }
-          alt='productImg'
-          className='w-full h-full object-cover'
-        />
-      </div>
-
       <div className='w-full border-[1px] px-2 py-4'>
         <div className='flex justify-between'>
           <div>
