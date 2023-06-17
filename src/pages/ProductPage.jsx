@@ -478,7 +478,7 @@ const ProductPage = () => {
                             ]}
                             requiredMark
                           >
-                            <Select>
+                            <Select style={{ width: '150px' }}>
                               {dataShop?.map((item) => (
                                 <Select.Option value={item.id}>
                                   {item.name}
