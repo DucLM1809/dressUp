@@ -400,7 +400,8 @@ const ProductPage = () => {
                             rules={[
                               {
                                 required: true,
-                                message: 'Please enter email.'
+                                type: 'email',
+                                message: 'Please enter valid email.'
                               }
                             ]}
                             requiredMark
