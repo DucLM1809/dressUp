@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { LOCAL_STORAGE_ITEMS } from '../constants/common'
 
 const axiosClient = axios.create({
   baseURL: `${process.env.REACT_APP_API}`,
@@ -11,7 +12,7 @@ const axiosClient = axios.create({
 
 axiosClient.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('accessToken')
+    const token = localStorage.getItem(LOCAL_STORAGE_ITEMS.ACCESS_TOKEN)
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
