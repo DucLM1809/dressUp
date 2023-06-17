@@ -469,7 +469,7 @@ const ProductPage = () => {
                           </Form.Item>
                           <Form.Item
                             label='Shop'
-                            name='shopId'
+                            name={[field.name, 'shopId']}
                             rules={[
                               {
                                 required: true,
