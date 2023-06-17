@@ -1,4 +1,14 @@
-import { Button, DatePicker, Drawer, Form, Input, Table, Tabs } from 'antd'
+import {
+  Button,
+  DatePicker,
+  Drawer,
+  Form,
+  Input,
+  InputNumber,
+  Select,
+  Table,
+  Tabs
+} from 'antd'
 import React, { useEffect, useState } from 'react'
 import HeaderDark from '../components/HeaderDark'
 import Footer from '../components/Footer'
@@ -12,17 +22,42 @@ import AxiosPost from '../config/axiosPost'
 
 const ProductPage = () => {
   const [form] = Form.useForm()
-  const [data, setData] = useState([])
+  const [dataCustomer, setDataCustomer] = useState([])
+  const [dataProduct, setDataProduct] = useState([])
+  const [dataShop, setDataShop] = useState([])
   const [openDrawer, setOpenDrawer] = useState(false)
   const [isAddCustomer, setIsAddCustomer] = useState(false)
   const [isAddShop, setIsAddShop] = useState(false)
   const [isAddProduct, setIsAddProduct] = useState(false)
-  const [fileList, setFileList] = useState([])
   const navigate = useNavigate()
 
-  const fetchCloset = () => {
-    AxiosGet('closets/me')
-      .then((res) => setData(res.data))
+  const fetchCustomer = () => {
+    AxiosGet('Customer/customer')
+      .then((res) => setDataCustomer(res.data))
+      .catch((err) =>
+        NotificationCustom({
+          type: 'error',
+          message: 'Error',
+          description: err?.response?.data?.detail
+        })
+      )
+  }
+
+  const fetchShop = () => {
+    AxiosGet('Shop')
+      .then((res) => setDataShop(res.data))
+      .catch((err) =>
+        NotificationCustom({
+          type: 'error',
+          message: 'Error',
+          description: err?.response?.data?.detail
+        })
+      )
+  }
+
+  const fetchProduct = () => {
+    AxiosGet('Product/product')
+      .then((res) => setDataProduct(res.data))
       .catch((err) =>
         NotificationCustom({
           type: 'error',
@@ -33,13 +68,15 @@ const ProductPage = () => {
   }
 
   useEffect(() => {
-    fetchCloset()
+    fetchCustomer()
+    fetchShop()
+    fetchProduct()
   }, [])
 
   const columnsCustomer = [
     {
-      title: 'Name',
-      dataIndex: 'name',
+      title: 'Full Name',
+      dataIndex: 'fullName',
       key: 'name'
     },
     {
@@ -81,29 +118,71 @@ const ProductPage = () => {
   ]
 
   const onFinish = (values) => {
-    console.log(values)
-    // AxiosPost('/products', {
-    //   ...values,
+    isAddCustomer &&
+      AxiosPost('Customer/addrange', {
+        customerDtos: [{ ...values, id: 0 }]
+      })
+        .then(() => {
+          form.resetFields()
+          setOpenDrawer(false)
+          fetchCustomer()
+          NotificationCustom({
+            type: 'success',
+            message: 'Success',
+            description: 'Save successfully!'
+          })
+        })
+        .catch((err) =>
+          NotificationCustom({
+            type: 'error',
+            message: 'Error',
+            description: err?.response?.data?.detail
+          })
+        )
 
-    // })
-    //   .then(() => {
-    //     form.resetFields()
-    //     setFileList([])
-    //     setOpenDrawer(false)
-    //     fetchCloset()
-    //     NotificationCustom({
-    //       type: 'success',
-    //       message: 'Success',
-    //       description: 'Save outfit to your closet successfully!'
-    //     })
-    //   })
-    //   .catch((err) =>
-    //     NotificationCustom({
-    //       type: 'error',
-    //       message: 'Error',
-    //       description: err?.response?.data?.detail
-    //     })
-    //   )
+    isAddShop &&
+      AxiosPost('Shop/addrange', {
+        shopDtos: [{ ...values, id: 0 }]
+      })
+        .then(() => {
+          form.resetFields()
+          setOpenDrawer(false)
+          fetchShop()
+          NotificationCustom({
+            type: 'success',
+            message: 'Success',
+            description: 'Save successfully!'
+          })
+        })
+        .catch((err) =>
+          NotificationCustom({
+            type: 'error',
+            message: 'Error',
+            description: err?.response?.data?.detail
+          })
+        )
+
+    isAddProduct &&
+      AxiosPost('Product/addrange', {
+        productDtos: [{ ...values, id: 0 }]
+      })
+        .then(() => {
+          form.resetFields()
+          setOpenDrawer(false)
+          fetchProduct()
+          NotificationCustom({
+            type: 'success',
+            message: 'Success',
+            description: 'Save successfully!'
+          })
+        })
+        .catch((err) =>
+          NotificationCustom({
+            type: 'error',
+            message: 'Error',
+            description: err?.response?.data?.detail
+          })
+        )
   }
 
   return (
@@ -159,11 +238,11 @@ const ProductPage = () => {
           items={[
             {
               label: 'Customers',
-              key: 'public',
+              key: 'customer',
               children: (
                 <Table
                   columns={columnsCustomer}
-                  dataSource={data.publicProducts}
+                  dataSource={dataCustomer}
                   scroll={{ x: 1200 }}
                 />
               )
@@ -174,7 +253,7 @@ const ProductPage = () => {
               children: (
                 <Table
                   columns={columnsShop}
-                  dataSource={data.ownedProducts}
+                  dataSource={dataShop}
                   scroll={{ x: 1200 }}
                 />
               )
@@ -185,7 +264,7 @@ const ProductPage = () => {
               children: (
                 <Table
                   columns={columnsProduct}
-                  dataSource={data.ownedProducts}
+                  dataSource={dataProduct}
                   scroll={{ x: 1200 }}
                 />
               )
@@ -216,22 +295,22 @@ const ProductPage = () => {
           name='management'
           onFinish={onFinish}
         >
-          <Form.Item
-            label='Name'
-            name='name'
-            rules={[
-              {
-                required: true,
-                message: 'Please enter name.'
-              }
-            ]}
-            requiredMark
-          >
-            <Input size='large' />
-          </Form.Item>
-
           {isAddCustomer && (
             <>
+              <Form.Item
+                label='Full Name'
+                name='fullName'
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please enter full name.'
+                  }
+                ]}
+                requiredMark
+              >
+                <Input size='large' />
+              </Form.Item>
+
               <Form.Item
                 label='Email'
                 name='email'
@@ -246,17 +325,7 @@ const ProductPage = () => {
                 <Input size='large' />
               </Form.Item>
 
-              <Form.Item
-                label='DOB'
-                name='dob'
-                rules={[
-                  {
-                    required: true,
-                    message: 'Please enter dob.'
-                  }
-                ]}
-                requiredMark
-              >
+              <Form.Item label='DOB' name='dob'>
                 <DatePicker picker={'date'} size='large' />
               </Form.Item>
             </>
@@ -265,16 +334,19 @@ const ProductPage = () => {
           {isAddShop && (
             <>
               <Form.Item
-                label='Location'
-                name='location'
+                label='Name'
+                name='name'
                 rules={[
                   {
                     required: true,
-                    message: 'Please enter location.'
+                    message: 'Please enter name.'
                   }
                 ]}
                 requiredMark
               >
+                <Input size='large' />
+              </Form.Item>
+              <Form.Item label='Location' name='location'>
                 <Input size='large' />
               </Form.Item>
             </>
@@ -282,6 +354,19 @@ const ProductPage = () => {
 
           {isAddProduct && (
             <>
+              <Form.Item
+                label='Name'
+                name='name'
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please enter name.'
+                  }
+                ]}
+                requiredMark
+              >
+                <Input size='large' />
+              </Form.Item>
               <Form.Item
                 label='Price'
                 name='price'
@@ -293,7 +378,24 @@ const ProductPage = () => {
                 ]}
                 requiredMark
               >
-                <Input size='large' />
+                <InputNumber size='large' min={0} />
+              </Form.Item>
+              <Form.Item
+                label='Shop'
+                name='shopId'
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please choose shop.'
+                  }
+                ]}
+                requiredMark
+              >
+                <Select>
+                  {dataShop?.map((item) => (
+                    <Select.Option value={item.id}>{item.name}</Select.Option>
+                  ))}
+                </Select>
               </Form.Item>
             </>
           )}
