@@ -15,13 +15,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import Product from '../components/Product'
 import AxiosGet from '../config/axiosGet'
 import { NotificationCustom } from '../components/Notification'
-import DiscoverBanner from '../components/DiscorverBanner'
-import { IoIosOptions } from 'react-icons/io'
-import aiIcon from '../assets/ai.png'
-import refreshIcon from '../assets/refresh.png'
-import Lottie from 'lottie-react'
-import aiAnimated from '../assets/ai-animated.json'
-
 const { Search } = Input
 
 const DiscoverPage = () => {
@@ -165,7 +158,6 @@ const DiscoverPage = () => {
         footer={null}
         onCancel={() => setOpenModal(false)}
       >
-        <Lottie animationData={aiAnimated} loop={true} />
         <div className='flex items-center justify-around mb-4'>
           <Button
             type='primary'
@@ -263,11 +255,11 @@ const DiscoverPage = () => {
       </Drawer>
 
       <HeaderDark />
-      <DiscoverBanner />
+      {/* <DiscoverBanner /> */}
       <div className='py-10 bg-white'>
-        {/* <Form layout='horizontal' className='mt-8'> */}
-        <div className='flex flex-wrap gap-4 px-10 md:px-24 mt-10 items-center'>
-          <button
+        <Form layout='horizontal' className='mt-8'>
+          <div className='flex flex-wrap gap-4 px-10 md:px-24 mt-10 items-center'>
+            {/* <button
             className='px-4 py-2 rounded-md bg-[#f2f3f5] hover:bg-[#dcdfe2] flex items-center gap-3 transition-all duration-150'
             onClick={() => setOpenDrawer(true)}
           >
@@ -291,24 +283,24 @@ const DiscoverPage = () => {
               alt={'aipicker'}
               className={'object-contain'}
             />
+          </div> */}
+            <Search
+              placeholder='input search text'
+              // onSearch={onSearch}
+              onChange={onSearch}
+              style={{ width: 200 }}
+              size='large'
+            />
           </div>
-          <Search
-            placeholder='input search text'
-            // onSearch={onSearch}
-            onChange={onSearch}
-            style={{ width: 200 }}
-            size='large'
-          />
-        </div>
-        {/* </Form> */}
+        </Form>
       </div>
 
       <div className='w-full flex flex-col items-center gap-4 bg-white'>
         <div className='text-2xl  font-medium bg-black w-80 text-white py-2 text-center'>
-          Discover NEW TREND
+          Discover Product
         </div>
         <span className='w-20 h-[3px] bg-black'></span>
-        <div className='text-base font-light mb-12'>Recently added shirts</div>
+        {/* <div className='text-base font-light mb-12'>Recently added shirts</div> */}
 
         <div className='max-w-screen-xl mx-auto py-10 grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10'>
           {data?.products?.map((item) => (

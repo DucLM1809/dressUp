@@ -1,13 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import LOGO2 from '../assets/logoFooter.png'
-import FACEBOOK from '../assets/facebook.png'
-import TIKTOK from '../assets/tiktok.png'
-import SHOPEE from '../assets/shoppee.png'
-import PHONE from '../assets/telephone.png'
-import EMAIL from '../assets/email.png'
-import WEB from '../assets/web.png'
-import { PATH } from '../constants/common'
 
 const Footer = () => {
   return (
@@ -15,45 +7,9 @@ const Footer = () => {
       <div className='mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8'>
         <div className='md:flex md:justify-between'>
           <div className='flex flex-col items-center justify-center -mt-5 py-3 lg:py-0'>
-            <Link to={PATH.HOME} className='mb-2'>
+            {/* <Link to={PATH.HOME} className='mb-2'>
               <img src={LOGO2} alt='Logo' className='w-[120px]' />
-            </Link>
-            <div className='flex gap-3 mt-1'>
-              <Link
-                to='https://www.facebook.com/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                <img
-                  src={FACEBOOK}
-                  alt='Facebook'
-                  className='w-[30px] lg:w-[40px] object-cover'
-                />
-              </Link>
-              <Link
-                to='https://www.tiktok.com/'
-                target='_blank'
-                rel='noopener noreferrer'
-                className='ml-2'
-              >
-                <img
-                  src={TIKTOK}
-                  alt='TikTok'
-                  className='w-[30px] lg:w-[42px] object-cover'
-                />
-              </Link>
-              <Link
-                to='https://shopee.vn/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                <img
-                  src={SHOPEE}
-                  alt='Shopee'
-                  className='w-[52px] lg:w-[64px] object-cover'
-                />
-              </Link>
-            </div>
+            </Link> */}
           </div>
 
           <div className='grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3'>

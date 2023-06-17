@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import LOGO from '../assets/Logo.png'
 import AxiosDelete from '../config/axiosDelete'
 import { LOCAL_STORAGE_ITEMS, PATH } from '../constants/common'
 import { NotificationCustom } from './Notification'
-import USER_HEADER from '../assets/user-1.png'
-import CART from '../assets/cart.png'
-import MENU from '../assets/menu.png'
-import DIAMOND from '../assets/diamond.png'
 
 const HeaderDark = () => {
   const navigate = useNavigate()
@@ -75,59 +70,20 @@ const HeaderDark = () => {
             HOME
           </Link>
         </li>
+        <li className='mx-2 lg:mx-10 cursor-pointer'>
+          <Link
+            to={PATH.DISCOVER}
+            smooth={true}
+            duration={500}
+            spy={true}
+            exact='true'
+            activeClass='active'
+            className='hover:text-orange transition duration-500 ease-in-out'
+          >
+            PRODUCT
+          </Link>
+        </li>
       </ul>
-
-      <div className='flex items-center'>
-        <div
-          className='mx-3 cursor-pointer'
-          onClick={() => navigate(PATH.PROFILE)}
-        >
-          <img src={USER_HEADER} alt='user-header' />
-        </div>
-        <div
-          className='mx-2 mb-4 cursor-pointer'
-          onClick={() => navigate(PATH.MY_CLOSET)}
-        >
-          <img src={CART} alt='cart' />
-        </div>
-
-        <div className='mx-2 mt-1'>
-          <div onClick={toggleDropdown} className='cursor-pointer'>
-            <img src={MENU} alt='menu' aria-hidden='true' />
-          </div>
-          {isOpen && (
-            <div className='absolute z-10 mt-2 right-0 mr-10 rounded-md shadow-lg'>
-              <div className='py-1 bg-white rounded-md shadow-xs'>
-                <Link
-                  to={PATH.MY_CLOSET}
-                  className='block px-4 pr-20 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900'
-                >
-                  My Closet
-                </Link>
-                <Link
-                  to={PATH.OUTFIT_BUILDER}
-                  className='block px-4 pr-20 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900'
-                >
-                  Mix & Match
-                </Link>
-                <Link
-                  to={PATH.PRICING}
-                  className='block px-4 pr-20 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 flex items-center gap-2'
-                >
-                  Go Premium
-                  <img src={DIAMOND} alt='premium' className='w-4 h-4' />
-                </Link>
-                <Link
-                  onClick={handleLogout}
-                  className='block px-4 pr-20 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900'
-                >
-                  Log Out
-                </Link>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
     </div>
   )
 }

@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { PATH } from '../constants/common'
 import axios from 'axios'
 import Product from '../components/Product'
-import Banner from '../components/Banner'
 
 const HomePage = () => {
   const navigate = useNavigate()

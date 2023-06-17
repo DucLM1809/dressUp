@@ -10,7 +10,9 @@ const Product = ({ product, handleClick }) => {
     <div className='group' onClick={handleClick}>
       <div className='w-full h-96 cursor-pointer overflow-hidden'>
         <img
-          src={product?.transparentBackgroundImage || product?.image || product?.imageUrls[0]}
+          src={
+            'https://images.thdstatic.com/productImages/e1f8af99-7af9-45ee-8fdd-ae44760e3e0d/svn/milwaukee-janitorial-carts-sc38-64_1000.jpg'
+          }
           alt='productImg'
           className='w-full h-full object-cover group-hover:scale-110 duration-500'
         />
@@ -33,7 +35,7 @@ const Product = ({ product, handleClick }) => {
                 navigate(`/outfit-detail/${product?._id || product?.id}`)
               }
             >
-              View Details{' '}
+              Buy this{' '}
               <span>
                 <BsArrowRight />
               </span>
