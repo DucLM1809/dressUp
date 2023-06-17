@@ -253,47 +253,33 @@ const ProductPage = () => {
 
       <div className='p-12'>
         <div style={{ marginBottom: 24, display: 'flex', gap: '10px' }}>
-          <div
+          <Button
             key='customer'
-            className={`w-11 h-11 cursor-pointer rounded-4 border rounded-md hover:border-blue-400 duration-150`}
-            // style={activeStyles}
             onClick={() => {
               setOpenDrawer(true)
               setIsAddCustomer(true)
             }}
           >
-            <img
-              src={customerIcon}
-              alt={'customer'}
-              className={'object-contain'}
-            />
-          </div>
-          <div
+            Add Customer
+          </Button>
+          <Button
             key='shop'
-            className={`w-11 h-11 cursor-pointer rounded-4 border rounded-md hover:border-blue-400 duration-150`}
-            // style={activeStyles}
             onClick={() => {
               setOpenDrawer(true)
               setIsAddShop(true)
             }}
           >
-            <img src={storeIcon} alt={'shop'} className={'object-contain'} />
-          </div>
-          <div
+            Add Shop
+          </Button>
+          <Button
             key='product'
-            className={`w-11 h-11 cursor-pointer rounded-4 border rounded-md hover:border-blue-400 duration-150`}
-            // style={activeStyles}
             onClick={() => {
               setOpenDrawer(true)
               setIsAddProduct(true)
             }}
           >
-            <img
-              src={outfitIcon}
-              alt={'product'}
-              className={'object-contain'}
-            />
-          </div>
+            Add Product
+          </Button>
         </div>
         <Tabs
           onChange={(value) => setTabKey(value)}
