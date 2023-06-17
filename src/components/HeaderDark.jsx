@@ -60,19 +60,6 @@ const HeaderDark = () => {
       <ul className='flex p-1 lg:p-6 text-[#6F6F6F] text-[13.5px] lg:text-[16px] font-medium'>
         <li className='mx-2 lg:mx-10 cursor-pointer'>
           <Link
-            to={PATH.HOME}
-            smooth={true}
-            duration={500}
-            spy={true}
-            exact='true'
-            activeClass='active'
-            className='hover:text-orange transition duration-500 ease-in-out'
-          >
-            HOME
-          </Link>
-        </li>
-        <li className='mx-2 lg:mx-10 cursor-pointer'>
-          <Link
             to={PATH.DISCOVER}
             smooth={true}
             duration={500}
@@ -87,7 +74,7 @@ const HeaderDark = () => {
         {localStorage.getItem('role') === 'ADMIN' && (
           <li className='mx-2 lg:mx-10 cursor-pointer'>
             <Link
-              to={PATH.MANAGEMENT}
+              to={PATH.PRODUCT}
               smooth={true}
               duration={500}
               spy={true}

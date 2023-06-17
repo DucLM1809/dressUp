@@ -14,18 +14,19 @@ const LoginPage = () => {
       const res = await AxiosPost('Home/login', { ...values })
       if (res) {
         console.log(res)
-        localStorage.setItem(LOCAL_STORAGE_ITEMS.ACCESS_TOKEN, res.data?.token)
-        if (values.email === 'admin@gmail.com') {
-          localStorage.setItem('role', 'ADMIN')
-        } else {
-          localStorage.setItem('role', 'USER')
-        }
         NotificationCustom({
           type: 'success',
           message: 'Success',
           description: 'Login successfully!'
         })
-        navigate(PATH.PRODUCT)
+        localStorage.setItem(LOCAL_STORAGE_ITEMS.ACCESS_TOKEN, res.data?.token)
+        if (values.email === 'admin@gmail.com') {
+          localStorage.setItem('role', 'ADMIN')
+          navigate(PATH.PRODUCT)
+        } else {
+          localStorage.setItem('role', 'USER')
+          navigate(PATH.DISCOVER)
+        }
       }
     } catch (error) {
       NotificationCustom({

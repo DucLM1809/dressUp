@@ -19,7 +19,6 @@ function App() {
         <Route exact path={PATH.LOGIN} element={<LoginPage />} />
       ) : (
         <>
-          <Route exact path={PATH.HOME} element={<HomePage />} />
           <Route exact path={PATH.DISCOVER} element={<DiscoverPage />} />
           <Route exact path={PATH.PRODUCT} element={<ProductPage />} />
         </>
