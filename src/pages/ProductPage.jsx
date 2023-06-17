@@ -20,6 +20,7 @@ import storeIcon from '../assets/store.png'
 import outfitIcon from '../assets/logo-tshirt.png'
 import AxiosPost from '../config/axiosPost'
 import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
+import moment from 'moment/moment'
 
 const ProductPage = () => {
   const [form] = Form.useForm()
@@ -31,6 +32,7 @@ const ProductPage = () => {
   const [isAddCustomer, setIsAddCustomer] = useState(false)
   const [isAddShop, setIsAddShop] = useState(false)
   const [isAddProduct, setIsAddProduct] = useState(false)
+  const [tabKey, setTabKey] = useState('customer')
   const navigate = useNavigate()
 
   const fetchCustomer = () => {
@@ -94,7 +96,6 @@ const ProductPage = () => {
     fetchCustomer()
     fetchShop()
     fetchProduct()
-    fetchJoin()
   }, [])
 
   const columnsJoin = [
@@ -138,7 +139,8 @@ const ProductPage = () => {
     {
       title: 'DOB',
       dataIndex: 'dob',
-      key: 'dob'
+      key: 'dob',
+      render: (dob) => (dob ? moment(dob).format('DD-MM-YYYY') : '')
     }
   ]
 
@@ -239,6 +241,12 @@ const ProductPage = () => {
         )
   }
 
+  useEffect(() => {
+    if (tabKey === 'general') {
+      fetchJoin()
+    }
+  }, [tabKey])
+
   return (
     <div>
       <HeaderDark />
@@ -288,6 +296,7 @@ const ProductPage = () => {
           </div>
         </div>
         <Tabs
+          onChange={(value) => setTabKey(value)}
           type='card'
           items={[
             {
@@ -331,6 +340,7 @@ const ProductPage = () => {
                   columns={columnsJoin}
                   dataSource={data}
                   scroll={{ x: 1200 }}
+                  locale={{ emptyText: 'Not enough data' }}
                 />
               )
             }
