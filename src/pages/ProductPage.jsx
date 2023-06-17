@@ -176,6 +176,7 @@ const ProductPage = () => {
         .then(() => {
           form.resetFields()
           setOpenDrawer(false)
+          setIsAddCustomer(false)
           fetchCustomer()
           NotificationCustom({
             type: 'success',
@@ -198,6 +199,7 @@ const ProductPage = () => {
         .then(() => {
           form.resetFields()
           setOpenDrawer(false)
+          setIsAddShop(false)
           fetchShop()
           NotificationCustom({
             type: 'success',
@@ -221,6 +223,7 @@ const ProductPage = () => {
           form.resetFields()
           setOpenDrawer(false)
           fetchProduct()
+          setIsAddProduct(false)
           NotificationCustom({
             type: 'success',
             message: 'Success',
