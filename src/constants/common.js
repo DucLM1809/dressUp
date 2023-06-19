@@ -5,7 +5,8 @@ export const LOCAL_STORAGE_ITEMS = Object.freeze({
 export const PATH = Object.freeze({
   LOGIN: '/login',
   SIGNUP: '/signup',
+  HOME: '/',
   PRODUCT: '/management',
-  DISCOVER: '/',
+  DISCOVER: '/product',
   NOT_FOUND: '*'
 })
