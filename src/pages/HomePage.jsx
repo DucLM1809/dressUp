@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import HeaderDark from '../components/HeaderDark'
+import HERO from '../assets/hero.png'
+import TREND from '../assets/trend4.png'
+import SHIPPING from '../assets/shipping.png'
+import SUPPORT from '../assets/support.png'
+import RETURN from '../assets/return.png'
+import SECURE from '../assets/secure.png'
 import Footer from '../components/Footer'
 import { Link, useNavigate } from 'react-router-dom'
 import { PATH } from '../constants/common'
+import AxiosGet from '../config/axiosGet'
 import axios from 'axios'
 import Product from '../components/Product'
+import Banner from '../components/Banner'
+import CardStack from '../components/CardStack'
+import styles from '../components/styles.module.css'
 
 const HomePage = () => {
   const navigate = useNavigate()
@@ -26,6 +36,8 @@ const HomePage = () => {
   return (
     <div className='w-full'>
       <HeaderDark />
+
+      <Banner />
 
       <div className='w-full flex flex-col items-center gap-4 bg-white'>
         <div className='text-2xl mt-10  font-medium bg-black w-80 text-white py-2 text-center'>
