@@ -1,17 +1,19 @@
 import axios from 'axios'
-import { LOCAL_STORAGE_ITEMS } from '../constants/common'
+import AxiosPut from './axiosPut'
+import TokenService from './tokenService'
 
 const axiosClient = axios.create({
   baseURL: `${process.env.REACT_APP_API}`,
   headers: {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*'
-  }
+  },
+  withCredentials: true
 })
 
 axiosClient.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem(LOCAL_STORAGE_ITEMS.ACCESS_TOKEN)
+    const token = TokenService.getAccessToken()
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
@@ -28,6 +30,26 @@ axiosClient.interceptors.response.use(
     return res
   },
   async (err) => {
+    const originalConfig = err.config
+
+    if (originalConfig.url !== 'auth/users/tokens' && err.response) {
+      // Access Token was expired
+      if (err.response.status === 401 && !originalConfig._retry) {
+        originalConfig._retry = true
+
+        try {
+          const rs = await AxiosPut('auth/users/tokens', {})
+
+          const { accessToken } = rs.data
+          TokenService.updateAccessToken(accessToken)
+
+          return axiosClient(originalConfig)
+        } catch (_error) {
+          return Promise.reject(_error)
+        }
+      }
+    }
+
     return Promise.reject(err)
   }
 )
