@@ -18,6 +18,8 @@ import SignUpPage from './pages/SignUpPage'
 import OutfitBuilderPage from './pages/OutfitBuilderPage'
 import PricingPage from './pages/PricingPage'
 import PricingInfoPage from './pages/PricingInfoPage'
+import BlogPage from './pages/BlogPage'
+import BlogDetailPage from './pages/BlogDetailPage'
 
 function App() {
   return (
@@ -53,6 +55,8 @@ function App() {
         <Route exact path={PATH.DISCOVER} element={<DiscoverPage />} />
         <Route exact path={PATH.PRICING} element={<PricingPage />} />
         <Route exact path={PATH.PRICING_INFO} element={<PricingInfoPage />} />
+        <Route exact path={PATH.BLOG} element={<BlogPage />} />
+        <Route exact path={PATH.BLOG_DETAIL} element={<BlogDetailPage />} />
       </Route>
     </Routes>
   )

@@ -120,6 +120,20 @@ const HeaderDark = () => {
             CONTACT
           </Link>
         </li>
+
+        <li className='mx-2 lg:mx-10 cursor-pointer'>
+          <Link
+            to={PATH.BLOG}
+            smooth={true}
+            duration={500}
+            spy={true}
+            exact='true'
+            activeClass='active'
+            className='hover:text-orange transition duration-500 ease-in-out'
+          >
+            BLOG
+          </Link>
+        </li>
       </ul>
       {!auth ? (
         <Link
