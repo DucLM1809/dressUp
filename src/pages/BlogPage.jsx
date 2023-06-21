@@ -30,9 +30,14 @@ const BlogPage = () => {
                     viewBox='0 0 20 20'
                     xmlns='http://www.w3.org/2000/svg'
                   >
-                    <path d='M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z'></path>
+                    <path
+                      fill-rule='evenodd'
+                      d='M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z'
+                      clip-rule='evenodd'
+                    ></path>
+                    <path d='M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z'></path>
                   </svg>
-                  Tutorial
+                  Article
                 </span>
                 <span className='text-sm'>14 days ago</span>
               </div>
@@ -41,14 +46,17 @@ const BlogPage = () => {
                   className='cursor-pointer'
                   onClick={() => navigate(`/blog/${1}`)}
                 >
-                  How to quickly deploy a static website
+                  Thời trang Hàn Quốc: Cập nhật 10 xu hướng hot nhất năm 2023
                 </div>
               </h2>
               <p className='mb-5 font-light text-gray-500 '>
-                Static websites are now used to bootstrap lots of websites and
-                are becoming the basis for a variety of tools that even
-                influence both web designers and developers influence both web
-                designers and developers.
+                Làng điện ảnh, gameshow và giới “idol” không chỉ mang đến nhiều
+                nguồn cảm hứng trong lòng giới trẻ mà thời trang Hàn Quốc cũng
+                có sức ảnh hưởng rất lớn. Hàn Quốc ngày càng khẳng định vị thế
+                “thủ phủ thời trang” của châu Á và đang dần lan tỏa đến cả
+                phương Tây. Nào, cùng Đẹp365 điểm danh những xu hướng mới nhất
+                để “update” cho tủ đồ mùa Thu- Đông 2023 và Xuân Hè 2023 này
+                nhé!
               </p>
               <div className='flex justify-between items-center'>
                 <div className='flex items-center space-x-4'>
@@ -102,16 +110,16 @@ const BlogPage = () => {
               <h2 className='mb-2 text-2xl font-bold tracking-tight text-gray-900'>
                 <div
                   className='cursor-pointer'
-                  onClick={() => navigate(`/blog/${1}`)}
+                  onClick={() => navigate(`/blog/${2}`)}
                 >
-                  Our first project with React
+                  8 xu hướng thời trang Hàn Quốc đẹp
                 </div>
               </h2>
               <p className='mb-5 font-light text-gray-500'>
-                Static websites are now used to bootstrap lots of websites and
-                are becoming the basis for a variety of tools that even
-                influence both web designers and developers influence both web
-                designers and developers.
+                Hàn Quốc luôn là đất nước đi đầu trong các xu hướng làm đẹp cho
+                toàn châu Á. Và các cô nàng diễn viên, ca sĩ hay Ulzzang Hàn
+                luôn được mọi chị em phụ nữ quan tâm họ mặc gì, để tóc như thế
+                nào.
               </p>
               <div className='flex justify-between items-center'>
                 <div className='flex items-center space-x-4'>
