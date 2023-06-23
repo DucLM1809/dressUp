@@ -9,9 +9,7 @@ const PublicRoutes = () => {
 
   return (
     <>
-      {auth &&
-      (location.pathname !== PATH.BLOG ||
-        !PATH.BLOG_DETAIL.includes(location.pathname)) ? (
+      {auth && location.pathname.split('/')[1] !== 'blog' ? (
         <Navigate to={PATH.HOME} state={{ from: location }} />
       ) : (
         <Outlet />
