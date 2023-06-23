@@ -1,7 +1,7 @@
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import PrivateRoutes from './components/PrivateRoutes'
 import PublicRoutes from './components/PublicRoutes'
-import { PATH } from './constants/common'
+import { PATH, routes } from './constants/common'
 import AboutUsPage from './pages/AboutUsPage'
 import ActivatePage from './pages/ActivatePage'
 import ContactPage from './pages/ContactPage'
@@ -20,8 +20,24 @@ import PricingPage from './pages/PricingPage'
 import PricingInfoPage from './pages/PricingInfoPage'
 import BlogPage from './pages/BlogPage'
 import BlogDetailPage from './pages/BlogDetailPage'
+import { useEffect } from 'react'
 
 function App() {
+  const location = useLocation()
+
+  console.log(location)
+
+  useEffect(() => {
+    routes.map((item) => {
+      item.path.includes(location.pathname) &&
+        window.gtag('event', 'page_view', {
+          page_title: item.title,
+          page_path: location.pathname + location.search,
+          page_location: window.location.href
+        })
+    })
+  }, [location])
+
   return (
     <Routes>
       <Route element={<PublicRoutes />}>
