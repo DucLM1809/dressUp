@@ -57,6 +57,8 @@ function App() {
         <Route exact path={PATH.DISCOVER} element={<DiscoverPage />} />
         <Route exact path={PATH.PRICING} element={<PricingPage />} />
         <Route exact path={PATH.PRICING_INFO} element={<PricingInfoPage />} />
+        <Route exact path={PATH.BLOG} element={<BlogPage />} />
+        <Route exact path={PATH.BLOG_DETAIL} element={<BlogDetailPage />} />
       </Route>
     </Routes>
   )
