@@ -31,23 +31,23 @@ const PricingInfoPage = () => {
       onOk: () => {
         AxiosPost('payments/request', {
           price,
-          subscriptionId
+          subscriptionId,
         })
           .then(() =>
             NotificationCustom({
               type: 'success',
               message: 'Success',
-              description: 'We have received you payment!'
+              description: 'We have received you payment!',
             })
           )
           .catch((err) =>
             NotificationCustom({
               type: 'error',
               message: 'Error',
-              description: err?.response?.data?.detail
+              description: err?.response?.data?.detail,
             })
           )
-      }
+      },
     })
   }
 
@@ -167,6 +167,19 @@ const PricingInfoPage = () => {
                     </span>
                   </p>
                   <img alt='qr' src={MOMO_QR} />
+
+                  <div
+                    class='bg-amber-100 border-t-4 border-amber-500 rounded-b text-gray-900 px-4 py-3 shadow-md'
+                    role='alert'
+                  >
+                    <div>
+                      <p class='font-bold mb-1'>Payment Message</p>
+                      <p class='text-sm font-semibold text-gray-600'>
+                        [YOUR_EMAIL] - PREMIUM {price == 9 ? '1' : '2'}
+                      </p>
+                    </div>
+                  </div>
+
                   <button
                     onClick={handleConfirm}
                     className='mt-10 block w-full rounded-md bg-[#ff993a] px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-[#f9aa61] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f9aa61]'
