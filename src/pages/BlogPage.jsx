@@ -13,19 +13,18 @@ const BlogPage = () => {
         <div className='py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6'>
           <div className='mx-auto max-w-screen-sm text-center lg:mb-16 mb-8'>
             <h2 className='mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 '>
-              Our Blog
+              Latest Tips & UpDates
             </h2>
             <p className='font-light text-gray-500 sm:text-xl'>
-              We use an agile approach to test assumptions and connect with the
-              needs of your audience early and often.
+              Articles to help you understand more about the fashion world!
             </p>
           </div>
           <div className='grid gap-8 lg:grid-cols-2'>
             <article className='p-6 bg-white rounded-lg border border-gray-200 shadow-md '>
               <div className='flex justify-between items-center mb-5 text-gray-500'>
-                <span className='bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded '>
+                <span className='bg-primary-100 text-primary-800 text-md font-medium inline-flex items-center px-2.5 py-0.5 rounded '>
                   <svg
-                    className='mr-1 w-3 h-3'
+                    className='mr-1 w-5 h-5'
                     fill='currentColor'
                     viewBox='0 0 20 20'
                     xmlns='http://www.w3.org/2000/svg'
@@ -54,7 +53,7 @@ const BlogPage = () => {
                 nguồn cảm hứng trong lòng giới trẻ mà thời trang Hàn Quốc cũng
                 có sức ảnh hưởng rất lớn. Hàn Quốc ngày càng khẳng định vị thế
                 “thủ phủ thời trang” của châu Á và đang dần lan tỏa đến cả
-                phương Tây. Nào, cùng Đẹp365 điểm danh những xu hướng mới nhất
+                phương Tây. Nào, cùng DressUp điểm danh những xu hướng mới nhất
                 để “update” cho tủ đồ mùa Thu- Đông 2023 và Xuân Hè 2023 này
                 nhé!
               </p>
@@ -89,9 +88,9 @@ const BlogPage = () => {
             </article>
             <article className='p-6 bg-white rounded-lg border border-gray-200 shadow-md '>
               <div className='flex justify-between items-center mb-5 text-gray-500'>
-                <span className='bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded '>
+                <span className='bg-primary-100 text-primary-800 text-md font-medium inline-flex items-center px-2.5 py-0.5 rounded '>
                   <svg
-                    className='mr-1 w-3 h-3'
+                    className='mr-1 w-5 h-5'
                     fill='currentColor'
                     viewBox='0 0 20 20'
                     xmlns='http://www.w3.org/2000/svg'
@@ -105,21 +104,24 @@ const BlogPage = () => {
                   </svg>
                   Article
                 </span>
-                <span className='text-sm'>14 days ago</span>
+                <span className='text-sm'>10 days ago</span>
               </div>
               <h2 className='mb-2 text-2xl font-bold tracking-tight text-gray-900'>
                 <div
                   className='cursor-pointer'
                   onClick={() => navigate(`/blog/${2}`)}
                 >
-                  8 xu hướng thời trang Hàn Quốc đẹp
+                  Thời trang hàn Quốc: 8 xu hướng thời trang Hàn Quốc đẹp
                 </div>
               </h2>
               <p className='mb-5 font-light text-gray-500'>
                 Hàn Quốc luôn là đất nước đi đầu trong các xu hướng làm đẹp cho
                 toàn châu Á. Và các cô nàng diễn viên, ca sĩ hay Ulzzang Hàn
                 luôn được mọi chị em phụ nữ quan tâm họ mặc gì, để tóc như thế
-                nào.
+                nào. Cùng cập nhật ngay các xu hướng thời
+                trang Hàn Quốc 2023 sẽ thống trị trong năm này. Với những gợi ý
+                dưới đây sẽ giúp bạn chọn cho mình những kiểu thời trang hàn
+                quốc ưng ý nhất, để trở nên thật xinh đẹp, nổi bật hơn nhé.
               </p>
               <div className='flex justify-between items-center'>
                 <div className='flex items-center space-x-4'>

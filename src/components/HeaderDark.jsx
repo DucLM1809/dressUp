@@ -151,10 +151,10 @@ const HeaderDark = () => {
             <img src={USER_HEADER} alt='user-header' />
           </div>
           <div
-            className='mx-2 mb-4 cursor-pointer'
+            className='mx-2 cursor-pointer'
             onClick={() => navigate(PATH.MY_CLOSET)}
           >
-            <img src={CART} alt='cart' />
+            <img src={CART} alt='cart' className='w-6 h-6' />
           </div>
 
           <div className='mx-2 mt-1'>

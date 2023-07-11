@@ -229,7 +229,7 @@ const MyClosetPage = () => {
     <div>
       <HeaderDark />
 
-      <div className='p-12'>
+      <div className='p-12 mb-1'>
         <div style={{ marginBottom: 24, display: 'flex', gap: '10px' }}>
           <button
             className='text-white px-4 py-2 w-fit rounded-md text-sm bg-orange'

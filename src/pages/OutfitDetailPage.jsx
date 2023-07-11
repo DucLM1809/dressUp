@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import HeaderDark from '../components/HeaderDark'
-import OUTFIT_DETAIL from '../assets/outfitDetail.png'
 import { Image, List, Rate, Avatar, Dropdown, Modal } from 'antd'
-import { TbBrandShopee } from 'react-icons/tb'
-import { BiMessageDetail, BiEnvelope } from 'react-icons/bi'
-import { BsFillTelephoneFill } from 'react-icons/bs'
-import { FiLink2 } from 'react-icons/fi'
-import { AiOutlineDelete, AiOutlineEdit, AiOutlineMore } from 'react-icons/ai'
+import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai'
 import Footer from '../components/Footer'
 import { useParams } from 'react-router-dom'
 import AxiosPut from '../config/axiosPut'
@@ -36,7 +31,7 @@ const OutfitDetailPage = () => {
         NotificationCustom({
           type: 'error',
           message: 'Error',
-          description: err?.response?.data?.detail
+          description: err?.response?.data?.detail,
         })
       )
   }
@@ -50,7 +45,7 @@ const OutfitDetailPage = () => {
         NotificationCustom({
           type: 'error',
           message: 'Error',
-          description: err?.response?.data?.detail
+          description: err?.response?.data?.detail,
         })
       )
   }
@@ -62,7 +57,7 @@ const OutfitDetailPage = () => {
         NotificationCustom({
           type: 'error',
           message: 'Error',
-          description: err?.response?.data?.detail
+          description: err?.response?.data?.detail,
         })
       )
   }
@@ -74,7 +69,7 @@ const OutfitDetailPage = () => {
         NotificationCustom({
           type: 'error',
           message: 'Error',
-          description: err?.response?.data?.detail
+          description: err?.response?.data?.detail,
         })
       )
   }
@@ -85,21 +80,21 @@ const OutfitDetailPage = () => {
 
   const handleAddToCloset = () => {
     AxiosPut('/closets/me', {
-      addedProductIds: [id]
+      addedProductIds: [id],
     })
       .then(() => {
         fetchCloset()
         NotificationCustom({
           type: 'success',
           message: 'Success',
-          description: 'Add to closet successfully!'
+          description: 'Add to closet successfully!',
         })
       })
       .catch((err) =>
         NotificationCustom({
           type: 'error',
           message: 'Error',
-          description: err?.response?.data?.detail
+          description: err?.response?.data?.detail,
         })
       )
   }
@@ -114,7 +109,7 @@ const OutfitDetailPage = () => {
 
   const handleRating = (value, product) => {
     AxiosPut(`/products/${product?.id}/rating`, {
-      score: value
+      score: value,
     })
       .then(() => {
         fetchDetail()
@@ -123,14 +118,14 @@ const OutfitDetailPage = () => {
         NotificationCustom({
           type: 'success',
           message: 'Success',
-          description: 'Rating successfully!'
+          description: 'Rating successfully!',
         })
       })
       .catch((err) =>
         NotificationCustom({
           type: 'error',
           message: 'Error',
-          description: err?.response?.data?.detail
+          description: err?.response?.data?.detail,
         })
       )
   }
@@ -145,7 +140,7 @@ const OutfitDetailPage = () => {
             NotificationCustom({
               type: 'success',
               message: 'Success',
-              description: 'Delete review successfully!'
+              description: 'Delete review successfully!',
             })
             fetchReviews()
             fetchReviewsMe()
@@ -154,10 +149,10 @@ const OutfitDetailPage = () => {
             NotificationCustom({
               type: 'error',
               message: 'Error',
-              description: err?.response?.data?.detail
+              description: err?.response?.data?.detail,
             })
           )
-      }
+      },
     })
   }
 
@@ -174,7 +169,7 @@ const OutfitDetailPage = () => {
               style={{
                 maxWidth: '420px',
                 width: 'fit-content',
-                objectFit: 'contain'
+                objectFit: 'contain',
               }}
             />
             <div className='flex flex-wrap '>
@@ -185,7 +180,7 @@ const OutfitDetailPage = () => {
                     objectFit: 'contain',
                     width: '100px',
                     marginRight: '4px',
-                    marginBottom: '4px'
+                    marginBottom: '4px',
                   }}
                   className='object-contain w-[100px] mr-1 mb-1'
                 />
@@ -212,7 +207,7 @@ const OutfitDetailPage = () => {
               <Select.Option>XXXL</Select.Option>
             </Select> */}
             <button
-              className={`text-white px-4 py-2 w-fit rounded-full text-sm bg-orange my-12 ${
+              className={`text-white px-4 py-2 w-fit rounded-full text-sm bg-orange mt-12 ${
                 closet.some((item) => item?.id === product?.id) &&
                 'cursor-not-allowed'
               }`}
@@ -221,6 +216,38 @@ const OutfitDetailPage = () => {
             >
               ADD TO CLOSET
             </button>
+
+            <div className='flex items-center'>
+              <div className='mr-3'>Buy this outfit right here: </div>
+
+              <div className='flex items-center gap-2'>
+                <span className='p-1 rounded-full'>
+                  <a
+                    href={product?.shopeeAffiliateUrl || product?.originalUrl}
+                    target='_blank'
+                  >
+                    <img alt='shopee' src={shopeeIcon} className='w-10 h-10' />
+                  </a>
+                </span>
+
+                <span className='p-1 rounded-full '>
+                  <img
+                    alt='tiki'
+                    src={tiktokIcon}
+                    className='w-[37px] h-[37px] opacity-50'
+                  />
+                </span>
+
+                <span className='p-1 rounded-full'>
+                  <img
+                    alt='lazada'
+                    src={lazadaIcon}
+                    className='w-9 h-9 opacity-50'
+                  />
+                </span>
+              </div>
+            </div>
+
             {product?.categories?.length > 0 && (
               <span className='font-semibold mb-2'>
                 Categories:{' '}
@@ -247,33 +274,6 @@ const OutfitDetailPage = () => {
                 </span>
               </span>
             )}
-
-            <div className='flex items-center gap-2 mt-10'>
-              <span className='p-1 rounded-full'>
-                <a
-                  href={product?.shopeeAffiliateUrl || product?.originalUrl}
-                  target='_blank'
-                >
-                  <img alt='shopee' src={shopeeIcon} className='w-10 h-10' />
-                </a>
-              </span>
-
-              <span className='p-1 rounded-full '>
-                <img
-                  alt='tiki'
-                  src={tiktokIcon}
-                  className='w-10 h-10 opacity-50'
-                />
-              </span>
-
-              <span className='p-1 rounded-full'>
-                <img
-                  alt='lazada'
-                  src={lazadaIcon}
-                  className='w-10 h-10 opacity-50'
-                />
-              </span>
-            </div>
           </div>
         </div>
 
@@ -323,7 +323,7 @@ const OutfitDetailPage = () => {
                       <AiOutlineDelete
                         style={{ color: 'red', cursor: 'pointer' }}
                         onClick={handleDeleteReview}
-                      />
+                      />,
                     ]
                   }
                 >

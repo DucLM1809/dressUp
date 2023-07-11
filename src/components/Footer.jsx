@@ -2,11 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import LOGO2 from '../assets/logoFooter.png'
 import FACEBOOK from '../assets/facebook.png'
-import TIKTOK from '../assets/tiktok.png'
+import INSTAGRAM from '../assets/instagram.png'
 import SHOPEE from '../assets/shoppee.png'
-import PHONE from '../assets/telephone.png'
-import EMAIL from '../assets/email.png'
-import WEB from '../assets/web.png'
 import { PATH } from '../constants/common'
 
 const Footer = () => {
@@ -31,14 +28,14 @@ const Footer = () => {
                 />
               </Link>
               <Link
-                to='https://www.tiktok.com/'
+                to='https://www.instagram.com/'
                 target='_blank'
                 rel='noopener noreferrer'
                 className='ml-2'
               >
                 <img
-                  src={TIKTOK}
-                  alt='TikTok'
+                  src={INSTAGRAM}
+                  alt='Instagram'
                   className='w-[30px] lg:w-[42px] object-cover'
                 />
               </Link>

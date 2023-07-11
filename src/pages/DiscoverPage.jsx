@@ -9,7 +9,7 @@ import {
   Input,
   Modal,
   Pagination,
-  Select
+  Select,
 } from 'antd'
 import { Link, useNavigate } from 'react-router-dom'
 import Product from '../components/Product'
@@ -63,14 +63,14 @@ const DiscoverPage = () => {
         NotificationCustom({
           type: 'error',
           message: 'Error',
-          description: err?.response?.data?.detail
+          description: err?.response?.data?.detail,
         })
       )
   }
 
   const fetchRecommend = (isPublic) => {
     AxiosGet('/products/recommendation', {
-      include_public_products: isPublic
+      include_public_products: isPublic,
     }).then((res) => {
       setData(res.data)
       setOpenModal(false)
@@ -84,7 +84,7 @@ const DiscoverPage = () => {
         NotificationCustom({
           type: 'error',
           message: 'Error',
-          description: err?.response?.data?.detail
+          description: err?.response?.data?.detail,
         })
       )
   }
@@ -96,7 +96,7 @@ const DiscoverPage = () => {
         NotificationCustom({
           type: 'error',
           message: 'Error',
-          description: err?.response?.data?.detail
+          description: err?.response?.data?.detail,
         })
       )
   }
@@ -111,7 +111,7 @@ const DiscoverPage = () => {
     window.scrollTo({
       top: 800,
       left: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     })
   }, [paging, categoriesSelect, stylesSelect, patternsSelect])
 
@@ -119,7 +119,7 @@ const DiscoverPage = () => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     })
   }, [])
 
@@ -136,7 +136,7 @@ const DiscoverPage = () => {
   const handlePaging = (page, pageSize) => {
     setPaging({
       offset: (page - 1) * pageSize,
-      size: pageSize
+      size: pageSize,
     })
   }
 
@@ -304,11 +304,14 @@ const DiscoverPage = () => {
       </div>
 
       <div className='w-full flex flex-col items-center gap-4 bg-white'>
-        <div className='text-2xl  font-medium bg-black w-80 text-white py-2 text-center'>
-          Discover NEW TREND
+        <div className='text-2xl  font-medium bg-black text-white p-2 px-4 text-center'>
+          Discover outfits JUST FOR YOU
         </div>
         <span className='w-20 h-[3px] bg-black'></span>
-        <div className='text-base font-light mb-12'>Recently added shirts</div>
+        <div className='text-base mb-12'>
+          Choose your favorite trending outfits or get recommendations from AI
+          generator, and then get to the shops that sell these outfits
+        </div>
 
         <div className='max-w-screen-xl mx-auto py-10 grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10'>
           {data?.products?.map((item) => (
