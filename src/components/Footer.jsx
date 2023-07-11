@@ -12,8 +12,8 @@ const Footer = () => {
       <div className='mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8'>
         <div className='md:flex md:justify-between'>
           <div className='flex flex-col items-center justify-center -mt-5 py-3 lg:py-0'>
-            <Link to={PATH.HOME} className='mb-2'>
-              <img src={LOGO2} alt='Logo' className='w-[120px]' />
+            <Link to={PATH.HOME}>
+              <img src={LOGO2} alt='Logo' className='w-[160px]' />
             </Link>
             <div className='flex gap-3 mt-1'>
               <Link
