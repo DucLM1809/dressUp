@@ -197,15 +197,11 @@ const OutfitDetailPage = () => {
                 onChange={(value) => handleRating(value, product)}
               />
             </div>
-            <p>{product?.description}</p>
-            {/* <Select placeholder='Select Size' className='w-[200px]'>
-              <Select.Option>S</Select.Option>
-              <Select.Option>M</Select.Option>
-              <Select.Option>L</Select.Option>
-              <Select.Option>XL</Select.Option>
-              <Select.Option>XXL</Select.Option>
-              <Select.Option>XXXL</Select.Option>
-            </Select> */}
+
+            <code>
+              <div dangerouslySetInnerHTML={{ __html: product?.description }} />
+            </code>
+
             <button
               className={`text-white px-4 py-2 w-fit rounded-full text-sm bg-orange mt-12 ${
                 closet.some((item) => item?.id === product?.id) &&
