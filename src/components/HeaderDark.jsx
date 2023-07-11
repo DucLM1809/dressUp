@@ -5,7 +5,7 @@ import AxiosDelete from '../config/axiosDelete'
 import { LOCAL_STORAGE_ITEMS, PATH } from '../constants/common'
 import { NotificationCustom } from './Notification'
 import USER_HEADER from '../assets/user-1.png'
-import CART from '../assets/cart.png'
+import CLOSET from '../assets/closet.png'
 import MENU from '../assets/menu.png'
 import { useAuth } from '../hooks/useAuth'
 import DIAMOND from '../assets/diamond.png'
@@ -154,7 +154,7 @@ const HeaderDark = () => {
             className='mx-2 cursor-pointer'
             onClick={() => navigate(PATH.MY_CLOSET)}
           >
-            <img src={CART} alt='cart' className='w-6 h-6' />
+            <img src={CLOSET} alt='closet' className='w-6 h-6' />
           </div>
 
           <div className='mx-2 mt-1'>
