@@ -17,7 +17,8 @@ import {
   Button,
   Input,
   Form,
-  Select
+  Select,
+  Tooltip
 } from 'antd'
 import AxiosPost from '../config/axiosPost'
 import axios from 'axios'
@@ -335,33 +336,37 @@ const OutfitBuilderPage = () => {
         <div className='editortabs-container tabs'>
           <div
             key='closetPicker'
-            className={`tab-btn rounded-4`}
+            className={`tab-btn rounded-4 flex flex-col`}
             // style={activeStyles}
           >
-            <img
-              src={closetIcon}
-              alt={'closetPicker'}
-              className={'w-11/12 h-11/12 object-contain'}
-              onClick={() => {
-                setOpenDrawer(true)
-                setIsFromPublic(false)
-              }}
-            />
+            <Tooltip title='Add outfits from My Closet' placement='bottom'>
+              <img
+                src={closetIcon}
+                alt={'closetPicker'}
+                className={'w-11/12 h-11/12 object-contain'}
+                onClick={() => {
+                  setOpenDrawer(true)
+                  setIsFromPublic(false)
+                }}
+              />
+            </Tooltip>
           </div>
           <div
             key='productPicker'
             className={`tab-btn rounded-4`}
             // style={activeStyles}
           >
-            <img
-              src={shirtIcon}
-              alt={'productPicker'}
-              className={'w-11/12 h-11/12 object-contain'}
-              onClick={() => {
-                setOpenDrawer(true)
-                setIsFromPublic(true)
-              }}
-            />
+            <Tooltip title='Discover more outfits' placement='bottom'>
+              <img
+                src={shirtIcon}
+                alt={'productPicker'}
+                className={'w-11/12 h-11/12 object-contain'}
+                onClick={() => {
+                  setOpenDrawer(true)
+                  setIsFromPublic(true)
+                }}
+              />
+            </Tooltip>
           </div>
         </div>
       </div>
@@ -389,18 +394,26 @@ const OutfitBuilderPage = () => {
               // style={activeStyles}
               onClick={() => setOpenModal(true)}
             >
-              <img src={aiIcon} alt={'aipicker'} className={'object-contain'} />
+              <Tooltip title='AI Suggestion' placement='bottom'>
+                <img
+                  src={aiIcon}
+                  alt={'aipicker'}
+                  className={'object-contain'}
+                />
+              </Tooltip>
             </div>
             <div
               className={`w-11 h-11 p-1 cursor-pointer rounded-4 border rounded-md hover:border-blue-400  duration-150`}
               // style={activeStyles}
               onClick={() => fetchProducts()}
             >
-              <img
-                src={refreshIcon}
-                alt={'aipicker'}
-                className={'object-contain'}
-              />
+              <Tooltip title='Refresh' placement='bottom'>
+                <img
+                  src={refreshIcon}
+                  alt={'aipicker'}
+                  className={'object-contain'}
+                />
+              </Tooltip>
             </div>
             <Search
               placeholder='input search text'

@@ -151,7 +151,7 @@ const ProfilePage = () => {
       <HeaderDark />
 
       <Form name='profile' layout='horizontal' onFinish={onFinish} form={form}>
-        <div className='flex md:flex-row flex-col p-20 gap-12 md:justify-around justify-center items-center relative'>
+        <div className='flex md:flex-row flex-col p-20 gap-12  justify-center items-center relative'>
           {!isEdit ? (
             <Image
               src={dataProfile?.avatarUrl ? dataProfile?.avatarUrl : PROFILE}
@@ -244,7 +244,9 @@ const ProfilePage = () => {
               {!isEdit ? (
                 <>
                   Height:{' '}
-                  <span className='font-normal'>{dataProfile?.height}</span>{' '}
+                  <span className='font-normal'>
+                    {dataProfile?.height + (dataProfile?.height ? ' cm' : '')}
+                  </span>{' '}
                 </>
               ) : (
                 <Form.Item
@@ -260,7 +262,9 @@ const ProfilePage = () => {
               {!isEdit ? (
                 <>
                   Weight:{' '}
-                  <span className='font-normal'>{dataProfile?.weight}</span>
+                  <span className='font-normal'>
+                    {dataProfile?.weight + (dataProfile?.weight ? ' cm' : '')}
+                  </span>
                 </>
               ) : (
                 <Form.Item name='weight' label='Weight' className='w-[200px]'>

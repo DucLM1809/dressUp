@@ -112,15 +112,20 @@ const ContactPage = () => {
         <div className='w-full md:w-1/2 flex flex-col gap-12'>
           <div>
             <h1 className='font-bold text-2xl mb-8'>Visit Us</h1>
-            <span>R.88.OT.6, tầng 82 Landmark 81, TPHCM.</span>
+            <span>
+              Lô E2a-7, Đường D1, Khu Công Nghệ Cao, Long Thạnh Mỹ, Thủ Đức
+              Thành phố Hồ Chí Minh 700000
+            </span>
           </div>
 
           <div>
             <h1 className='font-bold text-2xl mb-8'>Get In Touch</h1>
-            <span>
-              You can get in touch with us on this provided email. Email:
-              hmjawad087@gmail.com
-            </span>
+            <span>You can get in touch with us.</span>
+            <div>Email: dressup.work@gmail.com</div>
+            <div>Web App: https://dress-up-stag.vercel.app</div>
+            <div>Fanpage: https://www.facebook.com/dressupapp</div>
+            <div>Instagram: https://www.instagram.com/dressup.app</div>
+            <div>Hotline: Xuân Duy - 0914 679 923 (CEO)</div>
           </div>
         </div>
       </div>

@@ -102,7 +102,7 @@ const MyClosetPage = () => {
       )
     },
     {
-      title: 'Product',
+      title: 'Outfit',
       dataIndex: 'name',
       key: 'name'
     },
@@ -235,9 +235,9 @@ const MyClosetPage = () => {
             className='text-white px-4 py-2 w-fit rounded-md text-sm bg-orange'
             onClick={() => navigate(PATH.OUTFIT_BUILDER)}
           >
-            TRY MIX&MATCH
+            TRY MIX & MATCH
           </button>
-          <div
+          {/* <div
             key='filepicker'
             className={`w-11 h-11 cursor-pointer rounded-4 border rounded-md hover:border-blue-400 duration-150`}
             // style={activeStyles}
@@ -248,13 +248,19 @@ const MyClosetPage = () => {
               alt={'filepicker'}
               className={'object-contain'}
             />
-          </div>
+          </div> */}
+          <button
+            className='bg-white border border-orange text-orange px-4 py-2 rounded-md text-sm'
+            onClick={() => setOpenDrawer(true)}
+          >
+            Upload Outfit
+          </button>
         </div>
         <Tabs
           type='card'
           items={[
             {
-              label: 'Public Products',
+              label: 'Not Owned Yet',
               key: 'public',
               children: (
                 <Table
@@ -265,8 +271,8 @@ const MyClosetPage = () => {
               )
             },
             {
-              label: 'Owned Products',
-              key: 'pwned',
+              label: 'Owned Outfits',
+              key: 'owned',
               children: (
                 <Table
                   columns={columns}

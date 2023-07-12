@@ -81,7 +81,7 @@ const HeaderDark = () => {
 
         <li className='mx-2 lg:mx-10 cursor-pointer'>
           <Link
-            to={PATH.ABOUT_US}
+            to={PATH.MY_CLOSET}
             smooth={true}
             duration={500}
             spy={true}
@@ -89,7 +89,7 @@ const HeaderDark = () => {
             activeClass='active'
             className='hover:text-orange transition duration-500 ease-in-out'
           >
-            ABOUT US
+            MY CLOSET
           </Link>
         </li>
 
@@ -104,6 +104,34 @@ const HeaderDark = () => {
             className='hover:text-orange transition duration-500 ease-in-out'
           >
             DISCOVER
+          </Link>
+        </li>
+
+        <li className='mx-2 lg:mx-10 cursor-pointer'>
+          <Link
+            to={PATH.PRICING}
+            smooth={true}
+            duration={500}
+            spy={true}
+            exact='true'
+            activeClass='active'
+            className='hover:text-orange transition duration-500 ease-in-out'
+          >
+            PRICING
+          </Link>
+        </li>
+
+        <li className='mx-2 lg:mx-10 cursor-pointer'>
+          <Link
+            to={PATH.ABOUT_US}
+            smooth={true}
+            duration={500}
+            spy={true}
+            exact='true'
+            activeClass='active'
+            className='hover:text-orange transition duration-500 ease-in-out'
+          >
+            ABOUT US
           </Link>
         </li>
 
@@ -165,24 +193,12 @@ const HeaderDark = () => {
               <div className='absolute z-10 mt-2 right-0 mr-10 rounded-md shadow-lg'>
                 <div className='py-1 bg-white rounded-md shadow-xs'>
                   <Link
-                    to={PATH.MY_CLOSET}
-                    className='block px-4 pr-20 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900'
-                  >
-                    My Closet
-                  </Link>
-                  <Link
                     to={PATH.OUTFIT_BUILDER}
                     className='block px-4 pr-20 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900'
                   >
                     Mix & Match
                   </Link>
-                  <Link
-                    to={PATH.PRICING}
-                    className='block px-4 pr-20 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 flex items-center gap-2'
-                  >
-                    Go Premium
-                    <img src={DIAMOND} alt='premium' className='w-4 h-4' />
-                  </Link>
+
                   <Link
                     onClick={handleLogout}
                     className='block px-4 pr-20 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900'
