@@ -291,7 +291,7 @@ const PricingInfoPage = () => {
                     <div>
                       <p class='font-bold mb-1'>Payment Message</p>
                       <p class='text-sm font-semibold text-gray-600'>
-                        [YOUR_EMAIL] - PREMIUM {price == 9 ? '1' : '2'}
+                        [YOUR_EMAIL] - PREMIUM {price == 14000 ? '1' : '2'}
                       </p>
                     </div>
                   </div>
