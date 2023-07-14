@@ -285,7 +285,7 @@ const PricingPage = () => {
                 </span>
               </div>
               <div className='flex justify-center items-baseline my-8'>
-                <span className='mr-2 text-5xl font-extrabold'>$150.000</span>
+                <span className='mr-2 text-5xl font-extrabold'>150.000 đ</span>
                 <span className='text-gray-500 dark:text-gray-400'>/month</span>
               </div>
               <Button
