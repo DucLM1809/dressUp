@@ -6,10 +6,7 @@ const Product = ({ product, handleClick }) => {
   const navigate = useNavigate()
 
   return (
-    <div
-      className='group'
-      onClick={() => navigate(`/outfit-detail/${product?.id}`)}
-    >
+    <div className='group' onClick={handleClick}>
       <div className='w-full h-96 cursor-pointer overflow-hidden'>
         <img
           src={
