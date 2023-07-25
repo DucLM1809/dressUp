@@ -21,6 +21,9 @@ import PricingInfoPage from './pages/PricingInfoPage'
 import BlogPage from './pages/BlogPage'
 import BlogDetailPage from './pages/BlogDetailPage'
 import { useEffect } from 'react'
+import ReactGA from "react-ga4"
+
+ReactGA.initialize("G-HFXS3CJ04M")
 
 function App() {
   const location = useLocation()
