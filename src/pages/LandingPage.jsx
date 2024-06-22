@@ -11,6 +11,10 @@ import VIDEO from '../assets/walkingGirl.mp4'
 import { headContainerAnimation, headTextAnimation } from '../config/motion'
 import dayjs from 'dayjs'
 
+import advancedFormat from 'dayjs/plugin/advancedFormat'
+
+dayjs.extend(advancedFormat)
+
 const LandingPage = () => {
   console.log(
     dayjs('2024-06-29T16:36:13.403423Z').format('MMM Do YYYY, h:mm A')
