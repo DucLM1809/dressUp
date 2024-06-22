@@ -1,19 +1,21 @@
 import React from 'react'
 import Header from '../components/Header'
 import HERO from '../assets/hero.png'
-import HERO2 from '../assets/hero2.png'
 import BRAND from '../assets/brand.png'
-import BRAND2 from '../assets/brand2.png'
 import Thumbnail from '../components/Thumbnail'
-import TREND2 from '../assets/trend2.jpg'
 import Footer from '../components/Footer'
 import DECORE from '../assets/decore.png'
 import DECORE_LINE from '../assets/decore_line.png'
 import MODEL from '../assets/model.png'
 import VIDEO from '../assets/walkingGirl.mp4'
 import { headContainerAnimation, headTextAnimation } from '../config/motion'
+import dayjs from 'dayjs'
 
 const LandingPage = () => {
+  console.log(
+    dayjs('2024-06-29T16:36:13.403423Z').format('MMM Do YYYY, h:mm A')
+  )
+
   return (
     <div className='w-full'>
       <Header />
